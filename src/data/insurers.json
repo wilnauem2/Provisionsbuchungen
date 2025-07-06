@@ -1,5 +1,8 @@
 [
-    {"name": "Allianz Lebensversicherung"},
+     {
+        "name": "Allianz Lebensversicherung",
+        "instructions": "Für die Bearbeitung von Allianz-Verträgen benötigen Sie folgende Unterlagen: Versicherungsschein, Personalausweis und aktuelle Gehaltsabrechnung. Bitte beachten Sie die Kündigungsfristen von 3 Monaten zum Jahresende."
+    },
     {"name": "AXA Lebensversicherung"},
     {"name": "Generali Deutschland Lebensversicherung"},
     {"name": "Zurich Deutscher Herold Lebensversicherung"},
