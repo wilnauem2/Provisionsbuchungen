@@ -45,7 +45,11 @@
   },
   {
     "name": "Barmenia Krankenversicherung",
-    "instructions": "Noch keine Anweisungen hinterlegt"
+    "turnus": "14-tägig (am 10. und 24. jedes Monats)",
+    "dokumentenart": "CSV, PDF",
+    "bezugsweg": "Maklerportal, BiPRO ??? --> Alex fragen",
+    "kontakt": "maklersupport@barmenia.de, Tel: 0202/4383345",
+    "login": "..."
   },
   {
     "name": "Bayerische Beamten Lebensversicherung a. G.",
@@ -105,7 +109,11 @@
   },
   {
     "name": "die Bayerische Allgemeine Versicherung AG",
-    "instructions": "Noch keine Anweisungen hinterlegt"
+    "turnus": "wöchentlich",
+    "dokumentenart": "CSV, PDF",
+    "bezugsweg": "Maklerportal, BiPRO --> Alex fragen",
+    "kontakt": "",
+    "login": "..."
   },
   {
     "name": "DKV Deutsche Krankenversicherung Aktiengesellschaft",
