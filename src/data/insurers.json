@@ -33,7 +33,11 @@
   },
   {
     "name": "AXA / DBV",
-    "turnus": "14-tägig (ca. 10. und 24. des Monats)"
+    "turnus": "wöchentlich",
+    "dokumentenart": "CSV, PDF",
+    "bezugsweg": "Maklerportal, BiPro",
+    "kontakt": "mario.kroll@axa.de, tel: 0152/09372824",
+    "login": "..."
   },
   {
     "name": "Baloise",
