@@ -1,25 +1,40 @@
 <script setup>
-import { ref } from 'vue'
-import Autocomplete from './components/Autocomplete.vue'
+import { ref, computed } from 'vue'
 import InsurerList from './components/InsurerList.vue'
 import insurers from './data/insurers.json'
 
-const insurer = ref('')
+const searchFilter = ref('')
 const selectedInsurer = ref(null)
 
-// Handler für die Auswahl eines Versicherers über die Autocomplete
-const handleInsurerSelected = (insurerName) => {
-  selectedInsurer.value = insurers.find(item => item.name === insurerName)
-}
+// Gefilterte Versicherungsliste basierend auf Suchbegriff
+const filteredInsurers = computed(() => {
+  if (!searchFilter.value.trim()) {
+    return insurers
+  }
+  
+  const searchTerm = searchFilter.value.toLowerCase()
+  return insurers.filter(insurer => 
+    insurer.name.toLowerCase().includes(searchTerm)
+  )
+})
 
 // Handler für die Auswahl eines Versicherers über die Liste
 const handleInsurerSelectedFromList = (insurerData) => {
   selectedInsurer.value = insurerData
-  insurer.value = insurerData.name
 }
 
-// Handler für das Löschen von Text - blendet Instructions aus
-const handleTextDeleted = () => {
+// Handler für Änderungen im Suchfeld
+const handleSearchInput = (event) => {
+  searchFilter.value = event.target.value
+  // Wenn der Suchbegriff leer ist oder keine Ergebnisse gefunden werden, Auswahl zurücksetzen
+  if (!searchFilter.value.trim()) {
+    selectedInsurer.value = null
+  }
+}
+
+// Handler für das Löschen des Suchfelds
+const clearSearch = () => {
+  searchFilter.value = ''
   selectedInsurer.value = null
 }
 </script>
@@ -44,40 +59,72 @@ const handleTextDeleted = () => {
           </h3>
         </div>
 
-        <!-- Detailinformationen -->
-        <div v-if="selectedInsurer" class="space-y-4 mb-6">
-          <div v-if="selectedInsurer.turnus" class="bg-cyan-50 p-4 rounded-lg border border-cyan-200">
-            <h3 class="text-lg font-semibold mb-2 text-cyan-800">Turnus:</h3>
-            <div class="text-gray-700">
-              {{ selectedInsurer.turnus }}
+        <!-- Detailinformationen als Kacheln -->
+        <div v-if="selectedInsurer" class="mb-6">
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+            <!-- Turnus Kachel -->
+            <div v-if="selectedInsurer.turnus" class="bg-cyan-50 p-4 rounded-lg border border-cyan-200 hover:shadow-md transition-shadow">
+              <div class="flex items-center mb-2">
+                <svg class="w-5 h-5 text-cyan-600 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+                <h3 class="font-semibold text-cyan-800">Turnus</h3>
+              </div>
+              <div class="text-gray-700 text-sm">
+                {{ selectedInsurer.turnus }}
+              </div>
             </div>
-          </div>
 
-          <div v-if="selectedInsurer.dokumentenart" class="bg-yellow-50 p-4 rounded-lg border border-yellow-200">
-            <h3 class="text-lg font-semibold mb-2 text-yellow-800">Dokumentenart:</h3>
-            <div class="text-gray-700">
-              {{ selectedInsurer.dokumentenart }}
+            <!-- Dokumentenart Kachel -->
+            <div v-if="selectedInsurer.dokumentenart" class="bg-yellow-50 p-4 rounded-lg border border-yellow-200 hover:shadow-md transition-shadow">
+              <div class="flex items-center mb-2">
+                <svg class="w-5 h-5 text-yellow-600 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                </svg>
+                <h3 class="font-semibold text-yellow-800">Dokumentenart</h3>
+              </div>
+              <div class="text-gray-700 text-sm">
+                {{ selectedInsurer.dokumentenart }}
+              </div>
             </div>
-          </div>
 
-          <div v-if="selectedInsurer.bezugsweg" class="bg-teal-50 p-4 rounded-lg border border-teal-200">
-            <h3 class="text-lg font-semibold mb-2 text-teal-800">Bezugsweg:</h3>
-            <div class="text-gray-700">
-              {{ selectedInsurer.bezugsweg }}
+            <!-- Bezugsweg Kachel -->
+            <div v-if="selectedInsurer.bezugsweg" class="bg-teal-50 p-4 rounded-lg border border-teal-200 hover:shadow-md transition-shadow">
+              <div class="flex items-center mb-2">
+                <svg class="w-5 h-5 text-teal-600 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7" />
+                </svg>
+                <h3 class="font-semibold text-teal-800">Bezugsweg</h3>
+              </div>
+              <div class="text-gray-700 text-sm">
+                {{ selectedInsurer.bezugsweg }}
+              </div>
             </div>
-          </div>
 
-          <div v-if="selectedInsurer.kontakt" class="bg-red-50 p-4 rounded-lg border border-red-200">
-            <h3 class="text-lg font-semibold mb-2 text-red-800">Kontakt:</h3>
-            <div class="text-gray-700">
-              {{ selectedInsurer.kontakt }}
+            <!-- Kontakt Kachel -->
+            <div v-if="selectedInsurer.kontakt" class="bg-red-50 p-4 rounded-lg border border-red-200 hover:shadow-md transition-shadow">
+              <div class="flex items-center mb-2">
+                <svg class="w-5 h-5 text-red-600 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                </svg>
+                <h3 class="font-semibold text-red-800">Kontakt</h3>
+              </div>
+              <div class="text-gray-700 text-sm">
+                {{ selectedInsurer.kontakt }}
+              </div>
             </div>
-          </div>
 
-          <div v-if="selectedInsurer.login" class="bg-orange-50 p-4 rounded-lg border border-orange-200">
-            <h3 class="text-lg font-semibold mb-2 text-orange-800">Login:</h3>
-            <div class="text-gray-700">
-              {{ selectedInsurer.login }}
+            <!-- Login Kachel -->
+            <div v-if="selectedInsurer.login" class="bg-orange-50 p-4 rounded-lg border border-orange-200 hover:shadow-md transition-shadow">
+              <div class="flex items-center mb-2">
+                <svg class="w-5 h-5 text-orange-600 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 7a2 2 0 012 2m4 0a6 6 0 01-7.743 5.743L11 17H9v2H7v2H4a1 1 0 01-1-1v-2.586a1 1 0 01.293-.707l5.964-5.964A6 6 0 1121 9z" />
+                </svg>
+                <h3 class="font-semibold text-orange-800">Login</h3>
+              </div>
+              <div class="text-gray-700 text-sm">
+                {{ selectedInsurer.login }}
+              </div>
             </div>
           </div>
         </div>
@@ -98,15 +145,31 @@ const handleTextDeleted = () => {
       <div class="border-t border-gray-300 bg-white p-6">
         <div class="max-w-2xl mx-auto">
           <h2 class="text-lg font-semibold mb-4 text-gray-800">
-            Versicherer suchen
+            Versicherer filtern
           </h2>
           
-          <Autocomplete 
-            :source="insurers" 
-            v-model="insurer" 
-            @selected="handleInsurerSelected"
-            @text-deleted="handleTextDeleted"
-          />
+          <div class="relative">
+            <input 
+              type="text" 
+              :value="searchFilter" 
+              @input="handleSearchInput"
+              class="px-5 py-3 w-full border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 pr-10"
+              placeholder="Versicherer suchen..."
+            >
+            <button 
+              v-if="searchFilter"
+              @click="clearSearch"
+              class="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-gray-600"
+            >
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            </button>
+          </div>
+          
+          <div v-if="searchFilter" class="mt-2 text-sm text-gray-600">
+            {{ filteredInsurers.length }} Versicherer gefunden
+          </div>
         </div>
       </div>
     </div>
@@ -114,7 +177,7 @@ const handleTextDeleted = () => {
     <!-- Rechte Seite - Versicherungsliste -->
     <div class="w-96 bg-white border-l border-gray-300 p-4">
       <InsurerList 
-        :insurers="insurers"
+        :insurers="filteredInsurers"
         :selectedInsurer="selectedInsurer"
         @insurer-selected="handleInsurerSelectedFromList"
       />
