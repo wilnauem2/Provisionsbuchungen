@@ -1,6 +1,9 @@
 [
   {
     "name": "AIG",
+    "turnus":"14-tägig - testeintrag",
+    "dokumentenart":"pdf",
+    "bezugsweg":"per Mail",
     "instructions": "Für die Bearbeitung von Allianz-Verträgen benötigen Sie folgende Unterlagen: \n \n \n Versicherungsschein, Personalausweis und aktuelle Gehaltsabrechnung. Bitte beachten Sie die Kündigungsfristen von 3 Monaten zum Jahresende.",
     "instructions2": "Bitte beachten Sie die Kündigungsfristen von 3 Monaten zum Jahresende."
   },
@@ -259,6 +262,14 @@
   {
     "name": "VHV Allgemeine Versicherung AG",
     "instructions": "Noch keine Anweisungen hinterlegt"
+  },
+  {
+    "name": "Versicherungscheck24",
+    "turnus": "14-tägig (am 01. und 15. jedes Monats)",
+    "dokumentenart": "PDF (standard) - CSV auf Wunsch möglich (per Mail anfordern)",
+    "bezugsweg": "Maklerportal, Mail",
+    "kontakt": "Florian.Reinecke@vc24.de, Tel: 071959610962",
+    "login": "..."
   },
   {
     "name": "Volkswohl-Bund Lebensversicherung a.G.",
