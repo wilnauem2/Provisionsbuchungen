@@ -5,15 +5,16 @@ import insurers from './data/insurers.json'
 
 const searchFilter = ref('')
 const selectedInsurer = ref(null)
+const insurersData = ref([...insurers]) // Kopie der Daten für Zustandsänderungen
 
 // Gefilterte Versicherungsliste basierend auf Suchbegriff
 const filteredInsurers = computed(() => {
   if (!searchFilter.value.trim()) {
-    return insurers
+    return insurersData.value
   }
   
   const searchTerm = searchFilter.value.toLowerCase()
-  return insurers.filter(insurer => 
+  return insurersData.value.filter(insurer => 
     insurer.name.toLowerCase().includes(searchTerm)
   )
 })
@@ -37,6 +38,57 @@ const clearSearch = () => {
   searchFilter.value = ''
   selectedInsurer.value = null
 }
+
+// Handler für Abrechnung durchgeführt
+const handleSettlementCompleted = () => {
+  if (selectedInsurer.value) {
+    const currentDate = new Date()
+    const dateString = currentDate.toLocaleDateString('de-DE', {
+      year: 'numeric',
+      month: '2-digit',
+      day: '2-digit',
+      hour: '2-digit',
+      minute: '2-digit'
+    })
+    
+    // Finde den Index des ausgewählten Versicherers
+    const index = insurersData.value.findIndex(insurer => insurer.name === selectedInsurer.value.name)
+    
+    if (index !== -1) {
+      // Aktualisiere die Daten
+      insurersData.value[index] = {
+        ...insurersData.value[index],
+        lastSettlement: dateString,
+        settlementCompleted: true
+      }
+      
+      // Aktualisiere auch die Auswahl
+      selectedInsurer.value = {
+        ...selectedInsurer.value,
+        lastSettlement: dateString,
+        settlementCompleted: true
+      }
+    }
+  }
+}
+
+// Formatierung des Datums für bessere Lesbarkeit
+const formatLastSettlement = (dateString) => {
+  if (!dateString) return ''
+  
+  const date = new Date(dateString.replace(/(\d{2})\.(\d{2})\.(\d{4}), (\d{2}):(\d{2})/, '$3-$2-$1T$4:$5'))
+  const now = new Date()
+  const diffTime = Math.abs(now - date)
+  const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24))
+  
+  if (diffDays === 1) {
+    return 'vor 1 Tag'
+  } else if (diffDays < 7) {
+    return `vor ${diffDays} Tagen`
+  } else {
+    return `am ${dateString.split(',')[0]}`
+  }
+}
 </script>
 
 <template>
@@ -54,9 +106,22 @@ const clearSearch = () => {
       <div class="flex-1 overflow-y-auto px-8">
         <!-- Ausgewählter Versicherer -->
         <div v-if="selectedInsurer" class="mb-6 p-4 bg-blue-50 rounded-lg border border-blue-200">
-          <h3 class="text-xl font-semibold mb-2 text-blue-800">
-            {{ selectedInsurer.name }}
-          </h3>
+          <div class="flex justify-between items-start">
+            <div class="flex-1">
+              <h3 class="text-xl font-semibold mb-2 text-blue-800">
+                {{ selectedInsurer.name }}
+              </h3>
+              <div v-if="selectedInsurer.lastSettlement" class="text-sm text-green-600 mb-2">
+                ✓ Letzte Abrechnung: {{ formatLastSettlement(selectedInsurer.lastSettlement) }}
+              </div>
+            </div>
+            <button 
+              @click="handleSettlementCompleted"
+              class="ml-4 px-4 py-2 bg-green-600 text-white rounded-md hover:bg-green-700 transition-colors text-sm font-medium"
+            >
+              Abrechnung soeben erfolgt
+            </button>
+          </div>
         </div>
 
         <!-- Detailinformationen als Kacheln -->
@@ -125,6 +190,21 @@ const clearSearch = () => {
               <div class="text-gray-700 text-sm">
                 {{ selectedInsurer.login }}
               </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Instructions Bereich -->
+        <div v-if="selectedInsurer && selectedInsurer.instructions" class="mb-6">
+          <div class="bg-purple-50 p-4 rounded-lg border border-purple-200">
+            <div class="flex items-center mb-2">
+              <svg class="w-5 h-5 text-purple-600 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+              <h3 class="font-semibold text-purple-800">Anweisungen</h3>
+            </div>
+            <div class="text-gray-700 text-sm whitespace-pre-line">
+              {{ selectedInsurer.instructions }}
             </div>
           </div>
         </div>
