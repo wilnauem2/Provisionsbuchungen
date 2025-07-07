@@ -10,6 +10,11 @@ const selectedInsurer = ref(null)
 const handleInsurerSelected = (insurerName) => {
   selectedInsurer.value = insurers.find(item => item.name === insurerName)
 }
+
+// Handler für das Löschen von Text - blendet Instructions aus
+const handleTextDeleted = () => {
+  selectedInsurer.value = null
+}
 </script>
 
 <template>
@@ -18,13 +23,25 @@ const handleInsurerSelected = (insurerName) => {
       <h1 class="text-center mb-3 font-bold">
         Ausgewählter Versicherer: {{ selectedInsurer?.name || 'Keine Auswahl' }}
       </h1>
-      <Autocomplete :source="insurers" v-model="insurer" @selected="handleInsurerSelected"/>
+      <Autocomplete 
+        :source="insurers" 
+        v-model="insurer" 
+        @selected="handleInsurerSelected"
+        @text-deleted="handleTextDeleted"
+      />
       
       <!-- Anweisungen anzeigen, wenn ein Versicherer ausgewählt wurde -->
-      <div v-if="selectedInsurer && selectedInsurer.instructions" class="mt-6 p-4 bg-white rounded-md border border-gray-300">
+      <div v-if="selectedInsurer && selectedInsurer.instructions" class="mt-6 p-4 bg-cyan-100 rounded-md border border-gray-300">
         <h2 class="text-lg font-semibold mb-3 text-gray-800">Anweisungen für {{ selectedInsurer.name }}:</h2>
         <div class="text-gray-700 leading-relaxed">
           {{ selectedInsurer.instructions }}
+        </div>
+      </div>
+
+      <div v-if="selectedInsurer && selectedInsurer.instructions2" class="mt-6 p-4 bg-lime-100 rounded-md border border-gray-300">
+        <h2 class="text-lg font-semibold mb-3 text-gray-800">Provision eintragen:</h2>
+        <div class="text-gray-700 leading-relaxed">
+          {{ selectedInsurer.instructions2 }} 
         </div>
       </div>
     </div>
