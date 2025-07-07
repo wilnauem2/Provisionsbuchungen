@@ -46,7 +46,7 @@ const clearSearch = () => {
       <!-- Header -->
       <div class="p-8 pb-4">
         <h1 class="text-center font-bold text-2xl text-gray-800">
-          Versicherer-Verwaltung
+          Provisionsabrechnungshilfe
         </h1>
       </div>
 
