@@ -55,17 +55,17 @@ const handleSettlementCompleted = () => {
     const index = insurersData.value.findIndex(insurer => insurer.name === selectedInsurer.value.name)
     
     if (index !== -1) {
-      // Aktualisiere die Daten
+      // Aktualisiere die Daten mit dem neuen Key "last_invoice"
       insurersData.value[index] = {
         ...insurersData.value[index],
-        lastSettlement: dateString,
+        last_invoice: dateString,
         settlementCompleted: true
       }
       
       // Aktualisiere auch die Auswahl
       selectedInsurer.value = {
         ...selectedInsurer.value,
-        lastSettlement: dateString,
+        last_invoice: dateString,
         settlementCompleted: true
       }
     }
@@ -76,17 +76,23 @@ const handleSettlementCompleted = () => {
 const formatLastSettlement = (dateString) => {
   if (!dateString) return ''
   
-  const date = new Date(dateString.replace(/(\d{2})\.(\d{2})\.(\d{4}), (\d{2}):(\d{2})/, '$3-$2-$1T$4:$5'))
-  const now = new Date()
-  const diffTime = Math.abs(now - date)
-  const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24))
-  
-  if (diffDays === 1) {
-    return 'vor 1 Tag'
-  } else if (diffDays < 7) {
-    return `vor ${diffDays} Tagen`
-  } else {
-    return `am ${dateString.split(',')[0]}`
+  try {
+    const date = new Date(dateString.replace(/(\d{2})\.(\d{2})\.(\d{4}), (\d{2}):(\d{2})/, '$3-$2-$1T$4:$5'))
+    const now = new Date()
+    const diffTime = Math.abs(now - date)
+    const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24)) // Math.floor statt Math.ceil
+    
+    if (diffDays === 0) {
+      return 'heute'
+    } else if (diffDays === 1) {
+      return 'vor 1 Tag'
+    } else if (diffDays < 7) {
+      return `vor ${diffDays} Tagen`
+    } else {
+      return `am ${dateString.split(',')[0]}`
+    }
+  } catch (error) {
+    return dateString
   }
 }
 </script>
@@ -111,8 +117,8 @@ const formatLastSettlement = (dateString) => {
               <h3 class="text-xl font-semibold mb-2 text-blue-800">
                 {{ selectedInsurer.name }}
               </h3>
-              <div v-if="selectedInsurer.lastSettlement" class="text-sm text-green-600 mb-2">
-                ✓ Letzte Abrechnung: {{ formatLastSettlement(selectedInsurer.lastSettlement) }}
+              <div v-if="selectedInsurer.last_invoice" class="text-sm text-green-600 mb-2">
+                ✓ Letzte Abrechnung: {{ formatLastSettlement(selectedInsurer.last_invoice) }}
               </div>
             </div>
             <button 
