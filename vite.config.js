@@ -30,5 +30,8 @@ export default defineConfig({
     alias: {
       'crypto': 'crypto-browserify'
     }
+  },
+  esbuild: {
+    target: 'es2020'
   }
 })
