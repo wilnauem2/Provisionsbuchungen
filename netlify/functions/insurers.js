@@ -1,7 +1,5 @@
-const { NetlifyStorage } = require('@netlify/storage')
+const { kv } = require('@netlify/kv')
 
-// Initialize Netlify Storage
-const storage = new NetlifyStorage()
 const DATA_KEY = 'insurers_data'
 
 exports.handler = async (event, context) => {
@@ -11,7 +9,7 @@ exports.handler = async (event, context) => {
     if (event.httpMethod === 'GET') {
       console.log('Reading data...')
       try {
-        const data = await storage.getItem(DATA_KEY)
+        const data = await kv.get(DATA_KEY)
         console.log('Data read successfully:', data)
         return {
           statusCode: 200,
@@ -30,7 +28,7 @@ exports.handler = async (event, context) => {
       try {
         const newData = event.body
         console.log('New data:', newData)
-        await storage.setItem(DATA_KEY, newData)
+        await kv.put(DATA_KEY, newData)
         console.log('Data written successfully')
         
         return {
