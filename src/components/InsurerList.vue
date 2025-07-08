@@ -29,8 +29,11 @@
                   {{ insurer.turnus }}
                 </div>
                
-                <div v-if="insurer.last_invoice" class="text-xs text-green-600 flex items-center">
-                  <svg class="w-3 h-3 mr-1" fill="currentColor" viewBox="0 0 20 20">
+                <div v-if="insurer.last_invoice" class="text-xs flex items-center">
+                  <svg v-if="isOverdue(insurer)" class="w-3 h-3 mr-1 text-red-600" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd" />
+                  </svg>
+                  <svg v-else class="w-3 h-3 mr-1 text-green-600" fill="currentColor" viewBox="0 0 20 20">
                     <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
                   </svg>
                   {{ formatLastSettlement(insurer.last_invoice) }}
@@ -40,7 +43,8 @@
            
             <!-- Status-Indikator -->
             <div class="ml-2 flex-shrink-0">
-              <div v-if="insurer.settlementCompleted" class="w-3 h-3 bg-green-500 rounded-full"></div>
+              <div v-if="isOverdue(insurer)" class="w-3 h-3 bg-red-500 rounded-full"></div>
+              <div v-else-if="insurer.settlementCompleted" class="w-3 h-3 bg-green-500 rounded-full"></div>
               <div v-else class="w-3 h-3 bg-gray-300 rounded-full"></div>
             </div>
           </div>
@@ -77,7 +81,7 @@ const formatLastSettlement = (dateString) => {
     const date = new Date(dateString.replace(/(\d{2})\.(\d{2})\.(\d{4}), (\d{2}):(\d{2})/, '$3-$2-$1T$4:$5'))
     const now = new Date()
     const diffTime = Math.abs(now - date)
-    const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24)) // Math.floor statt Math.ceil
+    const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24))
    
     if (diffDays === 0) {
       return 'heute'
@@ -91,5 +95,26 @@ const formatLastSettlement = (dateString) => {
   } catch (error) {
     return dateString
   }
+}
+
+// Prüft ob der Versicherer überfällig ist
+const isOverdue = (insurer) => {
+  if (!insurer.last_invoice || !insurer.turnus) return false
+  
+  const turnusMap = {
+    'täglich': 1,
+    '14-täglich': 14,
+    'monatlich': 30
+  }
+  
+  const turnusDays = turnusMap[insurer.turnus?.toLowerCase()]
+  if (!turnusDays) return false
+  
+  const lastInvoiceDate = new Date(insurer.last_invoice.replace(/(\d{2})\.(\d{2})\.(\d{4}), (\d{2}):(\d{2})/, '$3-$2-$1T$4:$5'))
+  const now = new Date()
+  
+  const daysSinceLastInvoice = Math.floor((now - lastInvoiceDate) / (1000 * 60 * 60 * 24))
+  
+  return daysSinceLastInvoice > turnusDays
 }
 </script>

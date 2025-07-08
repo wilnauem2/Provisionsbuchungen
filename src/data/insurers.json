@@ -1,11 +1,13 @@
 [
   {
     "name": "AIG",
-    "turnus":"14-tägig - testeintrag",
-    "dokumentenart":"pdf",
-    "bezugsweg":"per Mail",
+    "turnus": "",
+    "dokumentenart": "",
+    "bezugsweg": "",
+    "last_invoice": "08.07.2025, 10:00",
     "instructions": "Für die Bearbeitung von Allianz-Verträgen benötigen Sie folgende Unterlagen: \n \n \n Versicherungsschein, Personalausweis und aktuelle Gehaltsabrechnung. Bitte beachten Sie die Kündigungsfristen von 3 Monaten zum Jahresende.",
-    "instructions2": "Bitte beachten Sie die Kündigungsfristen von 3 Monaten zum Jahresende."
+    "instructions2": "Bitte beachten Sie die Kündigungsfristen von 3 Monaten zum Jahresende.",
+    "settlementCompleted": true
   },
   {
     "name": "Allianz Versicherungs-AG (Sach)",
@@ -281,7 +283,9 @@
     "dokumentenart": "PDF (standard) - CSV auf Wunsch möglich (per Mail anfordern)",
     "bezugsweg": "Maklerportal, Mail",
     "kontakt": "Florian.Reinecke@vc24.de, Tel: 071959610962",
-    "login": "..."
+    "login": "...",
+    "last_invoice": "08.07.2025, 09:53",
+    "settlementCompleted": true
   },
   {
     "name": "Volkswohl-Bund Lebensversicherung a.G.",

@@ -1,45 +1,59 @@
 <script setup>
-import { ref, computed } from 'vue'
+import { ref, computed, onMounted } from 'vue'
 import InsurerList from './components/InsurerList.vue'
-import insurers from './data/insurers.json'
 
 const searchFilter = ref('')
 const selectedInsurer = ref(null)
-const insurersData = ref([...insurers]) // Kopie der Daten für Zustandsänderungen
+const insurersData = ref([])
 
-// Gefilterte Versicherungsliste basierend auf Suchbegriff
+onMounted(async () => {
+  try {
+    const response = await fetch('http://localhost:3001/api/insurers')
+    const data = await response.json()
+    insurersData.value = data
+  } catch (error) {
+    console.error('Fehler beim Laden der Versichererdaten:', error)
+  }
+})
+
 const filteredInsurers = computed(() => {
   if (!searchFilter.value.trim()) {
     return insurersData.value
   }
-  
   const searchTerm = searchFilter.value.toLowerCase()
   return insurersData.value.filter(insurer => 
     insurer.name.toLowerCase().includes(searchTerm)
   )
 })
 
-// Handler für die Auswahl eines Versicherers über die Liste
 const handleInsurerSelectedFromList = (insurerData) => {
   selectedInsurer.value = insurerData
 }
 
-// Handler für Änderungen im Suchfeld
 const handleSearchInput = (event) => {
   searchFilter.value = event.target.value
-  // Wenn der Suchbegriff leer ist oder keine Ergebnisse gefunden werden, Auswahl zurücksetzen
   if (!searchFilter.value.trim()) {
     selectedInsurer.value = null
   }
 }
 
-// Handler für das Löschen des Suchfelds
 const clearSearch = () => {
   searchFilter.value = ''
   selectedInsurer.value = null
 }
 
-// Handler für Abrechnung durchgeführt
+const saveToJson = async () => {
+  try {
+    await fetch('/.netlify/functions/insurers', {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(insurersData.value)
+    })
+  } catch (error) {
+    console.error('Fehler beim Speichern:', error)
+  }
+}
+
 const handleSettlementCompleted = () => {
   if (selectedInsurer.value) {
     const currentDate = new Date()
@@ -50,38 +64,52 @@ const handleSettlementCompleted = () => {
       hour: '2-digit',
       minute: '2-digit'
     })
-    
-    // Finde den Index des ausgewählten Versicherers
-    const index = insurersData.value.findIndex(insurer => insurer.name === selectedInsurer.value.name)
-    
+
+    const index = insurersData.value.findIndex(ins => ins.name === selectedInsurer.value.name)
+
     if (index !== -1) {
-      // Aktualisiere die Daten mit dem neuen Key "last_invoice"
       insurersData.value[index] = {
         ...insurersData.value[index],
         last_invoice: dateString,
         settlementCompleted: true
       }
-      
-      // Aktualisiere auch die Auswahl
+
       selectedInsurer.value = {
         ...selectedInsurer.value,
         last_invoice: dateString,
         settlementCompleted: true
       }
+
+      saveToJson()
     }
   }
 }
 
-// Formatierung des Datums für bessere Lesbarkeit
+const handleUpdateLastInvoice = ({ insurerName, lastInvoice }) => {
+  const index = insurersData.value.findIndex(ins => ins.name === insurerName)
+  if (index !== -1) {
+    insurersData.value[index].last_invoice = lastInvoice
+    insurersData.value[index].settlementCompleted = true
+
+    if (selectedInsurer.value?.name === insurerName) {
+      selectedInsurer.value = {
+        ...selectedInsurer.value,
+        last_invoice: lastInvoice,
+        settlementCompleted: true
+      }
+    }
+    saveToJson()
+  }
+}
+
 const formatLastSettlement = (dateString) => {
   if (!dateString) return ''
-  
   try {
     const date = new Date(dateString.replace(/(\d{2})\.(\d{2})\.(\d{4}), (\d{2}):(\d{2})/, '$3-$2-$1T$4:$5'))
     const now = new Date()
     const diffTime = Math.abs(now - date)
-    const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24)) // Math.floor statt Math.ceil
-    
+    const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24))
+
     if (diffDays === 0) {
       return 'heute'
     } else if (diffDays === 1) {
@@ -99,18 +127,14 @@ const formatLastSettlement = (dateString) => {
 
 <template>
   <div class="w-screen h-screen bg-gray-200 flex">
-    <!-- Linke Seite - Detailbereich und Suchbereich -->
     <div class="flex-1 flex flex-col">
-      <!-- Header -->
       <div class="p-8 pb-4">
         <h1 class="text-center font-bold text-2xl text-gray-800">
           Provisionsabrechnungshilfe
         </h1>
       </div>
 
-      <!-- Scrollbarer Detailbereich -->
       <div class="flex-1 overflow-y-auto px-8">
-        <!-- Ausgewählter Versicherer -->
         <div v-if="selectedInsurer" class="mb-6 p-4 bg-blue-50 rounded-lg border border-blue-200">
           <div class="flex justify-between items-start">
             <div class="flex-1">
@@ -130,10 +154,8 @@ const formatLastSettlement = (dateString) => {
           </div>
         </div>
 
-        <!-- Detailinformationen als Kacheln -->
         <div v-if="selectedInsurer" class="mb-6">
           <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-            <!-- Turnus Kachel -->
             <div v-if="selectedInsurer.turnus" class="bg-cyan-50 p-4 rounded-lg border border-cyan-200 hover:shadow-md transition-shadow">
               <div class="flex items-center mb-2">
                 <svg class="w-5 h-5 text-cyan-600 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -146,7 +168,6 @@ const formatLastSettlement = (dateString) => {
               </div>
             </div>
 
-            <!-- Dokumentenart Kachel -->
             <div v-if="selectedInsurer.dokumentenart" class="bg-yellow-50 p-4 rounded-lg border border-yellow-200 hover:shadow-md transition-shadow">
               <div class="flex items-center mb-2">
                 <svg class="w-5 h-5 text-yellow-600 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -159,7 +180,6 @@ const formatLastSettlement = (dateString) => {
               </div>
             </div>
 
-            <!-- Bezugsweg Kachel -->
             <div v-if="selectedInsurer.bezugsweg" class="bg-teal-50 p-4 rounded-lg border border-teal-200 hover:shadow-md transition-shadow">
               <div class="flex items-center mb-2">
                 <svg class="w-5 h-5 text-teal-600 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -172,7 +192,6 @@ const formatLastSettlement = (dateString) => {
               </div>
             </div>
 
-            <!-- Kontakt Kachel -->
             <div v-if="selectedInsurer.kontakt" class="bg-red-50 p-4 rounded-lg border border-red-200 hover:shadow-md transition-shadow">
               <div class="flex items-center mb-2">
                 <svg class="w-5 h-5 text-red-600 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -185,7 +204,6 @@ const formatLastSettlement = (dateString) => {
               </div>
             </div>
 
-            <!-- Login Kachel -->
             <div v-if="selectedInsurer.login" class="bg-orange-50 p-4 rounded-lg border border-orange-200 hover:shadow-md transition-shadow">
               <div class="flex items-center mb-2">
                 <svg class="w-5 h-5 text-orange-600 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -200,7 +218,6 @@ const formatLastSettlement = (dateString) => {
           </div>
         </div>
 
-        <!-- Instructions Bereich -->
         <div v-if="selectedInsurer && selectedInsurer.instructions" class="mb-6">
           <div class="bg-purple-50 p-4 rounded-lg border border-purple-200">
             <div class="flex items-center mb-2">
@@ -215,7 +232,6 @@ const formatLastSettlement = (dateString) => {
           </div>
         </div>
 
-        <!-- Platzhalter wenn kein Versicherer ausgewählt -->
         <div v-if="!selectedInsurer" class="flex items-center justify-center h-64">
           <div class="text-center text-gray-500">
             <svg class="mx-auto h-12 w-12 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -227,13 +243,9 @@ const formatLastSettlement = (dateString) => {
         </div>
       </div>
 
-      <!-- Fixierte Suchleiste am unteren Rand -->
       <div class="border-t border-gray-300 bg-white p-6">
         <div class="max-w-2xl mx-auto">
-          <h2 class="text-lg font-semibold mb-4 text-gray-800">
-            Versicherer filtern
-          </h2>
-          
+          <h2 class="text-lg font-semibold mb-4 text-gray-800">Versicherer filtern</h2>
           <div class="relative">
             <input 
               type="text" 
@@ -252,7 +264,6 @@ const formatLastSettlement = (dateString) => {
               </svg>
             </button>
           </div>
-          
           <div v-if="searchFilter" class="mt-2 text-sm text-gray-600">
             {{ filteredInsurers.length }} Versicherer gefunden
           </div>
@@ -260,12 +271,12 @@ const formatLastSettlement = (dateString) => {
       </div>
     </div>
 
-    <!-- Rechte Seite - Versicherungsliste -->
     <div class="w-96 bg-white border-l border-gray-300 p-4">
       <InsurerList 
         :insurers="filteredInsurers"
         :selectedInsurer="selectedInsurer"
         @insurer-selected="handleInsurerSelectedFromList"
+        @update-last-invoice="handleUpdateLastInvoice"
       />
     </div>
   </div>
