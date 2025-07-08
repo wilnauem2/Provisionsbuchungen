@@ -1,20 +1,41 @@
 <script setup>
 import { ref, computed, onMounted } from 'vue'
 import InsurerList from './components/InsurerList.vue'
+import rawInsurersData from './data/insurers.json'
 
 const searchFilter = ref('')
 const selectedInsurer = ref(null)
 const insurersData = ref([])
 
-const loadFromJson = async () => {
+// Load initial data
+const loadInitialData = async () => {
   try {
-    // Use absolute path for Netlify deployment
-    const response = await fetch(`${window.location.origin}/.netlify/functions/get-insurers`)
-    if (!response.ok) {
-      console.error('HTTP error:', response.status, response.statusText)
-      throw new Error(`HTTP error ${response.status}: ${response.statusText}`)
+    // Check if we're running on Netlify
+    const isNetlify = window.location.hostname !== 'localhost' && window.location.hostname !== '127.0.0.1'
+    
+    let data
+    if (isNetlify) {
+      // Use Netlify function in production
+      const response = await fetch(`${window.location.origin}/.netlify/functions/get-insurers`)
+      if (!response.ok) {
+        console.error('HTTP error:', response.status, response.statusText)
+        throw new Error(`HTTP error ${response.status}: ${response.statusText}`)
+      }
+      data = await response.json()
+    } else {
+      // Try to load from mock-insurers.json first
+      try {
+        const response = await fetch('http://localhost:3001/.netlify/functions/get-insurers')
+        if (!response.ok) {
+          throw new Error(`HTTP error ${response.status}: ${response.statusText}`)
+        }
+        data = await response.json()
+      } catch (error) {
+        console.error('Error loading from mock server:', error)
+        // Fallback to local JSON file
+        data = rawInsurersData
+      }
     }
-    const data = await response.json()
     
     if (!Array.isArray(data)) {
       console.error('Invalid data format:', data)
@@ -24,22 +45,14 @@ const loadFromJson = async () => {
     insurersData.value = data
     console.log('Successfully loaded data:', data)
   } catch (error) {
-    console.error('Error loading data:', error)
-    const errorMessage = error.message || 'Unknown error'
-    alert(`Fehler beim Laden der Daten:\n${errorMessage}\nDetails:\n${error.stack}`)
-    
-    // Fallback to empty array if loading fails
-    insurersData.value = []
+    console.error('Error loading initial data:', error)
+    // Fallback to raw data if everything else fails
+    insurersData.value = rawInsurersData
   }
 }
 
 onMounted(async () => {
-  try {
-    await loadFromJson()
-    console.log('Insurers data loaded:', insurersData.value)
-  } catch (error) {
-    console.error('Error in onMounted:', error)
-  }
+  await loadInitialData()
 })
 
 const filteredInsurers = computed(() => {
@@ -75,18 +88,18 @@ const saveToJson = async () => {
       throw new Error('Kein Versicherer ausgewählt')
     }
 
-    const currentDate = new Date()
-    const dateString = currentDate.toLocaleDateString('de-DE', {
-      year: 'numeric',
-      month: '2-digit',
-      day: '2-digit',
-      hour: '2-digit',
-      minute: '2-digit'
-    })
-
     // Update local state
     const index = insurersData.value.findIndex(ins => ins.name === selectedInsurer.value.name)
     if (index !== -1) {
+      const currentDate = new Date()
+      const dateString = currentDate.toLocaleDateString('de-DE', {
+        year: 'numeric',
+        month: '2-digit',
+        day: '2-digit',
+        hour: '2-digit',
+        minute: '2-digit'
+      })
+
       insurersData.value[index] = {
         ...insurersData.value[index],
         last_invoice: dateString
@@ -98,19 +111,26 @@ const saveToJson = async () => {
     }
 
     // Save to insurers.json through Netlify function
-    const response = await fetch('/functions/update-insurers', {
-      method: 'PUT',
+    const isNetlify = window.location.hostname !== 'localhost' && window.location.hostname !== '127.0.0.1'
+    const url = isNetlify ? `${window.location.origin}/.netlify/functions/save-insurers` : 'http://localhost:3001/.netlify/functions/save-insurers'
+    const response = await fetch(url, {
+      method: 'POST',
       headers: {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify(insurersData.value)
     })
 
+    const result = await response.json()
+    
     if (!response.ok) {
-      throw new Error('Failed to save to insurers.json')
+      throw new Error(result.message || 'Failed to save to insurers.json')
     }
     
     alert('Daten erfolgreich gespeichert!')
+    
+    // Reload data after successful save to ensure consistency
+    await loadInitialData()
   } catch (error) {
     console.error('Error saving data:', error)
     alert(`Fehler beim Speichern der Daten:\n${error.message}\nDetails:\n${error.stack}`)

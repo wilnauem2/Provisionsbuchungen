@@ -1,2 +1,3 @@
 /functions/get-insurers    /.netlify/functions/get-insurers    200
 /functions/update-insurers    /.netlify/functions/update-insurers    200
+/functions/save-insurers    /.netlify/functions/save-insurers    200

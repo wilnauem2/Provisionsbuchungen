@@ -1,0 +1,377 @@
+[
+  {
+    "name": "AIG",
+    "turnus": "",
+    "dokumentenart": "",
+    "bezugsweg": "",
+    "last_invoice": "08.07.2025, 10:00",
+    "instructions": "Für die Bearbeitung von Allianz-Verträgen benötigen Sie folgende Unterlagen: \n \n \n Versicherungsschein, Personalausweis und aktuelle Gehaltsabrechnung. Bitte beachten Sie die Kündigungsfristen von 3 Monaten zum Jahresende.",
+    "instructions2": "Bitte beachten Sie die Kündigungsfristen von 3 Monaten zum Jahresende.",
+    "settlementCompleted": true
+  },
+  {
+    "name": "Allianz Versicherungs-AG (Sach)",
+    "last_invoice": "08.07.2025, 11:04",
+    "instructions": "Noch keine Anweisungen hinterlegt",
+    "settlementCompleted": true
+  },
+  {
+    "name": "Alte Leipziger Versicherung Aktiengesellschaft",
+    "last_invoice": "08.07.2025, 11:04",
+    "instructions": "Noch keine Anweisungen hinterlegt",
+    "settlementCompleted": true
+  },
+  {
+    "name": "Ammerländer Versicherung VVaG",
+    "last_invoice": "08.07.2025, 18:25",
+    "instructions": "Noch keine Anweisungen hinterlegt",
+    "settlementCompleted": true
+  },
+  {
+    "name": "AOK Baden-Württemberg",
+    "last_invoice": "",
+    "instructions": "Noch keine Anweisungen hinterlegt"
+  },
+  {
+    "name": "ARAG",
+    "last_invoice": "",
+    "instructions": "Noch keine Anweisungen hinterlegt"
+  },
+  {
+    "name": "Asspario Versicherungsdienst",
+    "last_invoice": "",
+    "instructions": "Noch keine Anweisungen hinterlegt"
+  },
+  {
+    "name": "AXA / DBV",
+    "last_invoice": "",
+    "turnus": "wöchentlich",
+    "dokumentenart": "CSV, PDF",
+    "bezugsweg": "Maklerportal, BiPro",
+    "kontakt": "mario.kroll@axa.de, tel: 0152/09372824",
+    "login": "..."
+  },
+  {
+    "name": "Baloise",
+    "last_invoice": "",
+    "instructions": "Noch keine Anweisungen hinterlegt"
+  },
+  {
+    "name": "Barmenia Krankenversicherung",
+    "last_invoice": "",
+    "turnus": "14-tägig (am 10. und 24. jedes Monats)",
+    "dokumentenart": "CSV, PDF",
+    "bezugsweg": "Maklerportal, BiPRO ??? --> Alex fragen",
+    "kontakt": "maklersupport@barmenia.de, Tel: 0202/4383345",
+    "login": "..."
+  },
+  {
+    "name": "Bayerische Beamten Lebensversicherung a. G.",
+    "last_invoice": "",
+    "instructions": "Noch keine Anweisungen hinterlegt"
+  },
+  {
+    "name": "Bayerische Beamtenkrankenkasse AG (VKB)",
+    "last_invoice": "",
+    "instructions": "Noch keine Anweisungen hinterlegt"
+  },
+  {
+    "name": "BGV-Versicherung Aktiengesellschaft",
+    "last_invoice": "",
+    "instructions": "Noch keine Anweisungen hinterlegt"
+  },
+  {
+    "name": "BKK Salus",
+    "last_invoice": "",
+    "instructions": "Noch keine Anweisungen hinterlegt"
+  },
+  {
+    "name": "BL die Bayerische Lebensversicherung AG",
+    "last_invoice": "",
+    "instructions": "Noch keine Anweisungen hinterlegt"
+  },
+  {
+    "name": "Concordia",
+    "last_invoice": "",
+    "instructions": "Noch keine Anweisungen hinterlegt"
+  },
+  {
+    "name": "Continentale",
+    "last_invoice": "",
+    "instructions": "Noch keine Anweisungen hinterlegt"
+  },
+  {
+    "name": "DAK",
+    "last_invoice": "",
+    "instructions": "Noch keine Anweisungen hinterlegt"
+  },
+  {
+    "name": "Debeka",
+    "last_invoice": "",
+    "instructions": "Noch keine Anweisungen hinterlegt"
+  },
+  {
+    "name": "DELA Lebensversicherungen",
+    "last_invoice": "",
+    "instructions": "Noch keine Anweisungen hinterlegt"
+  },
+  {
+    "name": "DEURAG Deutsche Rechtsschutz-Versicherung Aktiengesellschaft",
+    "last_invoice": "",
+    "instructions": "Noch keine Anweisungen hinterlegt"
+  },
+  {
+    "name": "Deutsche Ärzteversicherung Aktiengesellschaft",
+    "last_invoice": "",
+    "instructions": "Noch keine Anweisungen hinterlegt"
+  },
+  {
+    "name": "DEVK Allgemeine Versicherungs-Aktiengesellschaft",
+    "last_invoice": "",
+    "instructions": "Noch keine Anweisungen hinterlegt"
+  },
+  {
+    "name": "Dialog Lebensversicherungs-Aktiengesellschaft",
+    "last_invoice": "",
+    "instructions": "Noch keine Anweisungen hinterlegt"
+  },
+  {
+    "name": "die Bayerische Allgemeine Versicherung AG",
+    "last_invoice": "",
+    "turnus": "wöchentlich",
+    "dokumentenart": "CSV, PDF",
+    "bezugsweg": "Maklerportal, BiPRO --> Alex fragen",
+    "kontakt": "",
+    "login": "..."
+  },
+  {
+    "name": "DKV Deutsche Krankenversicherung Aktiengesellschaft",
+    "last_invoice": "",
+    "instructions": "Noch keine Anweisungen hinterlegt"
+  },
+  {
+    "name": "DMB Rechtsschutz-Versicherung Aktiengesellschaft",
+    "last_invoice": "",
+    "instructions": "Noch keine Anweisungen hinterlegt"
+  },
+  {
+    "name": "DOCURA VVaG",
+    "last_invoice": "",
+    "instructions": "Noch keine Anweisungen hinterlegt"
+  },
+  {
+    "name": "FRI:DAY",
+    "last_invoice": "",
+    "instructions": "Noch keine Anweisungen hinterlegt"
+  },
+  {
+    "name": "Generali Versicherung Aktiengesellschaft",
+    "last_invoice": "",
+    "instructions": "Noch keine Anweisungen hinterlegt"
+  },
+  {
+    "name": "Gothaer Allgemeine Versicherung Aktiengesellschaft",
+    "last_invoice": "",
+    "instructions": "Noch keine Anweisungen hinterlegt"
+  },
+  {
+    "name": "GRUNDEIGENTÜMER-VERSICHERUNG Versicherungsverein auf Gegenseitigkeit",
+    "last_invoice": "",
+    "instructions": "Noch keine Anweisungen hinterlegt"
+  },
+  {
+    "name": "Haftpflichtkasse",
+    "last_invoice": "",
+    "instructions": "Noch keine Anweisungen hinterlegt"
+  },
+  {
+    "name": "Hannoversche Lebensversicherung AG",
+    "last_invoice": "",
+    "instructions": "Noch keine Anweisungen hinterlegt"
+  },
+  {
+    "name": "HanseMerkur Reiseversicherung AG",
+    "last_invoice": "",
+    "instructions": "Noch keine Anweisungen hinterlegt"
+  },
+  {
+    "name": "HDI Versicherung AG",
+    "last_invoice": "",
+    "instructions": "Noch keine Anweisungen hinterlegt"
+  },
+  {
+    "name": "HELVETIA INTERNATIONAL Versicherungs-Aktiengesellschaft",
+    "last_invoice": "",
+    "instructions": "Noch keine Anweisungen hinterlegt"
+  },
+  {
+    "name": "HUK-COBURG-Allgemeine Versicherung AG",
+    "last_invoice": "",
+    "instructions": "Noch keine Anweisungen hinterlegt"
+  },
+  {
+    "name": "IDUNA Vereinigte Lebensversicherung aG für Handwerk, Handel und Gewerbe",
+    "last_invoice": "",
+    "instructions": "Noch keine Anweisungen hinterlegt"
+  },
+  {
+    "name": "INTER Krankenversicherung aG",
+    "last_invoice": "",
+    "instructions": "Noch keine Anweisungen hinterlegt"
+  },
+  {
+    "name": "InterRisk Versicherungs-Aktiengesellschaft",
+    "last_invoice": "",
+    "instructions": "Noch keine Anweisungen hinterlegt"
+  },
+  {
+    "name": "Itzehoer Versicherung/Brandgilde von 1691 Versicherungsverein auf Gegenseitigkeit",
+    "last_invoice": "",
+    "instructions": "Noch keine Anweisungen hinterlegt"
+  },
+  {
+    "name": "Janitos Versicherung Aktiengesellschaft",
+    "last_invoice": "",
+    "instructions": "Noch keine Anweisungen hinterlegt"
+  },
+  {
+    "name": "KS Auxilia Versicherungs-AG",
+    "last_invoice": "",
+    "instructions": "Noch keine Anweisungen hinterlegt"
+  },
+  {
+    "name": "LBN-Versicherungsverein a.G. (VVaG)",
+    "last_invoice": "",
+    "instructions": "Noch keine Anweisungen hinterlegt"
+  },
+  {
+    "name": "NÜRNBERGER Krankenversicherung Aktiengesellschaft",
+    "last_invoice": "",
+    "instructions": "Noch keine Anweisungen hinterlegt"
+  },
+  {
+    "name": "NV-Versicherungen VVaG",
+    "last_invoice": "",
+    "instructions": "Noch keine Anweisungen hinterlegt"
+  },
+  {
+    "name": "Öffentliche Braunschweig",
+    "last_invoice": "",
+    "instructions": "Noch keine Anweisungen hinterlegt"
+  },
+  {
+    "name": "ottonova Krankenversicherung AG",
+    "last_invoice": "",
+    "instructions": "Noch keine Anweisungen hinterlegt"
+  },
+  {
+    "name": "Provita BKK",
+    "last_invoice": "",
+    "instructions": "Noch keine Anweisungen hinterlegt"
+  },
+  {
+    "name": "Proxalto",
+    "last_invoice": "",
+    "instructions": "Noch keine Anweisungen hinterlegt"
+  },
+  {
+    "name": "R+V Krankenversicherung Aktiengesellschaft",
+    "last_invoice": "",
+    "instructions": "Noch keine Anweisungen hinterlegt"
+  },
+  {
+    "name": "R+V Versicherung AG",
+    "last_invoice": "",
+    "instructions": "Noch keine Anweisungen hinterlegt"
+  },
+  {
+    "name": "SDK Süddeutsche Krankenversicherung a. G.",
+    "last_invoice": "",
+    "instructions": "Noch keine Anweisungen hinterlegt"
+  },
+  {
+    "name": "Signal Iduna Allgemeine Versicherung Aktiengesellschaft",
+    "last_invoice": "",
+    "instructions": "Noch keine Anweisungen hinterlegt"
+  },
+  {
+    "name": "SIGNAL Krankenversicherung a.G.",
+    "last_invoice": "",
+    "instructions": "Noch keine Anweisungen hinterlegt"
+  },
+  {
+    "name": "Stuttgarter Lebensversicherung a.G.",
+    "last_invoice": "",
+    "instructions": "Noch keine Anweisungen hinterlegt"
+  },
+  {
+    "name": "SV SparkassenVersicherung Gebäudeversicherung Aktiengesellschaft",
+    "last_invoice": "",
+    "instructions": "Noch keine Anweisungen hinterlegt"
+  },
+  {
+    "name": "Swiss Life AG, Niederlassung Deutschland",
+    "last_invoice": "",
+    "instructions": "Noch keine Anweisungen hinterlegt"
+  },
+  {
+    "name": "Techniker Krankenkasse",
+    "last_invoice": "",
+    "instructions": "Noch keine Anweisungen hinterlegt"
+  },
+  {
+    "name": "Union Krankenversicherung AG",
+    "last_invoice": "",
+    "instructions": "Noch keine Anweisungen hinterlegt"
+  },
+  {
+    "name": "uniVersa Krankenversicherung a.G.",
+    "last_invoice": "",
+    "instructions": "Noch keine Anweisungen hinterlegt"
+  },
+  {
+    "name": "Versicherungskammer Bayern Versicherungsanstalt des öffentlichen Rechts",
+    "last_invoice": "",
+    "instructions": "Noch keine Anweisungen hinterlegt"
+  },
+  {
+    "name": "VGK",
+    "last_invoice": "",
+    "instructions": "Noch keine Anweisungen hinterlegt"
+  },
+  {
+    "name": "VHV Allgemeine Versicherung AG",
+    "last_invoice": "",
+    "instructions": "Noch keine Anweisungen hinterlegt"
+  },
+  {
+    "name": "Versicherungscheck24",
+    "turnus": "14-tägig (am 01. und 15. jedes Monats)",
+    "dokumentenart": "PDF (standard) - CSV auf Wunsch möglich (per Mail anfordern)",
+    "bezugsweg": "Maklerportal, Mail",
+    "kontakt": "Florian.Reinecke@vc24.de, Tel: 071959610962",
+    "login": "...",
+    "last_invoice": "08.07.2025, 09:53",
+    "settlementCompleted": true
+  },
+  {
+    "name": "Volkswohl-Bund Lebensversicherung a.G.",
+    "last_invoice": "",
+    "instructions": "Noch keine Anweisungen hinterlegt"
+  },
+  {
+    "name": "WGV-Versicherung AG",
+    "last_invoice": "",
+    "instructions": "Noch keine Anweisungen hinterlegt"
+  },
+  {
+    "name": "Wüstenrot & Württembergische AG",
+    "last_invoice": "",
+    "instructions": "Noch keine Anweisungen hinterlegt"
+  },
+  {
+    "name": "Zurich",
+    "last_invoice": "",
+    "instructions": "Noch keine Anweisungen hinterlegt"
+  }
+]

@@ -23,8 +23,9 @@
   },
   {
     "name": "Ammerländer Versicherung VVaG",
-    "last_invoice": "",
-    "instructions": "Noch keine Anweisungen hinterlegt"
+    "last_invoice": "08.07.2025, 18:25",
+    "instructions": "Noch keine Anweisungen hinterlegt",
+    "settlementCompleted": true
   },
   {
     "name": "AOK Baden-Württemberg",
