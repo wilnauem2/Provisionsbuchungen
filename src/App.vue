@@ -50,12 +50,14 @@ const saveToJson = async () => {
       body: JSON.stringify(insurersData.value)
     })
     
+    const result = await response.json()
     if (!response.ok) {
-      throw new Error('Fehler beim Speichern der Daten')
+      throw new Error(result.error || 'Fehler beim Speichern')
     }
+    alert('Daten erfolgreich gespeichert!')
   } catch (error) {
     console.error('Fehler beim Speichern:', error)
-    alert('Fehler beim Speichern der Daten. Bitte versuchen Sie es später erneut.')
+    alert(`Fehler beim Speichern der Daten: ${error.message || 'Unbekannter Fehler'}`)
   }
 }
 
