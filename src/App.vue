@@ -95,7 +95,7 @@ const saveToJson = async () => {
     }
 
     // Save to insurers.json through Netlify function
-    const response = await fetch('/.netlify/functions/update-insurers', {
+    const response = await fetch('/functions/update-insurers', {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json'

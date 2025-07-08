@@ -15,11 +15,11 @@
     Access-Control-Allow-Headers = "Content-Type"
 
 [[redirects]]
-  from = "/.netlify/functions/get-insurers"
+  from = "/functions/get-insurers"
   to = "/.netlify/functions/get-insurers"
   status = 200
 
 [[redirects]]
-  from = "/.netlify/functions/update-insurers"
+  from = "/functions/update-insurers"
   to = "/.netlify/functions/update-insurers"
   status = 200
