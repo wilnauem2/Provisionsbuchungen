@@ -1,19 +1,19 @@
 [
   {
     "name": "AIG",
-    "turnus": "",
+    "turnus": "30-tägig",
     "dokumentenart": "",
     "bezugsweg": "",
-    "last_invoice": "08.07.2025, 10:00",
+    "last_invoice": "03.06.2025, 10:00",
     "instructions": "Für die Bearbeitung von Allianz-Verträgen benötigen Sie folgende Unterlagen: \n \n \n Versicherungsschein, Personalausweis und aktuelle Gehaltsabrechnung. Bitte beachten Sie die Kündigungsfristen von 3 Monaten zum Jahresende.",
     "instructions2": "Bitte beachten Sie die Kündigungsfristen von 3 Monaten zum Jahresende.",
-    "settlementCompleted": true
+    "settlementCompleted": false
   },
   {
     "name": "Allianz Versicherungs-AG (Sach)",
-    "last_invoice": "08.07.2025, 11:04",
-    "instructions": "Noch keine Anweisungen hinterlegt",
-    "settlementCompleted": true
+    "turnus": "7-tägig",
+    "last_invoice": "30.06.2025, 11:04",
+    "instructions": "Noch keine Anweisungen hinterlegt"
   },
   {
     "name": "Alte Leipziger Versicherung Aktiengesellschaft",
@@ -44,8 +44,8 @@
   },
   {
     "name": "AXA / DBV",
-    "last_invoice": "",
-    "turnus": "wöchentlich",
+    "last_invoice": "30.06.2025",
+    "turnus": "7-tägig",
     "dokumentenart": "CSV, PDF",
     "bezugsweg": "Maklerportal, BiPro",
     "kontakt": "mario.kroll@axa.de, tel: 0152/09372824",

@@ -5,12 +5,6 @@ import { fileURLToPath, URL } from 'node:url'
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [vue()],
-  resolve: {
-    alias: {
-      '@': fileURLToPath(new URL('./src', import.meta.url))
-    }
-  },
-  plugins: [vue()],
   base: '/',
   build: {
     outDir: 'dist',
@@ -26,7 +20,7 @@ export default defineConfig({
     }
   },
   server: {
-    port: 3000,
+    port: 3002,
     open: true,
     strictPort: true
   },
@@ -35,6 +29,7 @@ export default defineConfig({
   },
   resolve: {
     alias: {
+      '@': fileURLToPath(new URL('./src', import.meta.url)),
       'crypto': 'crypto-browserify'
     }
   },
