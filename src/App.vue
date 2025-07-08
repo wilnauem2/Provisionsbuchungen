@@ -8,21 +8,27 @@ const insurersData = ref([])
 
 const loadFromJson = async () => {
   try {
-    // Load from insurers.json
-    const response = await fetch(new URL('../data/insurers.json', import.meta.url))
+    // Load from insurers.json through Netlify function
+    const response = await fetch('/.netlify/functions/get-insurers')
     if (!response.ok) {
       throw new Error('Failed to load insurers.json')
     }
     const data = await response.json()
     insurersData.value = data
+    console.log('Loaded data:', data)
   } catch (error) {
     console.error('Fehler beim Laden:', error)
     alert(`Fehler beim Laden der Daten:\n${error.message}\nDetails:\n${error.stack}`)
   }
 }
 
-onMounted(() => {
-  loadFromJson()
+onMounted(async () => {
+  try {
+    await loadFromJson()
+    console.log('Insurers data loaded:', insurersData.value)
+  } catch (error) {
+    console.error('Error in onMounted:', error)
+  }
 })
 
 const filteredInsurers = computed(() => {
