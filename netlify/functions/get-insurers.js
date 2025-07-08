@@ -4,17 +4,20 @@ const path = require('path')
 exports.handler = async (event, context) => {
   try {
     // Get the path to the insurers.json file
-    const filePath = path.join(__dirname, '..', '..', 'src', 'data', 'insurers.json')
+    const filePath = path.join(process.cwd(), 'src', 'data', 'insurers.json')
     
-    // Read the file
+    // Read and parse the file
     const data = await fs.readFile(filePath, 'utf-8')
+    const insurers = JSON.parse(data)
     
     return {
       statusCode: 200,
-      body: data,
+      body: JSON.stringify(insurers),
       headers: {
         'Content-Type': 'application/json',
         'Access-Control-Allow-Origin': '*',
+        'Access-Control-Allow-Methods': 'GET,PUT',
+        'Access-Control-Allow-Headers': 'Content-Type'
       },
     }
   } catch (error) {
@@ -28,6 +31,8 @@ exports.handler = async (event, context) => {
       headers: {
         'Content-Type': 'application/json',
         'Access-Control-Allow-Origin': '*',
+        'Access-Control-Allow-Methods': 'GET,PUT',
+        'Access-Control-Allow-Headers': 'Content-Type'
       },
     }
   }
