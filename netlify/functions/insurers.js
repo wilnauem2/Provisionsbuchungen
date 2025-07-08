@@ -1,28 +1,30 @@
 const fs = require('fs').promises
 const path = require('path')
+const { NetlifyStorage } = require('@netlify/storage')
 
-const DATA_FILE = path.join(__dirname, '../../src/data/insurers.json')
+// Initialize Netlify Storage
+const storage = new NetlifyStorage()
+const DATA_KEY = 'insurers_data'
 
 exports.handler = async (event, context) => {
   try {
     console.log('Received request:', event.httpMethod)
-    console.log('Data file path:', DATA_FILE)
     
     if (event.httpMethod === 'GET') {
-      console.log('Reading data file...')
-      const data = await fs.readFile(DATA_FILE, 'utf-8')
+      console.log('Reading data from storage...')
+      const data = await storage.getItem(DATA_KEY)
       return {
         statusCode: 200,
-        body: data,
+        body: data || '[]',
         headers: {
           'Content-Type': 'application/json',
           'Access-Control-Allow-Origin': '*',
         },
       }
     } else if (event.httpMethod === 'PUT') {
-      console.log('Updating data file...')
+      console.log('Updating data in storage...')
       const newData = JSON.stringify(JSON.parse(event.body), null, 2)
-      await fs.writeFile(DATA_FILE, newData, 'utf-8')
+      await storage.setItem(DATA_KEY, newData)
       return {
         statusCode: 200,
         body: JSON.stringify({ success: true }),
@@ -41,6 +43,18 @@ exports.handler = async (event, context) => {
         },
       }
     }
+  } catch (error) {
+    console.error('Error:', error)
+    return {
+      statusCode: 500,
+      body: JSON.stringify({ error: 'Internal server error' }),
+      headers: {
+        'Content-Type': 'application/json',
+        'Access-Control-Allow-Origin': '*',
+      },
+    }
+  }
+}
   } catch (error) {
     console.error('Error:', error)
     return {

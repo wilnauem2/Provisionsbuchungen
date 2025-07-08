@@ -44,7 +44,7 @@ const clearSearch = () => {
 
 const saveToJson = async () => {
   try {
-    const response = await fetch('http://localhost:3001/api/insurers', {
+    const response = await fetch('/.netlify/functions/insurers', {
       method: 'PUT',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(insurersData.value)
