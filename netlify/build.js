@@ -1,11 +1,15 @@
 const { execSync } = require('child_process')
+const path = require('path')
 
 try {
   console.log('Starting build process...')
   
+  // Ensure we're in the correct directory
+  process.chdir(path.join(__dirname, '..'))
+  
   // Install dependencies
   console.log('Installing dependencies...')
-  execSync('npm install', { stdio: 'inherit' })
+  execSync('npm ci', { stdio: 'inherit' })
   
   // Build the project
   console.log('Building project...')
