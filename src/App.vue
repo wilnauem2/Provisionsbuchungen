@@ -21,14 +21,19 @@ const loadFromJson = () => {
   }
 }
 
-onMounted(async () => {
-  loadFromJson()
-  try {
-    const response = await fetch('http://localhost:3001/api/insurers')
-    const data = await response.json()
-    insurersData.value = data
-  } catch (error) {
-    console.error('Fehler beim Laden der Versichererdaten:', error)
+onMounted(() => {
+  // Load from local storage or use default data
+  const savedData = localStorage.getItem('insurersData')
+  if (savedData) {
+    insurersData.value = JSON.parse(savedData)
+  } else {
+    // Load from local JSON file
+    import('@/data/insurers.json').then(module => {
+      insurersData.value = module.default
+    }).catch(error => {
+      console.error('Error loading insurers.json:', error)
+      alert('Fehler beim Laden der Versicherungsdaten')
+    })
   }
 })
 
