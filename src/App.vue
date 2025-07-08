@@ -66,22 +66,32 @@ onMounted(async () => {
 const sortOption = ref('name')
 
 const filteredInsurers = computed(() => {
-  let sortedInsurers = [...insurersData.value]
+  let filtered = [...insurersData.value]
+  
+  // Apply search filter
+  if (searchFilter.value) {
+    const searchLower = searchFilter.value.toLowerCase()
+    filtered = filtered.filter(insurer => 
+      insurer.name.toLowerCase().includes(searchLower) ||
+      (insurer.turnus && insurer.turnus.toLowerCase().includes(searchLower)) ||
+      (insurer.last_invoice && insurer.last_invoice.toLowerCase().includes(searchLower))
+    )
+  }
   
   // Sort by selected option
   switch (sortOption.value) {
     case 'name':
-      sortedInsurers.sort((a, b) => a.name.localeCompare(b.name))
+      filtered.sort((a, b) => a.name.localeCompare(b.name))
       break
     case 'status':
-      sortedInsurers.sort((a, b) => {
+      filtered.sort((a, b) => {
         const statusA = getStatusColor(a)
         const statusB = getStatusColor(b)
         return statusA.localeCompare(statusB)
       })
       break
     case 'last_invoice':
-      sortedInsurers.sort((a, b) => {
+      filtered.sort((a, b) => {
         if (!a.last_invoice) return 1
         if (!b.last_invoice) return -1
         return new Date(b.last_invoice) - new Date(a.last_invoice)
@@ -89,7 +99,7 @@ const filteredInsurers = computed(() => {
       break
   }
 
-  return sortedInsurers
+  return filtered
 })
 
 const handleInsurerSelect = (insurer) => {
