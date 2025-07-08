@@ -44,20 +44,52 @@ const clearSearch = () => {
 
 const saveToJson = async () => {
   try {
+    if (!selectedInsurer.value) {
+      throw new Error('Kein Versicherer ausgewählt')
+    }
+
+    const currentDate = new Date()
+    const dateString = currentDate.toLocaleDateString('de-DE', {
+      year: 'numeric',
+      month: '2-digit',
+      day: '2-digit',
+      hour: '2-digit',
+      minute: '2-digit'
+    })
+
     const response = await fetch('/.netlify/functions/insurers', {
       method: 'PUT',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(insurersData.value)
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        insurerName: selectedInsurer.value.name,
+        lastInvoiceDate: dateString
+      })
     })
-    
-    const result = await response.json()
+
     if (!response.ok) {
-      throw new Error(result.error || 'Fehler beim Speichern')
+      const errorData = await response.json()
+      throw new Error(errorData.error || 'Failed to save data')
     }
+
+    // Update local state
+    const index = insurersData.value.findIndex(ins => ins.name === selectedInsurer.value.name)
+    if (index !== -1) {
+      insurersData.value[index] = {
+        ...insurersData.value[index],
+        last_invoice: dateString
+      }
+      selectedInsurer.value = {
+        ...selectedInsurer.value,
+        last_invoice: dateString
+      }
+    }
+
     alert('Daten erfolgreich gespeichert!')
   } catch (error) {
-    console.error('Fehler beim Speichern:', error)
-    alert(`Fehler beim Speichern der Daten:\n${error.message || 'Unbekannter Fehler'}\nDetails: ${error.details || ''}\nStack: ${error.stack || ''}`)
+    console.error('Error saving data:', error)
+    alert(`Fehler beim Speichern der Daten:\n${error.message}\nDetails:\n${error.stack}`)
   }
 }
 

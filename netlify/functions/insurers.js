@@ -1,4 +1,8 @@
-const { NetlifyForm } = require('@netlify/form-handling')
+const fs = require('fs').promises
+const path = require('path')
+
+// Use a static JSON file that's included in the build
+const DATA_FILE = path.join(__dirname, 'data.json')
 
 exports.handler = async (event, context) => {
   try {
@@ -7,28 +11,11 @@ exports.handler = async (event, context) => {
     if (event.httpMethod === 'GET') {
       console.log('Reading data...')
       try {
-        // Get the latest form submission
-        const form = new NetlifyForm()
-        const submissions = await form.listSubmissions()
-        
-        // Get the latest data from the submissions
-        const latestSubmission = submissions[0]
-        if (!latestSubmission) {
-          return {
-            statusCode: 200,
-            body: '[]',
-            headers: {
-              'Content-Type': 'application/json',
-              'Access-Control-Allow-Origin': '*',
-            },
-          }
-        }
-        
-        const data = latestSubmission.data
+        const data = await fs.readFile(DATA_FILE, 'utf-8')
         console.log('Data read successfully:', data)
         return {
           statusCode: 200,
-          body: JSON.stringify(data),
+          body: data,
           headers: {
             'Content-Type': 'application/json',
             'Access-Control-Allow-Origin': '*',
@@ -41,23 +28,39 @@ exports.handler = async (event, context) => {
     } else if (event.httpMethod === 'PUT') {
       console.log('Updating data...')
       try {
-        const newData = event.body
-        console.log('New data:', newData)
+        const { insurerName, lastInvoiceDate } = JSON.parse(event.body)
+        console.log('Updating last_invoice for:', insurerName)
         
-        // Create a new form submission
-        const form = new NetlifyForm()
-        await form.submit({
-          data: JSON.parse(newData)
-        })
-        console.log('Data written successfully')
+        // Read existing data
+        const data = await fs.readFile(DATA_FILE, 'utf-8')
+        const insurers = JSON.parse(data)
         
-        return {
-          statusCode: 200,
-          body: JSON.stringify({ success: true }),
-          headers: {
-            'Content-Type': 'application/json',
-            'Access-Control-Allow-Origin': '*',
-          },
+        // Find and update the insurer
+        const insurer = insurers.find(i => i.name === insurerName)
+        if (insurer) {
+          insurer.last_invoice = lastInvoiceDate
+          
+          // Save updated data
+          await fs.writeFile(DATA_FILE, JSON.stringify(insurers, null, 2), 'utf-8')
+          console.log('Data written successfully')
+          
+          return {
+            statusCode: 200,
+            body: JSON.stringify({ success: true }),
+            headers: {
+              'Content-Type': 'application/json',
+              'Access-Control-Allow-Origin': '*',
+            },
+          }
+        } else {
+          return {
+            statusCode: 404,
+            body: JSON.stringify({ error: 'Insurer not found' }),
+            headers: {
+              'Content-Type': 'application/json',
+              'Access-Control-Allow-Origin': '*',
+            },
+          }
         }
       } catch (writeError) {
         console.error('Error writing data:', writeError)
