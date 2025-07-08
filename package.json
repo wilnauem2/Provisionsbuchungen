@@ -35,7 +35,9 @@
       {
         "for": "/*",
         "values": {
-          "Access-Control-Allow-Origin": "*"
+          "Access-Control-Allow-Origin": "*",
+          "Access-Control-Allow-Methods": "GET,PUT",
+          "Access-Control-Allow-Headers": "Content-Type"
         }
       }
     ]
