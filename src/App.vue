@@ -8,20 +8,8 @@ const insurersData = ref([])
 
 const loadFromJson = async () => {
   try {
-    // Load from insurers.json through Netlify function
-    const response = await fetch('/.netlify/functions/get-insurers')
-    if (!response.ok) {
-      throw new Error('Failed to load insurers.json')
-    }
-    const data = await response.json()
-    
-    // Ensure we have an array
-    if (!Array.isArray(data)) {
-      throw new Error('Invalid data format - expected array')
-    }
-    
-    insurersData.value = data
-    console.log('Loaded data:', data)
+    await initializeInsurers()
+    console.log('Data loaded successfully')
   } catch (error) {
     console.error('Fehler beim Laden:', error)
     alert(`Fehler beim Laden der Daten:\n${error.message}\nDetails:\n${error.stack}`)
@@ -45,9 +33,15 @@ const filteredInsurers = computed(() => {
     console.error('Invalid insurers data:', insurersData.value)
     return []
   }
-  
-  // Initialize insurersData if it's empty
-  if (insurersData.value.length === 0) {
+
+  return insurersData.value.filter(insurer => 
+    insurer.name.toLowerCase().includes(searchFilter.value.toLowerCase())
+  )
+})
+
+// Method to initialize insurers data
+const initializeInsurers = async () => {
+  if (!insurersData.value || insurersData.value.length === 0) {
     try {
       const response = await fetch('/.netlify/functions/get-insurers')
       if (response.ok) {
@@ -60,10 +54,11 @@ const filteredInsurers = computed(() => {
       console.error('Error initializing insurers:', error)
     }
   }
+}
 
-  return insurersData.value.filter(insurer => 
-    insurer.name.toLowerCase().includes(searchFilter.value.toLowerCase())
-  )
+// Call initialize when component mounts
+onMounted(async () => {
+  await initializeInsurers()
 })
 
 const handleInsurerSelectedFromList = (insurerData) => {
