@@ -7,7 +7,7 @@ exports.handler = async (event, context) => {
       const data = JSON.parse(event.body)
       
       // Get the path to the insurers.json file
-      const filePath = path.join(__dirname, '..', '..', 'src', 'data', 'insurers.json')
+      const filePath = path.join(__dirname, '..', '..', '..', 'src', 'data', 'insurers.json')
       
       // Write the data to the file
       await fs.writeFile(filePath, JSON.stringify(data, null, 2), 'utf-8')

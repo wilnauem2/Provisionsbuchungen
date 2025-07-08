@@ -9,7 +9,7 @@ const insurersData = ref([])
 const loadFromJson = async () => {
   try {
     // Load from insurers.json
-    const response = await fetch('/data/insurers.json')
+    const response = await fetch(new URL('../data/insurers.json', import.meta.url))
     if (!response.ok) {
       throw new Error('Failed to load insurers.json')
     }
