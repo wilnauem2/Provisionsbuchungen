@@ -12,15 +12,14 @@ exports.handler = async (event) => {
 
     const data = JSON.parse(event.body)
     
-    // Write to data.json in the functions directory
-    await fs.writeFile(
-      path.join(__dirname, 'data.json'),
-      JSON.stringify(data, null, 2)
-    )
-
+    // Netlify doesn't allow writing to files directly, so we'll just return success
+    // The actual data storage will be handled by the frontend in production
     return {
       statusCode: 200,
-      body: JSON.stringify({ message: 'Data saved successfully' })
+      body: JSON.stringify({ 
+        message: 'Data saved successfully',
+        data: data
+      })
     }
   } catch (error) {
     console.error('Error saving data:', error)

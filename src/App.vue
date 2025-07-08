@@ -15,13 +15,26 @@ const loadInitialData = async () => {
     
     let data
     if (isNetlify) {
-      // Use Netlify function in production
-      const response = await fetch(`${window.location.origin}/.netlify/functions/get-insurers`)
-      if (!response.ok) {
-        console.error('HTTP error:', response.status, response.statusText)
-        throw new Error(`HTTP error ${response.status}: ${response.statusText}`)
+      // First try to load from localStorage
+      try {
+        const savedData = localStorage.getItem('insurersData')
+        if (savedData) {
+          data = JSON.parse(savedData)
+          console.log('Loaded data from localStorage')
+        } else {
+          // If no localStorage data, try Netlify function
+          const response = await fetch(`${window.location.origin}/.netlify/functions/get-insurers`)
+          if (!response.ok) {
+            console.error('HTTP error:', response.status, response.statusText)
+            throw new Error(`HTTP error ${response.status}: ${response.statusText}`)
+          }
+          data = await response.json()
+          console.log('Loaded data from Netlify function')
+        }
+      } catch (error) {
+        console.error('Error loading from storage:', error)
+        throw error
       }
-      data = await response.json()
     } else {
       // Try to load from mock-insurers.json first
       try {
@@ -125,6 +138,16 @@ const saveToJson = async () => {
     
     if (!response.ok) {
       throw new Error(result.message || 'Failed to save to insurers.json')
+    }
+    
+    // In production, we'll store the data in localStorage as well
+    if (isNetlify) {
+      try {
+        localStorage.setItem('insurersData', JSON.stringify(insurersData.value))
+        console.log('Saved data to localStorage')
+      } catch (error) {
+        console.error('Error saving to localStorage:', error)
+      }
     }
     
     alert('Daten erfolgreich gespeichert!')
