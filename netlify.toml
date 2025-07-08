@@ -2,6 +2,7 @@
   command = "npm run build"
   publish = "dist"
   environment = { NODE_VERSION = "16" }
+  ignore = ["src/data/insurers.json"]
 
 [functions]
   directory = "netlify/functions"
@@ -23,6 +24,3 @@
   from = "/functions/update-insurers"
   to = "/.netlify/functions/update-insurers"
   status = 200
-
-[build.ignore]
-  - "src/data/insurers.json"
