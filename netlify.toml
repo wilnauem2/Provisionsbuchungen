@@ -1,10 +1,11 @@
 [build]
-  command = "npm run build"
+  command = "node netlify/build.js"
   publish = "dist"
   environment = { NODE_VERSION = "16" }
 
 [functions]
   directory = "netlify/functions"
+  node_bundler = "esbuild"
 
 [[headers]]
   for = "/*"
@@ -12,3 +13,13 @@
     Access-Control-Allow-Origin = "*"
     Access-Control-Allow-Methods = "GET,PUT"
     Access-Control-Allow-Headers = "Content-Type"
+
+[[redirects]]
+  from = "/.netlify/functions/get-insurers"
+  to = "/.netlify/functions/get-insurers"
+  status = 200
+
+[[redirects]]
+  from = "/.netlify/functions/update-insurers"
+  to = "/.netlify/functions/update-insurers"
+  status = 200

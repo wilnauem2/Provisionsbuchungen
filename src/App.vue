@@ -8,7 +8,8 @@ const insurersData = ref([])
 
 const loadFromJson = async () => {
   try {
-    const response = await fetch('/.netlify/functions/get-insurers')
+    // Use absolute path for Netlify deployment
+    const response = await fetch(`${window.location.origin}/.netlify/functions/get-insurers`)
     if (!response.ok) {
       throw new Error('Failed to load insurers.json')
     }
