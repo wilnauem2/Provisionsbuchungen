@@ -1,8 +1,4 @@
-const fs = require('fs').promises
-const path = require('path')
-
-// Use a static JSON file that's included in the build
-const DATA_FILE = path.join(__dirname, 'data.json')
+const { NetlifyForm } = require('@netlify/form-handling')
 
 exports.handler = async (event, context) => {
   try {
@@ -11,11 +7,28 @@ exports.handler = async (event, context) => {
     if (event.httpMethod === 'GET') {
       console.log('Reading data...')
       try {
-        const data = await fs.readFile(DATA_FILE, 'utf-8')
+        // Get the latest form submission
+        const form = new NetlifyForm()
+        const submissions = await form.listSubmissions()
+        
+        // Get the latest data from the submissions
+        const latestSubmission = submissions[0]
+        if (!latestSubmission) {
+          return {
+            statusCode: 200,
+            body: '[]',
+            headers: {
+              'Content-Type': 'application/json',
+              'Access-Control-Allow-Origin': '*',
+            },
+          }
+        }
+        
+        const data = latestSubmission.data
         console.log('Data read successfully:', data)
         return {
           statusCode: 200,
-          body: data,
+          body: JSON.stringify(data),
           headers: {
             'Content-Type': 'application/json',
             'Access-Control-Allow-Origin': '*',
@@ -31,8 +44,11 @@ exports.handler = async (event, context) => {
         const newData = event.body
         console.log('New data:', newData)
         
-        // Update the static file
-        await fs.writeFile(DATA_FILE, newData, 'utf-8')
+        // Create a new form submission
+        const form = new NetlifyForm()
+        await form.submit({
+          data: JSON.parse(newData)
+        })
         console.log('Data written successfully')
         
         return {

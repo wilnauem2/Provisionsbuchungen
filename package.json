@@ -7,26 +7,39 @@
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
+    "backend": "node server.cjs",
     "deploy": "netlify deploy"
   },
   "dependencies": {
-    "vue": "^3.5.17",
-    "axios": "^1.6.7",
-    "vue-router": "^4.2.5",
-    "pinia": "^2.1.7"
+    "@vitejs/plugin-vue": "^4.5.1",
+    "axios": "^1.6.2",
+    "pinia": "^2.1.7",
+    "vue": "^3.4.17",
+    "vue-router": "^4.2.5"
   },
   "devDependencies": {
+    "@types/node": "^20.11.16",
     "@vitejs/plugin-vue": "^4.5.1",
+    "@vue/eslint-config-prettier": "^8.0.0",
+    "eslint": "^8.56.0",
+    "eslint-plugin-vue": "^9.20.0",
+    "express": "^4.18.2",
+    "prettier": "^3.1.1",
     "vite": "^5.0.12"
   },
   "netlify": {
     "build": {
       "command": "npm run build",
-      "publish": "dist",
-      "includeFiles": ["netlify/functions/data.json"]
+      "publish": "dist"
     },
     "functions": {
       "directory": "netlify/functions"
+    },
+    "forms": {
+      "insurers": {
+        "name": "Insurers Data",
+        "successRedirect": "/"
+      }
     }
   }
 }
