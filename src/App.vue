@@ -6,7 +6,23 @@ const searchFilter = ref('')
 const selectedInsurer = ref(null)
 const insurersData = ref([])
 
+const loadFromJson = () => {
+  try {
+    const savedData = localStorage.getItem('insurersData')
+    if (savedData) {
+      insurersData.value = JSON.parse(savedData)
+    } else {
+      // Fallback to default data
+      insurersData.value = insurersData.value || []
+    }
+  } catch (error) {
+    console.error('Fehler beim Laden:', error)
+    alert(`Fehler beim Laden der Daten:\n${error.message}\nDetails:\n${error.stack}`)
+  }
+}
+
 onMounted(async () => {
+  loadFromJson()
   try {
     const response = await fetch('http://localhost:3001/api/insurers')
     const data = await response.json()
@@ -42,7 +58,7 @@ const clearSearch = () => {
   selectedInsurer.value = null
 }
 
-const saveToJson = async () => {
+const saveToJson = () => {
   try {
     if (!selectedInsurer.value) {
       throw new Error('Kein Versicherer ausgewählt')
@@ -57,22 +73,6 @@ const saveToJson = async () => {
       minute: '2-digit'
     })
 
-    const response = await fetch('/.netlify/functions/insurers', {
-      method: 'PUT',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        insurerName: selectedInsurer.value.name,
-        lastInvoiceDate: dateString
-      })
-    })
-
-    if (!response.ok) {
-      const errorData = await response.json()
-      throw new Error(errorData.error || 'Failed to save data')
-    }
-
     // Update local state
     const index = insurersData.value.findIndex(ins => ins.name === selectedInsurer.value.name)
     if (index !== -1) {
@@ -86,6 +86,9 @@ const saveToJson = async () => {
       }
     }
 
+    // Save to local storage
+    localStorage.setItem('insurersData', JSON.stringify(insurersData.value))
+    
     alert('Daten erfolgreich gespeichert!')
   } catch (error) {
     console.error('Error saving data:', error)
