@@ -1,61 +1,36 @@
-const fs = require('fs').promises
-const path = require('path')
+const { NetlifyStorage } = require('@netlify/storage')
 
-// Use a more reliable storage solution - we'll use a JSON file in the functions directory
-const DATA_FILE = path.join(__dirname, 'data.json')
+// Initialize Netlify Storage
+const storage = new NetlifyStorage()
+const DATA_KEY = 'insurers_data'
 
 exports.handler = async (event, context) => {
   try {
     console.log('Received request:', event.httpMethod)
-    console.log('Data file path:', DATA_FILE)
-    console.log('Request body:', event.body)
     
     if (event.httpMethod === 'GET') {
       console.log('Reading data...')
       try {
-        // Check if file exists
-        const fileExists = await fs.access(DATA_FILE).then(() => true).catch(() => false)
-        console.log('File exists:', fileExists)
-        
-        if (!fileExists) {
-          // Create file with empty array if it doesn't exist
-          await fs.writeFile(DATA_FILE, '[]', 'utf-8')
-          console.log('Created new file with empty array')
-        }
-        
-        const data = await fs.readFile(DATA_FILE, 'utf-8')
+        const data = await storage.getItem(DATA_KEY)
         console.log('Data read successfully:', data)
         return {
           statusCode: 200,
-          body: data,
+          body: data || '[]',
           headers: {
             'Content-Type': 'application/json',
             'Access-Control-Allow-Origin': '*',
           },
         }
       } catch (readError) {
-        console.error('Error reading file:', readError)
-        const errorDetails = {
-          message: readError.message,
-          code: readError.code,
-          stack: readError.stack
-        }
-        console.error('Detailed error:', errorDetails)
+        console.error('Error reading data:', readError)
         throw readError
       }
     } else if (event.httpMethod === 'PUT') {
       console.log('Updating data...')
       try {
-        // First read existing data
-        const existingData = await fs.readFile(DATA_FILE, 'utf-8')
-        console.log('Existing data:', existingData)
-        
-        // Parse and validate new data
-        const newData = JSON.parse(event.body)
-        console.log('Parsed new data:', newData)
-        
-        // Write new data
-        await fs.writeFile(DATA_FILE, JSON.stringify(newData, null, 2), 'utf-8')
+        const newData = event.body
+        console.log('New data:', newData)
+        await storage.setItem(DATA_KEY, newData)
         console.log('Data written successfully')
         
         return {
@@ -67,13 +42,7 @@ exports.handler = async (event, context) => {
           },
         }
       } catch (writeError) {
-        console.error('Error writing file:', writeError)
-        const errorDetails = {
-          message: writeError.message,
-          code: writeError.code,
-          stack: writeError.stack
-        }
-        console.error('Detailed error:', errorDetails)
+        console.error('Error writing data:', writeError)
         throw writeError
       }
     } else {
@@ -88,18 +57,11 @@ exports.handler = async (event, context) => {
     }
   } catch (error) {
     console.error('Error in handler:', error)
-    const errorDetails = {
-      message: error.message,
-      code: error.code,
-      stack: error.stack
-    }
-    console.error('Detailed error:', errorDetails)
     return {
       statusCode: 500,
       body: JSON.stringify({ 
         error: 'Internal server error',
-        details: error.message,
-        stack: error.stack
+        details: error.message
       }),
       headers: {
         'Content-Type': 'application/json',
