@@ -57,7 +57,7 @@ const saveToJson = async () => {
     alert('Daten erfolgreich gespeichert!')
   } catch (error) {
     console.error('Fehler beim Speichern:', error)
-    alert(`Fehler beim Speichern der Daten: ${error.message || 'Unbekannter Fehler'}`)
+    alert(`Fehler beim Speichern der Daten:\n${error.message || 'Unbekannter Fehler'}\nDetails: ${error.details || ''}\nStack: ${error.stack || ''}`)
   }
 }
 
