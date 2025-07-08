@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vite build --mode production",
+    "build": "vite build",
     "preview": "vite preview",
     "deploy": "netlify deploy"
   },
@@ -29,14 +29,10 @@
   "netlify": {
     "build": {
       "command": "npm run build",
-      "publish": "dist",
-      "environment": {
-        "NODE_VERSION": "18"
-      }
+      "publish": "dist"
     },
     "functions": {
-      "directory": "netlify/functions",
-      "node_version": "18"
+      "directory": "netlify/functions"
     },
     "headers": [
       {
@@ -45,9 +41,6 @@
           "Access-Control-Allow-Origin": "*"
         }
       }
-    ],
-    "redirects": [
-      { "from": "/", "to": "/index.html", "status": 200 }
     ]
   }
 }
