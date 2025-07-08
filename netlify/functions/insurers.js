@@ -1,11 +1,15 @@
 const fs = require('fs').promises
 const path = require('path')
 
-const DATA_FILE = path.join(process.cwd(), 'src/data/insurers.json')
+const DATA_FILE = path.join(__dirname, '../../src/data/insurers.json')
 
 exports.handler = async (event, context) => {
   try {
+    console.log('Received request:', event.httpMethod)
+    console.log('Data file path:', DATA_FILE)
+    
     if (event.httpMethod === 'GET') {
+      console.log('Reading data file...')
       const data = await fs.readFile(DATA_FILE, 'utf-8')
       return {
         statusCode: 200,
@@ -16,6 +20,7 @@ exports.handler = async (event, context) => {
         },
       }
     } else if (event.httpMethod === 'PUT') {
+      console.log('Updating data file...')
       const newData = JSON.stringify(JSON.parse(event.body), null, 2)
       await fs.writeFile(DATA_FILE, newData, 'utf-8')
       return {

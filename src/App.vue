@@ -44,13 +44,18 @@ const clearSearch = () => {
 
 const saveToJson = async () => {
   try {
-    await fetch('/.netlify/functions/insurers', {
+    const response = await fetch('http://localhost:3001/api/insurers', {
       method: 'PUT',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(insurersData.value)
     })
+    
+    if (!response.ok) {
+      throw new Error('Fehler beim Speichern der Daten')
+    }
   } catch (error) {
     console.error('Fehler beim Speichern:', error)
+    alert('Fehler beim Speichern der Daten. Bitte versuchen Sie es später erneut.')
   }
 }
 
