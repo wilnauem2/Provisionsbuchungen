@@ -1,6 +1,8 @@
-const { kv } = require('@netlify/kv')
+const fs = require('fs').promises
+const path = require('path')
 
-const DATA_KEY = 'insurers_data'
+// Use a static JSON file that's included in the build
+const DATA_FILE = path.join(__dirname, 'data.json')
 
 exports.handler = async (event, context) => {
   try {
@@ -9,11 +11,11 @@ exports.handler = async (event, context) => {
     if (event.httpMethod === 'GET') {
       console.log('Reading data...')
       try {
-        const data = await kv.get(DATA_KEY)
+        const data = await fs.readFile(DATA_FILE, 'utf-8')
         console.log('Data read successfully:', data)
         return {
           statusCode: 200,
-          body: data || '[]',
+          body: data,
           headers: {
             'Content-Type': 'application/json',
             'Access-Control-Allow-Origin': '*',
@@ -28,7 +30,9 @@ exports.handler = async (event, context) => {
       try {
         const newData = event.body
         console.log('New data:', newData)
-        await kv.put(DATA_KEY, newData)
+        
+        // Update the static file
+        await fs.writeFile(DATA_FILE, newData, 'utf-8')
         console.log('Data written successfully')
         
         return {
