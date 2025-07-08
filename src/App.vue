@@ -6,37 +6,23 @@ const searchFilter = ref('')
 const selectedInsurer = ref(null)
 const insurersData = ref([])
 
-const loadFromJson = () => {
+const loadFromJson = async () => {
   try {
-    const savedData = localStorage.getItem('insurersData')
-    if (savedData) {
-      insurersData.value = JSON.parse(savedData)
-    } else {
-      // Fallback to default data
-      insurersData.value = insurersData.value || []
+    // Load from insurers.json
+    const response = await fetch('/data/insurers.json')
+    if (!response.ok) {
+      throw new Error('Failed to load insurers.json')
     }
+    const data = await response.json()
+    insurersData.value = data
   } catch (error) {
     console.error('Fehler beim Laden:', error)
     alert(`Fehler beim Laden der Daten:\n${error.message}\nDetails:\n${error.stack}`)
   }
 }
 
-onMounted(async () => {
-  try {
-    // Load from local storage if available
-    const savedData = localStorage.getItem('insurersData')
-    if (savedData) {
-      insurersData.value = JSON.parse(savedData)
-    } else {
-      // Load from local JSON file
-      const response = await fetch(new URL('../data/insurers.json', import.meta.url))
-      const data = await response.json()
-      insurersData.value = data
-    }
-  } catch (error) {
-    console.error('Error loading data:', error)
-    alert('Fehler beim Laden der Daten')
-  }
+onMounted(() => {
+  loadFromJson()
 })
 
 const filteredInsurers = computed(() => {
@@ -65,7 +51,7 @@ const clearSearch = () => {
   selectedInsurer.value = null
 }
 
-const saveToJson = () => {
+const saveToJson = async () => {
   try {
     if (!selectedInsurer.value) {
       throw new Error('Kein Versicherer ausgewählt')
@@ -93,8 +79,18 @@ const saveToJson = () => {
       }
     }
 
-    // Save to local storage
-    localStorage.setItem('insurersData', JSON.stringify(insurersData.value))
+    // Save to insurers.json through Netlify function
+    const response = await fetch('/.netlify/functions/update-insurers', {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(insurersData.value)
+    })
+
+    if (!response.ok) {
+      throw new Error('Failed to save to insurers.json')
+    }
     
     alert('Daten erfolgreich gespeichert!')
   } catch (error) {
