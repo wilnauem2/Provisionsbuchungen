@@ -1,30 +1,28 @@
 const fs = require('fs').promises
 const path = require('path')
-const { NetlifyStorage } = require('@netlify/storage')
 
-// Initialize Netlify Storage
-const storage = new NetlifyStorage()
-const DATA_KEY = 'insurers_data'
+// Use a more reliable storage solution - we'll use a JSON file in the functions directory
+const DATA_FILE = path.join(__dirname, 'data.json')
 
 exports.handler = async (event, context) => {
   try {
     console.log('Received request:', event.httpMethod)
     
     if (event.httpMethod === 'GET') {
-      console.log('Reading data from storage...')
-      const data = await storage.getItem(DATA_KEY)
+      console.log('Reading data...')
+      const data = await fs.readFile(DATA_FILE, 'utf-8')
       return {
         statusCode: 200,
-        body: data || '[]',
+        body: data,
         headers: {
           'Content-Type': 'application/json',
           'Access-Control-Allow-Origin': '*',
         },
       }
     } else if (event.httpMethod === 'PUT') {
-      console.log('Updating data in storage...')
+      console.log('Updating data...')
       const newData = JSON.stringify(JSON.parse(event.body), null, 2)
-      await storage.setItem(DATA_KEY, newData)
+      await fs.writeFile(DATA_FILE, newData, 'utf-8')
       return {
         statusCode: 200,
         body: JSON.stringify({ success: true }),

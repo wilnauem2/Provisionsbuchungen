@@ -1,0 +1,8 @@
+[
+  {
+    "name": "Test Versicherung",
+    "turnus": "monatlich",
+    "last_invoice": "01.07.2025",
+    "settlementCompleted": false
+  }
+]
