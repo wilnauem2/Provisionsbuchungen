@@ -67,6 +67,17 @@ const props = defineProps({
   }
 })
 
+// Ensure props are valid
+if (!Array.isArray(props.insurers)) {
+  console.error('Invalid insurers prop:', props.insurers)
+  props.insurers = []
+}
+
+if (props.selectedInsurer && typeof props.selectedInsurer !== 'object') {
+  console.error('Invalid selectedInsurer prop:', props.selectedInsurer)
+  props.selectedInsurer = null
+}
+
 const emit = defineEmits(['insurer-selected'])
 
 const selectInsurer = (insurer) => {

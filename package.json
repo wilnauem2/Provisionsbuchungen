@@ -35,11 +35,13 @@
     "functions": {
       "directory": "netlify/functions"
     },
-    "forms": {
-      "insurers": {
-        "name": "Insurers Data",
-        "successRedirect": "/"
+    "headers": [
+      {
+        "for": "/*",
+        "values": {
+          "Access-Control-Allow-Origin": "*"
+        }
       }
-    }
+    ]
   }
 }
