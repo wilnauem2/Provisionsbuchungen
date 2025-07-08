@@ -9,11 +9,26 @@ export default defineConfig({
     outDir: 'dist',
     emptyOutDir: true,
     target: 'esnext',
-    minify: 'terser'
+    minify: 'terser',
+    sourcemap: false,
+    manifest: true,
+    rollupOptions: {
+      input: {
+        main: './index.html'
+      }
+    }
   },
   server: {
     port: 3000,
     open: true,
     strictPort: true
+  },
+  optimizeDeps: {
+    exclude: ['vite']
+  },
+  resolve: {
+    alias: {
+      'crypto': 'crypto-browserify'
+    }
   }
 })
