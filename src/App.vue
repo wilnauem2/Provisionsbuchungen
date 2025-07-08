@@ -11,19 +11,22 @@ const loadFromJson = async () => {
     // Use absolute path for Netlify deployment
     const response = await fetch(`${window.location.origin}/.netlify/functions/get-insurers`)
     if (!response.ok) {
-      throw new Error('Failed to load insurers.json')
+      console.error('HTTP error:', response.status, response.statusText)
+      throw new Error(`HTTP error ${response.status}: ${response.statusText}`)
     }
     const data = await response.json()
     
     if (!Array.isArray(data)) {
+      console.error('Invalid data format:', data)
       throw new Error('Invalid data format - expected array')
     }
     
     insurersData.value = data
-    console.log('Loaded data:', data)
+    console.log('Successfully loaded data:', data)
   } catch (error) {
     console.error('Error loading data:', error)
-    alert(`Fehler beim Laden der Daten:\n${error.message}\nDetails:\n${error.stack}`)
+    const errorMessage = error.message || 'Unknown error'
+    alert(`Fehler beim Laden der Daten:\n${errorMessage}\nDetails:\n${error.stack}`)
     
     // Fallback to empty array if loading fails
     insurersData.value = []
