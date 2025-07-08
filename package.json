@@ -45,6 +45,9 @@
           "Access-Control-Allow-Origin": "*"
         }
       }
+    ],
+    "redirects": [
+      { "from": "/", "to": "/index.html", "status": 200 }
     ]
   }
 }
