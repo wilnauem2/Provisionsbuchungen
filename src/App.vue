@@ -21,19 +21,21 @@ const loadFromJson = () => {
   }
 }
 
-onMounted(() => {
-  // Load from local storage or use default data
-  const savedData = localStorage.getItem('insurersData')
-  if (savedData) {
-    insurersData.value = JSON.parse(savedData)
-  } else {
-    // Load from local JSON file
-    import('@/data/insurers.json').then(module => {
-      insurersData.value = module.default
-    }).catch(error => {
-      console.error('Error loading insurers.json:', error)
-      alert('Fehler beim Laden der Versicherungsdaten')
-    })
+onMounted(async () => {
+  try {
+    // Load from local storage if available
+    const savedData = localStorage.getItem('insurersData')
+    if (savedData) {
+      insurersData.value = JSON.parse(savedData)
+    } else {
+      // Load from local JSON file
+      const response = await fetch(new URL('../data/insurers.json', import.meta.url))
+      const data = await response.json()
+      insurersData.value = data
+    }
+  } catch (error) {
+    console.error('Error loading data:', error)
+    alert('Fehler beim Laden der Daten')
   }
 })
 
