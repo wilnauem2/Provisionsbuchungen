@@ -23,3 +23,6 @@
   from = "/functions/update-insurers"
   to = "/.netlify/functions/update-insurers"
   status = 200
+
+[build.ignore]
+  - "src/data/insurers.json"
