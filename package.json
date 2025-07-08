@@ -5,9 +5,8 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
+    "build": "vite build --mode production",
     "preview": "vite preview",
-    "backend": "node server.cjs",
     "deploy": "netlify deploy"
   },
   "dependencies": {
@@ -30,10 +29,14 @@
   "netlify": {
     "build": {
       "command": "npm run build",
-      "publish": "dist"
+      "publish": "dist",
+      "environment": {
+        "NODE_VERSION": "18"
+      }
     },
     "functions": {
-      "directory": "netlify/functions"
+      "directory": "netlify/functions",
+      "node_version": "18"
     },
     "headers": [
       {
