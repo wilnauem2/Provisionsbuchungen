@@ -14,11 +14,20 @@ const loadFromJson = async () => {
       throw new Error('Failed to load insurers.json')
     }
     const data = await response.json()
+    
+    // Ensure we have an array
+    if (!Array.isArray(data)) {
+      throw new Error('Invalid data format - expected array')
+    }
+    
     insurersData.value = data
     console.log('Loaded data:', data)
   } catch (error) {
     console.error('Fehler beim Laden:', error)
     alert(`Fehler beim Laden der Daten:\n${error.message}\nDetails:\n${error.stack}`)
+    
+    // Fallback to empty array if loading fails
+    insurersData.value = []
   }
 }
 
@@ -32,12 +41,28 @@ onMounted(async () => {
 })
 
 const filteredInsurers = computed(() => {
-  if (!searchFilter.value.trim()) {
-    return insurersData.value
+  if (!insurersData.value || !Array.isArray(insurersData.value)) {
+    console.error('Invalid insurers data:', insurersData.value)
+    return []
   }
-  const searchTerm = searchFilter.value.toLowerCase()
+  
+  // Initialize insurersData if it's empty
+  if (insurersData.value.length === 0) {
+    try {
+      const response = await fetch('/.netlify/functions/get-insurers')
+      if (response.ok) {
+        const data = await response.json()
+        if (Array.isArray(data)) {
+          insurersData.value = data
+        }
+      }
+    } catch (error) {
+      console.error('Error initializing insurers:', error)
+    }
+  }
+
   return insurersData.value.filter(insurer => 
-    insurer.name.toLowerCase().includes(searchTerm)
+    insurer.name.toLowerCase().includes(searchFilter.value.toLowerCase())
   )
 })
 
