@@ -1,6 +1,9 @@
 [build]
 command = "npm run build"
 publish = "dist"
+environment = {
+  NODE_VERSION = "16"
+}
 
 [functions]
 directory = "netlify/functions"
@@ -9,3 +12,5 @@ directory = "netlify/functions"
   for = "/*"
   [headers.values]
     Access-Control-Allow-Origin = "*"
+    Access-Control-Allow-Methods = "GET,PUT"
+    Access-Control-Allow-Headers = "Content-Type"

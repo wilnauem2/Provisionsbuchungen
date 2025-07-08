@@ -7,10 +7,13 @@ export default defineConfig({
   base: '/',
   build: {
     outDir: 'dist',
-    emptyOutDir: true
+    emptyOutDir: true,
+    target: 'esnext',
+    minify: 'terser'
   },
   server: {
     port: 3000,
-    open: true
+    open: true,
+    strictPort: true
   }
 })
