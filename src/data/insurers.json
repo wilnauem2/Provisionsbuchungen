@@ -85,7 +85,7 @@
     "dokumentenart": "CSV, PDF",
     "bezugsweg": "Maklerportal, BiPRO ??? --> Alex fragen",
     "kontakt": "maklersupport@barmenia.de, Tel: 0202/4383345",
-    "login": "..."
+    "login": ""
   },
   {
     "name": "Bayerische Beamten Lebensversicherung a. G.",
@@ -125,9 +125,9 @@
   },
   {
     "name": "BL die Bayerische Lebensversicherung AG",
-    "turnus": "",
-    "dokumentenart": "",
-    "bezugsweg": "",
+    "turnus": "7-tägig",
+    "dokumentenart": "CSV, PDF",
+    "bezugsweg": "Maklerportal, BiPRO ??? --> Alex fragen",
     "last_invoice": "",
     "kontakt": "",
     "login": ""
@@ -587,8 +587,8 @@
     "dokumentenart": "PDF (standard) - CSV auf Wunsch möglich (per Mail anfordern)",
     "bezugsweg": "Maklerportal, Mail",
     "kontakt": "Florian.Reinecke@vc24.de, Tel: 071959610962",
-    "login": "...",
-    "last_invoice": "08.07.2025, 09:53"
+    "login": "",
+    "last_invoice": ""
   },
   {
     "name": "Volkswohl-Bund Lebensversicherung a.G.",
