@@ -10,6 +10,31 @@ const insurersData = ref([])
 const isLoading = ref(true)
 const sortOption = ref('name')
 
+// Status counts
+const statusCounts = computed(() => {
+  const counts = {
+    yellow: 0,
+    red: 0,
+    total: 0
+  }
+  
+  insurersData.value.forEach(insurer => {
+    if (insurer.last_invoice && insurer.turnus) {
+      const daysOverdue = calculateDaysOverdue(insurer)
+      if (daysOverdue > 0) {
+        counts.total++
+        if (daysOverdue > 3) {
+          counts.red++
+        } else {
+          counts.yellow++
+        }
+      }
+    }
+  })
+  
+  return counts
+})
+
 // Load insurers data based on environment
 const loadInsurersData = async () => {
   try {
@@ -140,6 +165,23 @@ window.formatLastInvoiceDate = formatLastInvoiceDate
       </div>
     </div>
 
+    <div class="status-summary" v-if="statusCounts.total > 0">
+      <div class="status-item yellow">
+        <span class="status-dot"></span>
+        <span class="count">{{ statusCounts.yellow }}</span>
+        <span class="label">1-3 Tage überfällig</span>
+      </div>
+      <div class="status-item red">
+        <span class="status-dot"></span>
+        <span class="count">{{ statusCounts.red }}</span>
+        <span class="label">> 3 Tage überfällig</span>
+      </div>
+      <div class="status-total">
+        <span class="label">Gesamt überfällig:</span>
+        <span class="count">{{ statusCounts.total }}</span>
+      </div>
+    </div>
+
     <div class="content">
       <div class="insurer-list">
         <div class="search-bar">
@@ -235,6 +277,72 @@ body {
 .environment-switch label {
   color: var(--gray-color);
   font-weight: 500;
+}
+
+/* Status Summary */
+.status-summary {
+  display: flex;
+  gap: 20px;
+  padding: 20px;
+  background: white;
+  border-radius: 12px;
+  box-shadow: var(--card-shadow);
+  margin-bottom: 20px;
+}
+
+.status-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px;
+  border-radius: 10px;
+  flex: 1;
+}
+
+.status-item.yellow {
+  background: #fff9c0;
+  color: var(--warning-color);
+}
+
+.status-item.red {
+  background: #ffebee;
+  color: var(--danger-color);
+}
+
+.status-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: currentColor;
+}
+
+.status-item .count {
+  font-size: 1.2em;
+  font-weight: 600;
+}
+
+.status-item .label {
+  font-size: 0.9em;
+}
+
+.status-total {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px;
+  border-radius: 10px;
+  background: #f8f9fa;
+  color: var(--primary-color);
+  font-weight: 500;
+}
+
+.status-total .count {
+  font-size: 1.2em;
+  font-weight: 600;
+}
+
+.status-total .label {
+  font-size: 0.9em;
 }
 
 .content {
