@@ -2,8 +2,11 @@ export const calculateDaysOverdue = (insurer) => {
   if (!insurer?.last_invoice || !insurer?.turnus) return 0
   
   try {
+    // Parse German date format (DD.MM.YYYY)
     const dateStr = insurer.last_invoice.split(',')[0]
-    const invoiceDate = new Date(dateStr.replace(/(\d{2})\.(\d{2})\. (\d{4})/, '$3-$2-$1'))
+    const [day, month, year] = dateStr.split('.').map(Number)
+    const invoiceDate = new Date(year, month - 1, day)
+    
     const now = new Date()
     const turnusMatch = insurer.turnus.match(/(\d+)-tägig/)
     
@@ -12,14 +15,13 @@ export const calculateDaysOverdue = (insurer) => {
     const dueDate = new Date(invoiceDate)
     dueDate.setDate(dueDate.getDate() + turnusDays)
     
-    // Calculate days overdue
-    const daysOverdue = Math.floor((now - dueDate) / (1000 * 60 * 60 * 24))
-    
-    // Only consider it overdue if current date is after due date
+    // If we're still within the turnus period
     if (now <= dueDate) {
       return 0
     }
     
+    // Calculate days overdue
+    const daysOverdue = Math.floor((now - dueDate) / (1000 * 60 * 60 * 24))
     return Math.max(1, daysOverdue)
   } catch (error) {
     console.error('Error calculating days overdue:', error)
@@ -28,16 +30,12 @@ export const calculateDaysOverdue = (insurer) => {
 }
 
 export const isOverdue = (insurer) => {
-  const daysOverdue = calculateDaysOverdue(insurer)
-  return daysOverdue > 0
-}
-
-export const isWithinTurnus = (insurer) => {
   if (!insurer?.last_invoice || !insurer?.turnus) return false
   
   try {
     const dateStr = insurer.last_invoice.split(',')[0]
-    const invoiceDate = new Date(dateStr.replace(/(\d{2})\.(\d{2})\. (\d{4})/, '$3-$2-$1'))
+    const [day, month, year] = dateStr.split('.').map(Number)
+    const invoiceDate = new Date(year, month - 1, day)
     const now = new Date()
     const turnusMatch = insurer.turnus.match(/(\d+)-tägig/)
     
@@ -46,6 +44,30 @@ export const isWithinTurnus = (insurer) => {
     const dueDate = new Date(invoiceDate)
     dueDate.setDate(dueDate.getDate() + turnusDays)
     
+    return now > dueDate
+  } catch (error) {
+    console.error('Error checking overdue status:', error)
+    return false
+  }
+}
+
+export const isWithinTurnus = (insurer) => {
+  if (!insurer?.last_invoice || !insurer?.turnus) return false
+  
+  try {
+    // Parse German date format (DD.MM.YYYY)
+    const dateStr = insurer.last_invoice.split(',')[0]
+    const [day, month, year] = dateStr.split('.').map(Number)
+    const invoiceDate = new Date(year, month - 1, day)
+    const now = new Date()
+    const turnusMatch = insurer.turnus.match(/(\d+)-tägig/)
+    
+    if (!turnusMatch) return false
+    const turnusDays = parseInt(turnusMatch[1])
+    const dueDate = new Date(invoiceDate)
+    dueDate.setDate(dueDate.getDate() + turnusDays)
+    
+    // If current date is on or before due date
     return now <= dueDate
   } catch (error) {
     console.error('Error checking turnus:', error)
@@ -54,13 +76,16 @@ export const isWithinTurnus = (insurer) => {
 }
 
 export const getStatusColor = (insurer) => {
-  if (insurer.settlementCompleted) return 'green'
-  
-  if (isWithinTurnus(insurer)) return 'green'
-  
   const daysOverdue = calculateDaysOverdue(insurer)
-  if (daysOverdue > 0 && daysOverdue <= 3) return 'yellow'
-  if (daysOverdue > 3) return 'red'
+  
+  // If within turnus period or no overdue days
+  if (daysOverdue === 0) return 'green'
+  
+  // For 1-5 days overdue
+  if (daysOverdue > 0 && daysOverdue <= 5) return 'yellow'
+  
+  // For more than 5 days overdue
+  if (daysOverdue > 5) return 'red'
   
   return 'gray'
 }
@@ -78,18 +103,21 @@ export const getStatusText = (insurer) => {
     return 'Aktuell'
   }
   
-  if (isWithinTurnus(insurer)) return 'Abrechnung OK'
-  
   const daysOverdue = calculateDaysOverdue(insurer)
   
-  // For 1-3 days overdue
-  if (daysOverdue > 0 && daysOverdue <= 3) {
+  // Still within turnus period
+  if (daysOverdue === 0) {
+    return 'Abrechnung OK'
+  }
+  
+  // For 1-5 days overdue
+  if (daysOverdue > 0 && daysOverdue <= 5) {
     return `Überfällig (${daysOverdue} Tage)`
   }
   
-  // For more than 3 days overdue
-  if (daysOverdue > 3) {
-    return `Überfällig (${daysOverdue} Tage)`
+  // For more than 5 days overdue
+  if (daysOverdue > 5) {
+    return `Überfällig (>5 Tage)`
   }
   
   return 'Aktuell'
