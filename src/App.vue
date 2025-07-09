@@ -1,39 +1,78 @@
 <script setup>
 import { ref, computed, onMounted, watch } from 'vue'
-import { currentEnvironment, getInsurersData } from './config/environment'
+import { currentEnvironment, getInsurersData, updateLastInvoice } from './config/environment'
 import InsurerDetail from './components/InsurerDetail.vue'
 import { calculateDaysOverdue, isOverdue, getStatusColor, getStatusText, formatLastInvoiceDate } from './utils/insurerUtils'
+import { format } from 'date-fns'
+import { de } from 'date-fns/locale'
+import TestDateSimulator from './components/TestDateSimulator.vue'
 
 const searchFilter = ref('')
 const selectedInsurer = ref(null)
 const insurersData = ref([])
 const isLoading = ref(true)
 const sortOption = ref('name')
-
 // Status counts
 const statusCounts = computed(() => {
+  const now = getCurrentDate()
   const counts = {
     yellow: 0,
     red: 0,
     total: 0
   }
   
-  insurersData.value.forEach(insurer => {
-    if (insurer.last_invoice && insurer.turnus) {
-      const daysOverdue = calculateDaysOverdue(insurer)
-      if (daysOverdue > 0) {
-        counts.total++
-        if (daysOverdue > 5) {
-          counts.red++
-        } else if (daysOverdue <= 5) {
-          counts.yellow++
-        }
+  filteredInsurers.value.forEach(insurer => {
+    const daysOverdue = calculateDaysOverdue(insurer, now)
+    if (daysOverdue > 0) {
+      counts.total++
+      if (daysOverdue <= 5) {
+        counts.yellow++
+      } else {
+        counts.red++
       }
     }
   })
   
   return counts
 })
+
+// Test date simulation
+const testDate = ref(new Date())
+
+// Custom date function that uses test date in test mode
+const getCurrentDate = () => {
+  // Always return a fresh Date object
+  const now = currentEnvironment.value === 'test' ? new Date(testDate.value.getTime()) : new Date()
+  console.log('Current date:', now)
+  return now
+}
+
+const handleDateUpdate = (newDate) => {
+  console.log('Date updated to:', newDate)
+  testDate.value = new Date(newDate)
+}
+
+// Initialize with current date
+watch(testDate, (newDate) => {
+  console.log('Test date changed to:', newDate)
+  // Update the filtered insurers to trigger re-render
+  filteredInsurers.value = [...filteredInsurers.value]
+})
+
+// Watch for environment changes
+watch(currentEnvironment, () => {
+  console.log('Environment changed to:', currentEnvironment.value)
+  // Reset test date when switching to production
+  if (currentEnvironment.value !== 'test') {
+    testDate.value = new Date()
+  }
+})
+
+// Watch for changes in insurersData, searchFilter, and testDate
+watch([insurersData, searchFilter, testDate], () => {
+  // Update the filtered insurers to trigger re-render
+  filteredInsurers.value = [...filteredInsurers.value]
+}, { deep: true })
 
 // Load insurers data based on environment
 const loadInsurersData = async () => {
@@ -78,8 +117,8 @@ const filteredInsurers = computed(() => {
       break
     case 'status':
       filtered.sort((a, b) => {
-        const statusA = getStatusColor(a)
-        const statusB = getStatusColor(b)
+        const statusA = getStatusColor(a, getCurrentDate())
+        const statusB = getStatusColor(b, getCurrentDate())
         return statusA.localeCompare(statusB)
       })
       break
@@ -87,7 +126,9 @@ const filteredInsurers = computed(() => {
       filtered.sort((a, b) => {
         if (!a.last_invoice) return 1
         if (!b.last_invoice) return -1
-        return new Date(b.last_invoice) - new Date(a.last_invoice)
+        const dateA = new Date(a.last_invoice)
+        const dateB = new Date(b.last_invoice)
+        return dateB.getTime() - dateA.getTime()
       })
       break
   }
@@ -214,6 +255,7 @@ window.formatLastInvoiceDate = formatLastInvoiceDate
 
 <template>
   <div class="app-container">
+  <TestDateSimulator v-model="testDate" v-if="currentEnvironment === 'test'" @update:modelValue="handleDateUpdate" />
     <div class="header">
       <h1>Provisionenbuchungen</h1>
       <div class="environment-switch">
@@ -279,8 +321,8 @@ window.formatLastInvoiceDate = formatLastInvoiceDate
                   </span>
                 </div>
               </div>
-              <p class="status" :class="getStatusColor(insurer)">
-                {{ getStatusText(insurer) }}
+              <p class="status" :class="getStatusColor(insurer, getCurrentDate())">
+                {{ getStatusText(insurer, getCurrentDate()) }}
               </p>
             </div>
             <div class="insurer-details">

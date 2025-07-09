@@ -1,4 +1,4 @@
-export const calculateDaysOverdue = (insurer) => {
+export const calculateDaysOverdue = (insurer, currentDate = null) => {
   if (!insurer?.last_invoice || !insurer?.turnus) return 0
   
   try {
@@ -7,7 +7,7 @@ export const calculateDaysOverdue = (insurer) => {
     const [day, month, year] = dateStr.split('.').map(Number)
     const invoiceDate = new Date(year, month - 1, day)
     
-    const now = new Date()
+    const now = currentDate || new Date()
     const turnusMatch = insurer.turnus.match(/(\d+)-tägig/)
     
     if (!turnusMatch) return 0
@@ -29,14 +29,14 @@ export const calculateDaysOverdue = (insurer) => {
   }
 }
 
-export const isOverdue = (insurer) => {
+export const isOverdue = (insurer, currentDate = null) => {
   if (!insurer?.last_invoice || !insurer?.turnus) return false
   
   try {
     const dateStr = insurer.last_invoice.split(',')[0]
     const [day, month, year] = dateStr.split('.').map(Number)
     const invoiceDate = new Date(year, month - 1, day)
-    const now = new Date()
+    const now = currentDate || new Date()
     const turnusMatch = insurer.turnus.match(/(\d+)-tägig/)
     
     if (!turnusMatch) return false
@@ -51,7 +51,7 @@ export const isOverdue = (insurer) => {
   }
 }
 
-export const isWithinTurnus = (insurer) => {
+export const isWithinTurnus = (insurer, currentDate = null) => {
   if (!insurer?.last_invoice || !insurer?.turnus) return false
   
   try {
@@ -59,7 +59,7 @@ export const isWithinTurnus = (insurer) => {
     const dateStr = insurer.last_invoice.split(',')[0]
     const [day, month, year] = dateStr.split('.').map(Number)
     const invoiceDate = new Date(year, month - 1, day)
-    const now = new Date()
+    const now = currentDate || new Date()
     const turnusMatch = insurer.turnus.match(/(\d+)-tägig/)
     
     if (!turnusMatch) return false
@@ -75,10 +75,10 @@ export const isWithinTurnus = (insurer) => {
   }
 }
 
-export const getStatusColor = (insurer) => {
+export const getStatusColor = (insurer, currentDate = null) => {
   if (!insurer?.turnus || !insurer?.last_invoice) return ''
   
-  const daysOverdue = calculateDaysOverdue(insurer)
+  const daysOverdue = calculateDaysOverdue(insurer, currentDate)
   
   // If within turnus period or no overdue days
   if (daysOverdue === 0) return 'green'
@@ -98,10 +98,10 @@ export const formatLastInvoiceDate = (dateStr) => {
   return date
 }
 
-export const getStatusText = (insurer) => {
+export const getStatusText = (insurer, currentDate = null) => {
   if (!insurer?.turnus || !insurer?.last_invoice) return ''
   
-  const daysOverdue = calculateDaysOverdue(insurer)
+  const daysOverdue = calculateDaysOverdue(insurer, currentDate)
   
   // Still within turnus period
   if (daysOverdue === 0) {
