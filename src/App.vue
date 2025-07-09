@@ -58,6 +58,7 @@ watch(currentEnvironment, () => {
 })
 
 const filteredInsurers = computed(() => {
+  // Clone the data to avoid mutations
   let filtered = [...insurersData.value]
   
   // Apply search filter
@@ -94,6 +95,18 @@ const filteredInsurers = computed(() => {
   return filtered
 })
 
+// Watch for changes in insurersData and searchFilter
+watch([insurersData, searchFilter], () => {
+  // Force re-render of insurer cards
+  const insurerCards = document.querySelectorAll('.insurer-card')
+  insurerCards.forEach(card => {
+    card.style.display = 'none'
+    setTimeout(() => {
+      card.style.display = 'block'
+    }, 10)
+  })
+}, { deep: true })
+
 const handleInsurerSelect = (insurer) => {
   selectedInsurer.value = insurer
 }
@@ -111,13 +124,49 @@ const saveToJson = async () => {
     if (!selectedInsurer.value) {
       throw new Error('Kein Versicherer ausgewählt')
     }
-    
+
     // Update local state
     const insurerIndex = insurersData.value.findIndex(i => i.name === selectedInsurer.value.name)
     if (insurerIndex !== -1) {
       insurersData.value[insurerIndex] = { ...selectedInsurer.value }
     }
-    
+
+    // Save to both files
+    const insurersFile = currentEnvironment.value === 'test' 
+      ? '../data/environments/insurers.test.json'
+      : '../data/insurers.json'
+    const lastInvoicesFile = currentEnvironment.value === 'test'
+      ? '../data/environments/last_invoices.test.json'
+      : '../data/last_invoices.json'
+
+    // Save insurers data (without last_invoice)
+    const insurersDataWithoutLastInvoice = insurersData.value.map(insurer => {
+      const { last_invoice, ...rest } = insurer
+      return rest
+    })
+    await fetch(insurersFile, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(insurersDataWithoutLastInvoice)
+    })
+
+    // Save last_invoices data
+    const lastInvoices = insurersData.value.reduce((acc, insurer) => {
+      if (insurer.last_invoice) {
+        acc[insurer.name] = insurer.last_invoice
+      }
+      return acc
+    }, {})
+    await fetch(lastInvoicesFile, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(lastInvoices)
+    })
+
     alert('Daten erfolgreich gespeichert!')
     
     // Reload data after successful save to ensure consistency
@@ -128,14 +177,24 @@ const saveToJson = async () => {
   }
 }
 
-const handleSettlementCompleted = (insurer) => {
+const handleSettlementCompleted = ({ insurer, newDate }) => {
   if (!insurer || !selectedInsurer.value || insurer.name !== selectedInsurer.value.name) return
-
-  selectedInsurer.value.settlementCompleted = true
-  // Formatiere das Datum im deutschen Format TT.MM.JJJJ
-  const now = new Date()
-  selectedInsurer.value.last_invoice = now.toLocaleDateString('de-DE')
-  saveToJson()
+  
+  // Update local state
+  const insurerIndex = insurersData.value.findIndex(i => i.name === insurer.name)
+  if (insurerIndex !== -1) {
+    insurersData.value[insurerIndex] = { 
+      ...insurer,
+      last_invoice: newDate
+    }
+    selectedInsurer.value = { ...selectedInsurer.value, last_invoice: newDate }
+  }
+  
+  // Update the last_invoice in the separate file
+  updateLastInvoice(insurer.name, newDate)
+  
+  // Reload data to ensure consistency
+  loadInsurersData()
 }
 
 const handleUpdateLastInvoice = ({ insurerName, lastInvoice }) => {
@@ -220,7 +279,11 @@ window.formatLastInvoiceDate = formatLastInvoiceDate
       </div>
 
       <div class="insurer-detail" v-if="selectedInsurer">
-        <InsurerDetail :insurer="selectedInsurer" @close="selectedInsurer = null" />
+        <InsurerDetail 
+          :insurer="selectedInsurer" 
+          @close="selectedInsurer = null"
+          @settlement-completed="handleSettlementCompleted"
+        />
       </div>
     </div>
   </div>

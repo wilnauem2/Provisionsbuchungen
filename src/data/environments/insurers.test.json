@@ -4,7 +4,6 @@
     "turnus": "14-tägig",
     "dokumentenart": "PDF",
     "bezugsweg": "Email",
-    "last_invoice": "01.07.2025, 10:00",
     "instructions": "Test-Versicherer 1 Instructions"
   },
   {
@@ -12,7 +11,6 @@
     "turnus": "21-tägig",
     "dokumentenart": "PDF",
     "bezugsweg": "Email",
-    "last_invoice": "15.06.2025, 14:30",
     "instructions": "Test-Versicherer 2 Instructions"
   },
   {
@@ -20,7 +18,6 @@
     "turnus": "7-tägig",
     "dokumentenart": "PDF",
     "bezugsweg": "Email",
-    "last_invoice": "28.06.2025, 09:15",
     "instructions": "Test-Versicherer 3 Instructions"
   },
   {
@@ -28,7 +25,6 @@
     "turnus": "10-tägig",
     "dokumentenart": "PDF",
     "bezugsweg": "Email",
-    "last_invoice": "03.07.2025, 11:00",
     "instructions": "Test-Versicherer 4 Instructions"
   },
   {
@@ -36,7 +32,6 @@
     "turnus": "30-tägig",
     "dokumentenart": "PDF",
     "bezugsweg": "Email",
-    "last_invoice": "01.06.2025, 16:00",
     "instructions": "Test-Versicherer 5 Instructions"
   },
   {
@@ -44,7 +39,6 @@
     "turnus": "14-tägig",
     "dokumentenart": "PDF",
     "bezugsweg": "Email",
-    "last_invoice": "22.06.2025, 09:30",
     "instructions": "Test-Versicherer 6 Instructions"
   },
   {
@@ -52,7 +46,6 @@
     "turnus": "21-tägig",
     "dokumentenart": "PDF",
     "bezugsweg": "Email",
-    "last_invoice": "29.06.2025, 14:45",
     "instructions": "Test-Versicherer 7 Instructions"
   },
   {
@@ -60,7 +53,6 @@
     "turnus": "7-tägig",
     "dokumentenart": "PDF",
     "bezugsweg": "Email",
-    "last_invoice": "30.06.2025, 10:00",
     "instructions": "Test-Versicherer 8 Instructions"
   },
   {
@@ -68,7 +60,6 @@
     "turnus": "14-tägig",
     "dokumentenart": "PDF",
     "bezugsweg": "Email",
-    "last_invoice": "05.07.2025, 15:30",
     "instructions": "Test-Versicherer 9 Instructions"
   },
   {
@@ -76,7 +67,6 @@
     "turnus": "21-tägig",
     "dokumentenart": "PDF",
     "bezugsweg": "Email",
-    "last_invoice": "18.06.2025, 11:15",
     "instructions": "Test-Versicherer 10 Instructions"
   },
   {
@@ -84,7 +74,6 @@
     "turnus": "10-tägig",
     "dokumentenart": "PDF",
     "bezugsweg": "Email",
-    "last_invoice": "04.07.2025, 13:00",
     "instructions": "Test-Versicherer 11 Instructions"
   },
   {
@@ -92,7 +81,6 @@
     "turnus": "30-tägig",
     "dokumentenart": "PDF",
     "bezugsweg": "Email",
-    "last_invoice": "02.06.2025, 17:00",
     "instructions": "Test-Versicherer 12 Instructions"
   },
   {
@@ -100,7 +88,6 @@
     "turnus": "14-tägig",
     "dokumentenart": "PDF",
     "bezugsweg": "Email",
-    "last_invoice": "23.06.2025, 08:30",
     "instructions": "Test-Versicherer 13 Instructions"
   },
   {
@@ -108,7 +95,6 @@
     "turnus": "21-tägig",
     "dokumentenart": "PDF",
     "bezugsweg": "Email",
-    "last_invoice": "30.06.2025, 15:45",
     "instructions": "Test-Versicherer 14 Instructions"
   },
   {
@@ -116,7 +102,6 @@
     "turnus": "7-tägig",
     "dokumentenart": "PDF",
     "bezugsweg": "Email",
-    "last_invoice": "01.07.2025, 11:00",
     "instructions": "Test-Versicherer 15 Instructions"
   },
   {
@@ -124,7 +109,6 @@
     "turnus": "14-tägig",
     "dokumentenart": "PDF",
     "bezugsweg": "Email",
-    "last_invoice": "06.07.2025, 16:30",
     "instructions": "Test-Versicherer 16 Instructions"
   },
   {
@@ -132,7 +116,6 @@
     "turnus": "21-tägig",
     "dokumentenart": "PDF",
     "bezugsweg": "Email",
-    "last_invoice": "19.06.2025, 12:15",
     "instructions": "Test-Versicherer 17 Instructions"
   },
   {
@@ -140,7 +123,6 @@
     "turnus": "10-tägig",
     "dokumentenart": "PDF",
     "bezugsweg": "Email",
-    "last_invoice": "05.07.2025, 14:00",
     "instructions": "Test-Versicherer 18 Instructions"
   },
   {
@@ -148,7 +130,6 @@
     "turnus": "30-tägig",
     "dokumentenart": "PDF",
     "bezugsweg": "Email",
-    "last_invoice": "03.06.2025, 18:00",
     "instructions": "Test-Versicherer 19 Instructions"
   },
   {
@@ -156,7 +137,6 @@
     "turnus": "14-tägig",
     "dokumentenart": "PDF",
     "bezugsweg": "Email",
-    "last_invoice": "24.06.2025, 09:30",
     "instructions": "Test-Versicherer 20 Instructions"
   },
   {
@@ -164,7 +144,6 @@
     "turnus": "21-tägig",
     "dokumentenart": "PDF",
     "bezugsweg": "Email",
-    "last_invoice": "01.07.2025, 15:45",
     "instructions": "Test-Versicherer 21 Instructions"
   },
   {
@@ -172,7 +151,6 @@
     "turnus": "7-tägig",
     "dokumentenart": "PDF",
     "bezugsweg": "Email",
-    "last_invoice": "02.07.2025, 11:00",
     "instructions": "Test-Versicherer 22 Instructions"
   }
 ]
