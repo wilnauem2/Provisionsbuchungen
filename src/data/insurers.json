@@ -5,32 +5,62 @@
     "dokumentenart": "",
     "bezugsweg": "",
     "last_invoice": "08.07.2025, 10:00",
-    "instructions": "Für die Bearbeitung von Allianz-Verträgen benötigen Sie folgende Unterlagen: \n \n \n Versicherungsschein, Personalausweis und aktuelle Gehaltsabrechnung. Bitte beachten Sie die Kündigungsfristen von 3 Monaten zum Jahresende.",
-    "instructions2": "Bitte beachten Sie die Kündigungsfristen von 3 Monaten zum Jahresende."
+    "kontakt": "",
+    "login": ""
   },
   {
     "name": "Allianz Versicherungs-AG (Sach)",
-    "instructions": "Noch keine Anweisungen hinterlegt"
+    "turnus": "",
+    "dokumentenart": "",
+    "bezugsweg": "",
+    "last_invoice": "",
+    "kontakt": "",
+    "login": ""
   },
   {
     "name": "Alte Leipziger Versicherung Aktiengesellschaft",
-    "instructions": "Noch keine Anweisungen hinterlegt"
+    "turnus": "",
+    "dokumentenart": "",
+    "bezugsweg": "",
+    "last_invoice": "",
+    "kontakt": "",
+    "login": ""
   },
   {
     "name": "Ammerländer Versicherung VVaG",
-    "instructions": "Noch keine Anweisungen hinterlegt"
+    "turnus": "",
+    "dokumentenart": "",
+    "bezugsweg": "",
+    "last_invoice": "",
+    "kontakt": "",
+    "login": ""
   },
   {
     "name": "AOK Baden-Württemberg",
-    "instructions": "Noch keine Anweisungen hinterlegt"
+    "turnus": "",
+    "dokumentenart": "",
+    "bezugsweg": "",
+    "last_invoice": "",
+    "kontakt": "",
+    "login": ""
   },
   {
     "name": "ARAG",
-    "instructions": "Noch keine Anweisungen hinterlegt"
+    "turnus": "",
+    "dokumentenart": "",
+    "bezugsweg": "",
+    "last_invoice": "",
+    "kontakt": "",
+    "login": ""
   },
   {
     "name": "Asspario Versicherungsdienst",
-    "instructions": "Noch keine Anweisungen hinterlegt"
+    "turnus": "",
+    "dokumentenart": "",
+    "bezugsweg": "",
+    "last_invoice": "",
+    "kontakt": "",
+    "login": ""
   },
   {
     "name": "AXA / DBV",
@@ -42,7 +72,12 @@
   },
   {
     "name": "Baloise",
-    "instructions": "Noch keine Anweisungen hinterlegt"
+    "turnus": "",
+    "dokumentenart": "",
+    "bezugsweg": "",
+    "last_invoice": "",
+    "kontakt": "",
+    "login": ""
   },
   {
     "name": "Barmenia Krankenversicherung",
@@ -54,59 +89,129 @@
   },
   {
     "name": "Bayerische Beamten Lebensversicherung a. G.",
-    "instructions": "Noch keine Anweisungen hinterlegt"
+    "turnus": "",
+    "dokumentenart": "",
+    "bezugsweg": "",
+    "last_invoice": "",
+    "kontakt": "",
+    "login": ""
   },
   {
     "name": "Bayerische Beamtenkrankenkasse AG (VKB)",
-    "instructions": "Noch keine Anweisungen hinterlegt"
+    "turnus": "",
+    "dokumentenart": "",
+    "bezugsweg": "",
+    "last_invoice": "",
+    "kontakt": "",
+    "login": ""
   },
   {
     "name": "BGV-Versicherung Aktiengesellschaft",
-    "instructions": "Noch keine Anweisungen hinterlegt"
+    "turnus": "",
+    "dokumentenart": "",
+    "bezugsweg": "",
+    "last_invoice": "",
+    "kontakt": "",
+    "login": ""
   },
   {
     "name": "BKK Salus",
-    "instructions": "Noch keine Anweisungen hinterlegt"
+    "turnus": "",
+    "dokumentenart": "",
+    "bezugsweg": "",
+    "last_invoice": "",
+    "kontakt": "",
+    "login": ""
   },
   {
     "name": "BL die Bayerische Lebensversicherung AG",
-    "instructions": "Noch keine Anweisungen hinterlegt"
+    "turnus": "",
+    "dokumentenart": "",
+    "bezugsweg": "",
+    "last_invoice": "",
+    "kontakt": "",
+    "login": ""
   },
   {
     "name": "Concordia",
-    "instructions": "Noch keine Anweisungen hinterlegt"
+    "turnus": "",
+    "dokumentenart": "",
+    "bezugsweg": "",
+    "last_invoice": "",
+    "kontakt": "",
+    "login": ""
   },
   {
     "name": "Continentale",
-    "instructions": "Noch keine Anweisungen hinterlegt"
+    "turnus": "",
+    "dokumentenart": "",
+    "bezugsweg": "",
+    "last_invoice": "",
+    "kontakt": "",
+    "login": ""
   },
   {
     "name": "DAK",
-    "instructions": "Noch keine Anweisungen hinterlegt"
+    "turnus": "",
+    "dokumentenart": "",
+    "bezugsweg": "",
+    "last_invoice": "",
+    "kontakt": "",
+    "login": ""
   },
   {
     "name": "Debeka",
-    "instructions": "Noch keine Anweisungen hinterlegt"
+    "turnus": "",
+    "dokumentenart": "",
+    "bezugsweg": "",
+    "last_invoice": "",
+    "kontakt": "",
+    "login": ""
   },
   {
     "name": "DELA Lebensversicherungen",
-    "instructions": "Noch keine Anweisungen hinterlegt"
+    "turnus": "",
+    "dokumentenart": "",
+    "bezugsweg": "",
+    "last_invoice": "",
+    "kontakt": "",
+    "login": ""
   },
   {
     "name": "DEURAG Deutsche Rechtsschutz-Versicherung Aktiengesellschaft",
-    "instructions": "Noch keine Anweisungen hinterlegt"
+    "turnus": "",
+    "dokumentenart": "",
+    "bezugsweg": "",
+    "last_invoice": "",
+    "kontakt": "",
+    "login": ""
   },
   {
     "name": "Deutsche Ärzteversicherung Aktiengesellschaft",
-    "instructions": "Noch keine Anweisungen hinterlegt"
+    "turnus": "",
+    "dokumentenart": "",
+    "bezugsweg": "",
+    "last_invoice": "",
+    "kontakt": "",
+    "login": ""
   },
   {
     "name": "DEVK Allgemeine Versicherungs-Aktiengesellschaft",
-    "instructions": "Noch keine Anweisungen hinterlegt"
+    "turnus": "",
+    "dokumentenart": "",
+    "bezugsweg": "",
+    "last_invoice": "",
+    "kontakt": "",
+    "login": ""
   },
   {
     "name": "Dialog Lebensversicherungs-Aktiengesellschaft",
-    "instructions": "Noch keine Anweisungen hinterlegt"
+    "turnus": "",
+    "dokumentenart": "",
+    "bezugsweg": "",
+    "last_invoice": "",
+    "kontakt": "",
+    "login": ""
   },
   {
     "name": "die Bayerische Allgemeine Versicherung AG",
@@ -118,163 +223,363 @@
   },
   {
     "name": "DKV Deutsche Krankenversicherung Aktiengesellschaft",
-    "instructions": "Noch keine Anweisungen hinterlegt"
+    "turnus": "",
+    "dokumentenart": "",
+    "bezugsweg": "",
+    "last_invoice": "",
+    "kontakt": "",
+    "login": ""
   },
   {
     "name": "DMB Rechtsschutz-Versicherung Aktiengesellschaft",
-    "instructions": "Noch keine Anweisungen hinterlegt"
+    "turnus": "",
+    "dokumentenart": "",
+    "bezugsweg": "",
+    "last_invoice": "",
+    "kontakt": "",
+    "login": ""
   },
   {
     "name": "DOCURA VVaG",
-    "instructions": "Noch keine Anweisungen hinterlegt"
+    "turnus": "",
+    "dokumentenart": "",
+    "bezugsweg": "",
+    "last_invoice": "",
+    "kontakt": "",
+    "login": ""
   },
   {
     "name": "FRI:DAY",
-    "instructions": "Noch keine Anweisungen hinterlegt"
+    "turnus": "",
+    "dokumentenart": "",
+    "bezugsweg": "",
+    "last_invoice": "",
+    "kontakt": "",
+    "login": ""
   },
   {
     "name": "Generali Versicherung Aktiengesellschaft",
-    "instructions": "Noch keine Anweisungen hinterlegt"
+    "turnus": "",
+    "dokumentenart": "",
+    "bezugsweg": "",
+    "last_invoice": "",
+    "kontakt": "",
+    "login": ""
   },
   {
     "name": "Gothaer Allgemeine Versicherung Aktiengesellschaft",
-    "instructions": "Noch keine Anweisungen hinterlegt"
+    "turnus": "",
+    "dokumentenart": "",
+    "bezugsweg": "",
+    "last_invoice": "",
+    "kontakt": "",
+    "login": ""
   },
   {
     "name": "GRUNDEIGENTÜMER-VERSICHERUNG Versicherungsverein auf Gegenseitigkeit",
-    "instructions": "Noch keine Anweisungen hinterlegt"
+    "turnus": "",
+    "dokumentenart": "",
+    "bezugsweg": "",
+    "last_invoice": "",
+    "kontakt": "",
+    "login": ""
   },
   {
     "name": "Haftpflichtkasse",
-    "instructions": "Noch keine Anweisungen hinterlegt"
+    "turnus": "",
+    "dokumentenart": "",
+    "bezugsweg": "",
+    "last_invoice": "",
+    "kontakt": "",
+    "login": ""
   },
   {
     "name": "Hannoversche Lebensversicherung AG",
-    "instructions": "Noch keine Anweisungen hinterlegt"
+    "turnus": "",
+    "dokumentenart": "",
+    "bezugsweg": "",
+    "last_invoice": "",
+    "kontakt": "",
+    "login": ""
   },
   {
     "name": "HanseMerkur Reiseversicherung AG",
-    "instructions": "Noch keine Anweisungen hinterlegt"
+    "turnus": "",
+    "dokumentenart": "",
+    "bezugsweg": "",
+    "last_invoice": "",
+    "kontakt": "",
+    "login": ""
   },
   {
     "name": "HDI Versicherung AG",
-    "instructions": "Noch keine Anweisungen hinterlegt"
+    "turnus": "",
+    "dokumentenart": "",
+    "bezugsweg": "",
+    "last_invoice": "",
+    "kontakt": "",
+    "login": ""
   },
   {
     "name": "HELVETIA INTERNATIONAL Versicherungs-Aktiengesellschaft",
-    "instructions": "Noch keine Anweisungen hinterlegt"
+    "turnus": "",
+    "dokumentenart": "",
+    "bezugsweg": "",
+    "last_invoice": "",
+    "kontakt": "",
+    "login": ""
   },
   {
     "name": "HUK-COBURG-Allgemeine Versicherung AG",
-    "instructions": "Noch keine Anweisungen hinterlegt"
+    "turnus": "",
+    "dokumentenart": "",
+    "bezugsweg": "",
+    "last_invoice": "",
+    "kontakt": "",
+    "login": ""
   },
   {
     "name": "IDUNA Vereinigte Lebensversicherung aG für Handwerk, Handel und Gewerbe",
-    "instructions": "Noch keine Anweisungen hinterlegt"
+    "turnus": "",
+    "dokumentenart": "",
+    "bezugsweg": "",
+    "last_invoice": "",
+    "kontakt": "",
+    "login": ""
   },
   {
     "name": "INTER Krankenversicherung aG",
-    "instructions": "Noch keine Anweisungen hinterlegt"
+    "turnus": "",
+    "dokumentenart": "",
+    "bezugsweg": "",
+    "last_invoice": "",
+    "kontakt": "",
+    "login": ""
   },
   {
     "name": "InterRisk Versicherungs-Aktiengesellschaft",
-    "instructions": "Noch keine Anweisungen hinterlegt"
+    "turnus": "",
+    "dokumentenart": "",
+    "bezugsweg": "",
+    "last_invoice": "",
+    "kontakt": "",
+    "login": ""
   },
   {
     "name": "Itzehoer Versicherung/Brandgilde von 1691 Versicherungsverein auf Gegenseitigkeit",
-    "instructions": "Noch keine Anweisungen hinterlegt"
+    "turnus": "",
+    "dokumentenart": "",
+    "bezugsweg": "",
+    "last_invoice": "",
+    "kontakt": "",
+    "login": ""
   },
   {
     "name": "Janitos Versicherung Aktiengesellschaft",
-    "instructions": "Noch keine Anweisungen hinterlegt"
+    "turnus": "",
+    "dokumentenart": "",
+    "bezugsweg": "",
+    "last_invoice": "",
+    "kontakt": "",
+    "login": ""
   },
   {
     "name": "KS Auxilia Versicherungs-AG",
-    "instructions": "Noch keine Anweisungen hinterlegt"
+    "turnus": "",
+    "dokumentenart": "",
+    "bezugsweg": "",
+    "last_invoice": "",
+    "kontakt": "",
+    "login": ""
   },
   {
     "name": "LBN-Versicherungsverein a.G. (VVaG)",
-    "instructions": "Noch keine Anweisungen hinterlegt"
+    "turnus": "",
+    "dokumentenart": "",
+    "bezugsweg": "",
+    "last_invoice": "",
+    "kontakt": "",
+    "login": ""
   },
   {
     "name": "NÜRNBERGER Krankenversicherung Aktiengesellschaft",
-    "instructions": "Noch keine Anweisungen hinterlegt"
+    "turnus": "",
+    "dokumentenart": "",
+    "bezugsweg": "",
+    "last_invoice": "",
+    "kontakt": "",
+    "login": ""
   },
   {
     "name": "NV-Versicherungen VVaG",
-    "instructions": "Noch keine Anweisungen hinterlegt"
+    "turnus": "",
+    "dokumentenart": "",
+    "bezugsweg": "",
+    "last_invoice": "",
+    "kontakt": "",
+    "login": ""
   },
   {
     "name": "Öffentliche Braunschweig",
-    "instructions": "Noch keine Anweisungen hinterlegt"
+    "turnus": "",
+    "dokumentenart": "",
+    "bezugsweg": "",
+    "last_invoice": "",
+    "kontakt": "",
+    "login": ""
   },
   {
     "name": "ottonova Krankenversicherung AG",
-    "instructions": "Noch keine Anweisungen hinterlegt"
+    "turnus": "",
+    "dokumentenart": "",
+    "bezugsweg": "",
+    "last_invoice": "",
+    "kontakt": "",
+    "login": ""
   },
   {
     "name": "Provita BKK",
-    "instructions": "Noch keine Anweisungen hinterlegt"
+    "turnus": "",
+    "dokumentenart": "",
+    "bezugsweg": "",
+    "last_invoice": "",
+    "kontakt": "",
+    "login": ""
   },
   {
     "name": "Proxalto",
-    "instructions": "Noch keine Anweisungen hinterlegt"
+    "turnus": "",
+    "dokumentenart": "",
+    "bezugsweg": "",
+    "last_invoice": "",
+    "kontakt": "",
+    "login": ""
   },
   {
     "name": "R+V Krankenversicherung Aktiengesellschaft",
-    "instructions": "Noch keine Anweisungen hinterlegt"
+    "turnus": "",
+    "dokumentenart": "",
+    "bezugsweg": "",
+    "last_invoice": "",
+    "kontakt": "",
+    "login": ""
   },
   {
     "name": "R+V Versicherung AG",
-    "instructions": "Noch keine Anweisungen hinterlegt"
+    "turnus": "",
+    "dokumentenart": "",
+    "bezugsweg": "",
+    "last_invoice": "",
+    "kontakt": "",
+    "login": ""
   },
   {
     "name": "SDK Süddeutsche Krankenversicherung a. G.",
-    "instructions": "Noch keine Anweisungen hinterlegt"
+    "turnus": "",
+    "dokumentenart": "",
+    "bezugsweg": "",
+    "last_invoice": "",
+    "kontakt": "",
+    "login": ""
   },
   {
     "name": "Signal Iduna Allgemeine Versicherung Aktiengesellschaft",
-    "instructions": "Noch keine Anweisungen hinterlegt"
+    "turnus": "",
+    "dokumentenart": "",
+    "bezugsweg": "",
+    "last_invoice": "",
+    "kontakt": "",
+    "login": ""
   },
   {
     "name": "SIGNAL Krankenversicherung a.G.",
-    "instructions": "Noch keine Anweisungen hinterlegt"
+    "turnus": "",
+    "dokumentenart": "",
+    "bezugsweg": "",
+    "last_invoice": "",
+    "kontakt": "",
+    "login": ""
   },
   {
     "name": "Stuttgarter Lebensversicherung a.G.",
-    "instructions": "Noch keine Anweisungen hinterlegt"
+    "turnus": "",
+    "dokumentenart": "",
+    "bezugsweg": "",
+    "last_invoice": "",
+    "kontakt": "",
+    "login": ""
   },
   {
     "name": "SV SparkassenVersicherung Gebäudeversicherung Aktiengesellschaft",
-    "instructions": "Noch keine Anweisungen hinterlegt"
+    "turnus": "",
+    "dokumentenart": "",
+    "bezugsweg": "",
+    "last_invoice": "",
+    "kontakt": "",
+    "login": ""
   },
   {
     "name": "Swiss Life AG, Niederlassung Deutschland",
-    "instructions": "Noch keine Anweisungen hinterlegt"
+    "turnus": "",
+    "dokumentenart": "",
+    "bezugsweg": "",
+    "last_invoice": "",
+    "kontakt": "",
+    "login": ""
   },
   {
     "name": "Techniker Krankenkasse",
-    "instructions": "Noch keine Anweisungen hinterlegt"
+    "turnus": "",
+    "dokumentenart": "",
+    "bezugsweg": "",
+    "last_invoice": "",
+    "kontakt": "",
+    "login": ""
   },
   {
     "name": "Union Krankenversicherung AG",
-    "instructions": "Noch keine Anweisungen hinterlegt"
+    "turnus": "",
+    "dokumentenart": "",
+    "bezugsweg": "",
+    "last_invoice": "",
+    "kontakt": "",
+    "login": ""
   },
   {
     "name": "uniVersa Krankenversicherung a.G.",
-    "instructions": "Noch keine Anweisungen hinterlegt"
+    "turnus": "",
+    "dokumentenart": "",
+    "bezugsweg": "",
+    "last_invoice": "",
+    "kontakt": "",
+    "login": ""
   },
   {
     "name": "Versicherungskammer Bayern Versicherungsanstalt des öffentlichen Rechts",
-    "instructions": "Noch keine Anweisungen hinterlegt"
+    "turnus": "",
+    "dokumentenart": "",
+    "bezugsweg": "",
+    "last_invoice": "",
+    "kontakt": "",
+    "login": ""
   },
   {
     "name": "VGK",
-    "instructions": "Noch keine Anweisungen hinterlegt"
+    "turnus": "",
+    "dokumentenart": "",
+    "bezugsweg": "",
+    "last_invoice": "",
+    "kontakt": "",
+    "login": ""
   },
   {
     "name": "VHV Allgemeine Versicherung AG",
-    "instructions": "Noch keine Anweisungen hinterlegt"
+    "turnus": "",
+    "dokumentenart": "",
+    "bezugsweg": "",
+    "last_invoice": "",
+    "kontakt": "",
+    "login": ""
   },
   {
     "name": "Versicherungscheck24",
@@ -283,23 +588,42 @@
     "bezugsweg": "Maklerportal, Mail",
     "kontakt": "Florian.Reinecke@vc24.de, Tel: 071959610962",
     "login": "...",
-    "last_invoice": "08.07.2025, 09:53",
-    "settlementCompleted": true
+    "last_invoice": "08.07.2025, 09:53"
   },
   {
     "name": "Volkswohl-Bund Lebensversicherung a.G.",
-    "instructions": "Noch keine Anweisungen hinterlegt"
+    "turnus": "",
+    "dokumentenart": "",
+    "bezugsweg": "",
+    "last_invoice": "",
+    "kontakt": "",
+    "login": ""
   },
   {
     "name": "WGV-Versicherung AG",
-    "instructions": "Noch keine Anweisungen hinterlegt"
+    "turnus": "",
+    "dokumentenart": "",
+    "bezugsweg": "",
+    "last_invoice": "",
+    "kontakt": "",
+    "login": ""
   },
   {
     "name": "Wüstenrot & Württembergische AG",
-    "instructions": "Noch keine Anweisungen hinterlegt"
+    "turnus": "",
+    "dokumentenart": "",
+    "bezugsweg": "",
+    "last_invoice": "",
+    "kontakt": "",
+    "login": ""
   },
   {
     "name": "Zurich",
-    "instructions": "Noch keine Anweisungen hinterlegt"
+    "turnus": "",
+    "dokumentenart": "",
+    "bezugsweg": "",
+    "last_invoice": "",
+    "kontakt": "",
+    "login": ""
   }
 ]
