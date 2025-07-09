@@ -1,0 +1,29 @@
+[
+  {
+    "name": "Test-Versicherer 1",
+    "turnus": "14-tägig",
+    "dokumentenart": "PDF",
+    "bezugsweg": "Email",
+    "last_invoice": "01.07.2025, 10:00",
+    "instructions": "Test-Versicherer 1 Instructions",
+    "settlementCompleted": false
+  },
+  {
+    "name": "Test-Versicherer 2",
+    "turnus": "21-tägig",
+    "dokumentenart": "PDF",
+    "bezugsweg": "Email",
+    "last_invoice": "15.06.2025, 14:30",
+    "instructions": "Test-Versicherer 2 Instructions",
+    "settlementCompleted": false
+  },
+  {
+    "name": "Test-Versicherer 3",
+    "turnus": "7-tägig",
+    "dokumentenart": "PDF",
+    "bezugsweg": "Email",
+    "last_invoice": "28.06.2025, 09:15",
+    "instructions": "Test-Versicherer 3 Instructions",
+    "settlementCompleted": true
+  }
+]
