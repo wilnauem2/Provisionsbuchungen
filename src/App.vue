@@ -2,7 +2,7 @@
 import { ref, computed, onMounted, watch } from 'vue'
 import { currentEnvironment, getInsurersData } from './config/environment'
 import InsurerDetail from './components/InsurerDetail.vue'
-import { calculateDaysOverdue, isOverdue, getStatusColor, getStatusText } from './utils/insurerUtils'
+import { calculateDaysOverdue, isOverdue, getStatusColor, getStatusText, formatLastInvoiceDate } from './utils/insurerUtils'
 
 const searchFilter = ref('')
 const selectedInsurer = ref(null)
@@ -33,22 +33,32 @@ watch(currentEnvironment, () => {
 })
 
 const filteredInsurers = computed(() => {
-  let sortedInsurers = [...insurersData.value]
+  let filtered = [...insurersData.value]
+  
+  // Apply search filter
+  if (searchFilter.value) {
+    const searchLower = searchFilter.value.toLowerCase()
+    filtered = filtered.filter(insurer => 
+      insurer.name.toLowerCase().includes(searchLower) ||
+      (insurer.turnus && insurer.turnus.toLowerCase().includes(searchLower)) ||
+      (insurer.last_invoice && insurer.last_invoice.toLowerCase().includes(searchLower))
+    )
+  }
   
   // Sort by selected option
   switch (sortOption.value) {
     case 'name':
-      sortedInsurers.sort((a, b) => a.name.localeCompare(b.name))
+      filtered.sort((a, b) => a.name.localeCompare(b.name))
       break
     case 'status':
-      sortedInsurers.sort((a, b) => {
+      filtered.sort((a, b) => {
         const statusA = getStatusColor(a)
         const statusB = getStatusColor(b)
         return statusA.localeCompare(statusB)
       })
       break
     case 'last_invoice':
-      sortedInsurers.sort((a, b) => {
+      filtered.sort((a, b) => {
         if (!a.last_invoice) return 1
         if (!b.last_invoice) return -1
         return new Date(b.last_invoice) - new Date(a.last_invoice)
@@ -56,7 +66,7 @@ const filteredInsurers = computed(() => {
       break
   }
 
-  return sortedInsurers
+  return filtered
 })
 
 const handleInsurerSelect = (insurer) => {
@@ -111,182 +121,229 @@ const handleUpdateLastInvoice = ({ insurerName, lastInvoice }) => {
   }
 }
 
-const formatLastSettlement = (dateString) => {
-  if (!dateString) return ''
-  
-  try {
-    // Entferne die Uhrzeit aus dem String
-    const datePart = dateString.split(',')[0]
-    
-    // Deutsche Datumsnotation behalten (TT.MM.JJJJ)
-    return datePart
-  } catch (error) {
-    console.error('Error formatting date:', error)
-    return ''
-  }
-}
-
 // Make functions globally available
 window.calculateDaysOverdue = calculateDaysOverdue
 window.getStatusColor = getStatusColor
 window.getStatusText = getStatusText
+window.formatLastInvoiceDate = formatLastInvoiceDate
 </script>
 
 <template>
-  <div class="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100">
-    <!-- Loading State -->
-    <div v-if="isLoading" class="fixed inset-0 bg-gray-900 bg-opacity-50 flex items-center justify-center z-50">
-      <div class="text-center">
-        <svg class="animate-spin -ml-1 mr-3 h-12 w-12 text-indigo-600" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-          <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
-          <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-        </svg>
-        <p class="mt-2 text-gray-600">Lade Daten...</p>
+  <div class="app-container">
+    <div class="header">
+      <h1>Provisionenbuchungen</h1>
+      <div class="environment-switch">
+        <select v-model="currentEnvironment">
+          <option value="production">Produktion</option>
+          <option value="test">Test</option>
+        </select>
       </div>
     </div>
 
-    <!-- Main Content -->
-    <div v-if="!isLoading" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="py-6">
-        <h1 class="text-3xl font-bold text-gray-900 mb-4">
-          <span class="text-indigo-600">Versicherer</span>-Übersicht
-        </h1>
-        <div class="flex items-center gap-4 mb-6">
-          <!-- Environment Switcher -->
-          <div class="flex items-center gap-2">
-            <span class="text-sm text-gray-600">Umgebung:</span>
-            <select v-model="currentEnvironment"
-                    @change="loadInsurersData"
-                    class="px-3 py-2 border border-gray-300 rounded-lg text-sm">
-              <option value="production">Produktion</option>
-              <option value="test">Test</option>
-            </select>
-          </div>
-          <div class="flex-1 relative">
-            <div class="relative rounded-lg overflow-hidden">
-              <input
-                v-model="searchFilter"
-                type="text"
-                placeholder="Versicherer suchen..."
-                class="w-full px-6 py-3 bg-white border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-all duration-200"
-              />
-              <button 
-                v-if="searchFilter"
-                @click="clearSearch"
-                class="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-gray-600 transition-colors"
-              >
-                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
-                </svg>
-              </button>
-              <div v-if="searchFilter" class="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400">
-                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-                </svg>
-              </div>
-            </div>
-          </div>
-          <button
-            @click="handleNewInsurer"
-            class="px-6 py-3 bg-gradient-to-r from-indigo-600 to-indigo-700 text-white rounded-lg shadow-sm hover:shadow-md transition-all duration-200 transform hover:-translate-y-0.5"
+    <div class="content">
+      <div class="insurer-list">
+        <div class="search-bar">
+          <input v-model="searchFilter" type="text" placeholder="Suche nach Versicherung..." />
+          <button @click="clearSearch">🔍</button>
+        </div>
+
+        <div class="sort-options">
+          <select v-model="sortOption">
+            <option value="name">Name</option>
+            <option value="last_invoice">Letzte Abrechnung</option>
+            <option value="status">Status</option>
+          </select>
+        </div>
+
+        <div class="insurer-grid">
+          <div
+            v-for="insurer in filteredInsurers"
+            :key="insurer.name"
+            class="insurer-card"
+            :class="{ selected: selectedInsurer === insurer }"
+            @click="handleInsurerSelect(insurer)"
           >
-            <svg class="w-5 h-5 inline-block mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
-            </svg>
-            <span class="font-medium">Neuer Versicherer</span>
-          </button>
-        </div>
-
-        <!-- Versichererliste -->
-        <div class="bg-white shadow-lg rounded-2xl">
-          <div class="px-6 py-4 border-b border-gray-100">
-            <h2 class="text-xl font-semibold text-gray-900 flex items-center justify-between">
-              <span>
-                <span class="text-indigo-600">Versicherer</span> ({{ filteredInsurers.length }})
-              </span>
-              <div class="flex items-center gap-2">
-                <span class="text-sm text-gray-600">Sortieren nach:</span>
-                <select
-                  v-model="sortOption"
-                  class="px-3 py-1.5 bg-white border border-gray-200 rounded-lg text-sm text-gray-700 focus:outline-none focus:ring-2 focus:ring-indigo-500"
-                >
-                  <option value="name">Name</option>
-                  <option value="status">Status</option>
-                  <option value="last_invoice">Letzte Abrechnung</option>
-                </select>
-              </div>
-            </h2>
-          </div>
-          <div class="overflow-y-auto max-h-[calc(100vh-250px)]">
-            <div class="space-y-4 p-4">
-              <div
-                v-for="insurer in filteredInsurers"
-                :key="insurer.name"
-                :class="[
-                  'p-4 rounded-2xl cursor-pointer transition-all duration-300',
-                  selectedInsurer?.name === insurer.name
-                    ? 'bg-indigo-50 border-indigo-200 shadow-md'
-                    : 'bg-white border-gray-100 hover:bg-gray-50 hover:shadow-sm',
-                  'border'
-                ]"
-                @click="handleInsurerSelect(insurer)"
-              >
-                <div class="flex items-center justify-between relative">
-                  <!-- Name mit Initial -->
-                  <div class="flex items-center gap-3">
-                    <div class="w-8 h-8 rounded-full bg-indigo-50 flex items-center justify-center">
-                      <span class="text-indigo-700 font-semibold text-lg">{{ insurer.name.charAt(0) }}</span>
-                    </div>
-                    <h3 class="font-medium text-gray-900 truncate">
-                      {{ insurer.name }}
-                    </h3>
-                  </div>
-
-                  <!-- Status -->
-                  <div class="absolute right-0 top-1/2 -translate-y-1/2 flex items-center gap-2 text-left">
-                    <div class="w-3 h-3 rounded-full" :class="{
-                      'bg-red-500': getStatusColor(insurer) === 'red',
-                      'bg-yellow-500': getStatusColor(insurer) === 'yellow',
-                      'bg-green-500': getStatusColor(insurer) === 'green',
-                      'bg-gray-300': getStatusColor(insurer) === 'gray'
-                    }"></div>
-                    <span class="text-sm" :class="{
-                      'text-red-600': getStatusColor(insurer) === 'red',
-                      'text-yellow-600': getStatusColor(insurer) === 'yellow',
-                      'text-green-600': getStatusColor(insurer) === 'green',
-                      'text-gray-500': getStatusColor(insurer) === 'gray'
-                    }">
-                      {{ getStatusText(insurer) }}
-                    </span>
-                  </div>
-                </div>
-              </div>
+            <div class="insurer-info">
+              <h3>{{ insurer.name }}</h3>
+              <p class="status" :class="getStatusColor(insurer)">
+                {{ getStatusText(insurer) }}
+              </p>
             </div>
-          </div>
-          <div v-if="searchFilter" class="mt-2 text-sm text-gray-600">
-            {{ filteredInsurers.length }} Versicherer gefunden
+            <div class="insurer-details">
+              <p v-if="insurer.turnus">Turnus: {{ insurer.turnus }}</p>
+              <p v-if="insurer.last_invoice">Letzte Abrechnung: {{ formatLastInvoiceDate(insurer.last_invoice) }}</p>
+            </div>
           </div>
         </div>
       </div>
-    </div>
 
-    <!-- Detailansicht -->
-    <div v-if="selectedInsurer && !isLoading" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4">
-      <InsurerDetail
-        :insurer="selectedInsurer"
-        @close="selectedInsurer = null"
-        @settlement-completed="handleSettlementCompleted"
-      />
-    </div>
-
-    <!-- Sidebar -->
-    <div class="w-96 bg-white border-l border-gray-300 p-4">
-      <InsurerList 
-        :insurers="filteredInsurers"
-        :selected-insurer="selectedInsurer"
-        @insurer-selected="handleInsurerSelect"
-        @update-last-invoice="handleUpdateLastInvoice"
-      />
+      <div class="insurer-detail" v-if="selectedInsurer">
+        <InsurerDetail :insurer="selectedInsurer" @close="selectedInsurer = null" />
+      </div>
     </div>
   </div>
 </template>
+
+<style>
+.app-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.environment-switch {
+  margin-left: 20px;
+}
+
+.content {
+  display: flex;
+  gap: 20px;
+}
+
+.insurer-list {
+  width: 100%;
+}
+
+.search-bar {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+input {
+  flex: 1;
+  padding: 8px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+button {
+  padding: 8px 16px;
+  border: none;
+  border-radius: 4px;
+  background-color: #007bff;
+  color: white;
+  cursor: pointer;
+}
+
+.sort-options {
+  margin-bottom: 20px;
+}
+
+select {
+  padding: 8px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.insurer-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 20px;
+}
+
+.insurer-card {
+  background: white;
+  border-radius: 8px;
+  padding: 16px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+.insurer-card:hover {
+  transform: translateY(-2px);
+}
+
+.insurer-card.selected {
+  background: #e3f2fd;
+}
+
+.insurer-info {
+  margin-bottom: 12px;
+}
+
+h3 {
+  margin: 0 0 8px 0;
+  font-size: 1.2em;
+}
+
+.status {
+  display: inline-block;
+  padding: 4px 8px;
+  border-radius: 12px;
+  font-size: 0.9em;
+}
+
+.status.gray {
+  background-color: #f5f5f5;
+  color: #666;
+}
+
+.status.yellow {
+  background-color: #fff3cd;
+  color: #856404;
+}
+
+.status.red {
+  background-color: #f8d7da;
+  color: #721c24;
+}
+
+.status.green {
+  background-color: #d4edda;
+  color: #155724;
+}
+
+.insurer-details p {
+  margin: 4px 0;
+  color: #666;
+}
+
+.insurer-detail {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.loading-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.loading-spinner {
+  border: 4px solid #f3f3f3;
+  border-top: 4px solid #3498db;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+</style>

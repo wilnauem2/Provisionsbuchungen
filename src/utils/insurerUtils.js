@@ -3,8 +3,8 @@ export const calculateDaysOverdue = (insurer) => {
   
   try {
     const dateStr = insurer.last_invoice.split(',')[0]
-    const invoiceDate = new Date(dateStr.replace(/(\d{2})\.(\d{2})\.(\d{4})/, '$3-$2-$1'))
-    const now = new Date('2025-07-08')
+    const invoiceDate = new Date(dateStr.replace(/(\d{2})\.(\d{2})\. (\d{4})/, '$3-$2-$1'))
+    const now = new Date()
     const turnusMatch = insurer.turnus.match(/(\d+)-tägig/)
     
     if (!turnusMatch) return 0
@@ -32,8 +32,31 @@ export const isOverdue = (insurer) => {
   return daysOverdue > 0
 }
 
+export const isWithinTurnus = (insurer) => {
+  if (!insurer?.last_invoice || !insurer?.turnus) return false
+  
+  try {
+    const dateStr = insurer.last_invoice.split(',')[0]
+    const invoiceDate = new Date(dateStr.replace(/(\d{2})\.(\d{2})\. (\d{4})/, '$3-$2-$1'))
+    const now = new Date()
+    const turnusMatch = insurer.turnus.match(/(\d+)-tägig/)
+    
+    if (!turnusMatch) return false
+    const turnusDays = parseInt(turnusMatch[1])
+    const dueDate = new Date(invoiceDate)
+    dueDate.setDate(dueDate.getDate() + turnusDays)
+    
+    return now <= dueDate
+  } catch (error) {
+    console.error('Error checking turnus:', error)
+    return false
+  }
+}
+
 export const getStatusColor = (insurer) => {
   if (insurer.settlementCompleted) return 'green'
+  
+  if (isWithinTurnus(insurer)) return 'green'
   
   const daysOverdue = calculateDaysOverdue(insurer)
   if (daysOverdue > 0 && daysOverdue <= 3) return 'yellow'
@@ -42,8 +65,20 @@ export const getStatusColor = (insurer) => {
   return 'gray'
 }
 
+export const formatLastInvoiceDate = (dateStr) => {
+  if (!dateStr) return ''
+  const date = dateStr.split(',')[0]
+  return date
+}
+
 export const getStatusText = (insurer) => {
-  if (!insurer?.last_invoice || !insurer?.turnus) return 'Keine Abrechnung'
+  if (!insurer?.last_invoice) return 'Keine Abrechnung'
+  
+  if (!insurer?.turnus) {
+    return 'Aktuell'
+  }
+  
+  if (isWithinTurnus(insurer)) return 'Abrechnung OK'
   
   const daysOverdue = calculateDaysOverdue(insurer)
   
