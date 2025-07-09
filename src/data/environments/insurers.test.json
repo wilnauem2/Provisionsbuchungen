@@ -3,14 +3,14 @@
     "name": "Test-Versicherer 1",
     "turnus": "14-tägig",
     "dokumentenart": "PDF",
-    "bezugsweg": "Email",
+    "bezugsweg": "BiPRO",
     "instructions": "Test-Versicherer 1 Instructions"
   },
   {
     "name": "Test-Versicherer 2",
     "turnus": "21-tägig",
     "dokumentenart": "PDF",
-    "bezugsweg": "Email",
+    "bezugsweg": "BiPRO",
     "instructions": "Test-Versicherer 2 Instructions"
   },
   {
@@ -24,7 +24,7 @@
     "name": "Test-Versicherer 4",
     "turnus": "10-tägig",
     "dokumentenart": "PDF",
-    "bezugsweg": "Email",
+    "bezugsweg": "BiPRO",
     "instructions": "Test-Versicherer 4 Instructions"
   },
   {

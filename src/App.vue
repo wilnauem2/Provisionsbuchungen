@@ -265,7 +265,12 @@ window.formatLastInvoiceDate = formatLastInvoiceDate
             @click="handleInsurerSelect(insurer)"
           >
             <div class="insurer-info">
-              <h3>{{ insurer.name }}</h3>
+              <div class="flex items-center justify-between">
+                <h3>{{ insurer.name }}</h3>
+                <span v-if="insurer.bezugsweg?.includes('BiPRO')" class="bg-blue-100 text-blue-800 text-xs font-medium px-2.5 py-0.5 rounded-full">
+                  BiPRO
+                </span>
+              </div>
               <p class="status" :class="getStatusColor(insurer)">
                 {{ getStatusText(insurer) }}
               </p>
