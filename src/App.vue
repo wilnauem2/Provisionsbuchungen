@@ -23,9 +23,9 @@ const statusCounts = computed(() => {
       const daysOverdue = calculateDaysOverdue(insurer)
       if (daysOverdue > 0) {
         counts.total++
-        if (daysOverdue > 3) {
+        if (daysOverdue > 5) {
           counts.red++
-        } else {
+        } else if (daysOverdue <= 5) {
           counts.yellow++
         }
       }
@@ -165,16 +165,16 @@ window.formatLastInvoiceDate = formatLastInvoiceDate
       </div>
     </div>
 
-    <div class="status-summary" v-if="statusCounts.total > 0">
+    <div class="status-summary">
       <div class="status-item yellow">
         <span class="status-dot"></span>
         <span class="count">{{ statusCounts.yellow }}</span>
-        <span class="label">1-3 Tage überfällig</span>
+        <span class="label">1-5 Tage überfällig</span>
       </div>
       <div class="status-item red">
         <span class="status-dot"></span>
         <span class="count">{{ statusCounts.red }}</span>
-        <span class="label">> 3 Tage überfällig</span>
+        <span class="label">> 5 Tage überfällig</span>
       </div>
       <div class="status-total">
         <span class="label">Gesamt überfällig:</span>
