@@ -307,26 +307,39 @@ window.formatLastInvoiceDate = formatLastInvoiceDate
             @click="handleInsurerSelect(insurer)"
           >
             <div class="insurer-info">
-              <div class="flex items-center justify-between">
-                <h3>{{ insurer.name }}</h3>
-                <div class="flex gap-2">
-                  <span v-if="insurer.bezugsweg?.split(',').some(v => v.trim().toLowerCase() === 'bi-pro' || v.trim().toLowerCase() === 'bipro')" class="bg-blue-100 text-blue-800 text-xs font-medium px-2.5 py-0.5 rounded-full">
-                    BiPRO
-                  </span>
-                  <span v-if="insurer.dokumentenart?.split(',').some(v => v.trim().toLowerCase() === 'pdf')" class="bg-green-100 text-green-800 text-xs font-medium px-2.5 py-0.5 rounded-full">
-                    PDF
-                  </span>
-                  <span v-if="insurer.dokumentenart?.split(',').some(v => v.trim().toLowerCase() === 'csv')" class="bg-purple-100 text-purple-800 text-xs font-medium px-2.5 py-0.5 rounded-full">
-                    CSV
-                  </span>
-                </div>
-              </div>
+               <div class="flex items-center justify-between">
+                 <h3>{{ insurer.name }}</h3>
+                 <div class="flex gap-2">
+                   <span v-if="insurer.bezugsweg?.split(',').some(v => v.trim().toLowerCase() === 'bi-pro' || v.trim().toLowerCase() === 'bipro')" class="bg-blue-100 text-blue-800 text-xs font-medium px-2.5 py-0.5 rounded-full">
+                     BiPRO
+                   </span>
+                   <span v-if="insurer.dokumentenart?.split(',').some(v => v.trim().toLowerCase() === 'pdf')" class="bg-green-100 text-green-800 text-xs font-medium px-2.5 py-0.5 rounded-full">
+                     PDF
+                   </span>
+                   <span v-if="insurer.dokumentenart?.split(',').some(v => v.trim().toLowerCase() === 'csv')" class="bg-purple-100 text-purple-800 text-xs font-medium px-2.5 py-0.5 rounded-full">
+                     CSV
+                   </span>
+                   <!-- Turnus tags -->
+                   <span v-if="insurer.turnus?.match(/7-tägig/)" class="bg-yellow-100 text-yellow-800 text-xs font-medium px-2.5 py-0.5 rounded-full">
+                     7
+                   </span>
+                   <span v-else-if="insurer.turnus?.match(/14-tägig/)" class="bg-orange-100 text-orange-800 text-xs font-medium px-2.5 py-0.5 rounded-full">
+                     14
+                   </span>
+                   <span v-else-if="insurer.turnus?.match(/31-tägig/)" class="bg-red-100 text-red-800 text-xs font-medium px-2.5 py-0.5 rounded-full">
+                     31
+                   </span>
+                   <!-- Checkmark for complete insurers -->
+                   <span v-if="insurer.complete" class="bg-green-100 text-green-800 text-xs font-medium px-2.5 py-0.5 rounded-full">
+                     ✓
+                   </span>
+                 </div>
+               </div>
               <p class="status" :class="getStatusColor(insurer, getCurrentDate())">
                 {{ getStatusText(insurer, getCurrentDate()) }}
               </p>
             </div>
             <div class="insurer-details">
-              <p v-if="insurer.turnus">Turnus: {{ insurer.turnus }}</p>
               <p v-if="insurer.last_invoice">Letzte Abrechnung: {{ formatLastInvoiceDate(insurer.last_invoice) }}</p>
             </div>
           </div>
