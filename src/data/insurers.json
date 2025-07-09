@@ -5,15 +5,26 @@
     "dokumentenart": "",
     "bezugsweg": "",
     "kontakt": "",
-    "login": ""
+    "login": "",
+    "complete": false
   },
   {
     "name": "Allianz Versicherungs-AG (Sach)",
-    "turnus": "",
-    "dokumentenart": "",
-    "bezugsweg": "",
+    "turnus": "7-tägig",
+    "dokumentenart": "CSV, PDF",
+    "bezugsweg": "BiPro",
     "kontakt": "",
-    "login": ""
+    "login": "",
+    "complete": true
+  },
+  {
+    "name": "Allianz Versicherungs-AG (LV)",
+    "turnus": "7-tägig",
+    "dokumentenart": "CSV, PDF",
+    "bezugsweg": "BiPro",
+    "kontakt": "",
+    "login": "",
+    "complete": true
   },
   {
     "name": "Alte Leipziger Versicherung Aktiengesellschaft",
@@ -56,12 +67,22 @@
     "login": ""
   },
   {
-    "name": "AXA / DBV",
-    "turnus": "wöchentlich",
+    "name": "AXA / DBV (Sach)",
+    "turnus": "7-tägig",
     "dokumentenart": "CSV, PDF",
-    "bezugsweg": "Maklerportal, BiPro",
-    "kontakt": "mario.kroll@axa.de, tel: 0152/09372824",
-    "login": "..."
+    "bezugsweg": "BiPro",
+    "kontakt": "",
+    "login": "",
+    "complete": true
+  },
+  {
+    "name": "AXA / DBV (LV/KV)",
+    "turnus": "7-tägig",
+    "dokumentenart": "CSV, PDF",
+    "bezugsweg": "BiPro",
+    "kontakt": "",
+    "login": "",
+    "complete": true
   },
   {
     "name": "Baloise",
@@ -77,7 +98,8 @@
     "dokumentenart": "CSV, PDF",
     "bezugsweg": "Maklerportal, BiPRO ??? --> Alex fragen",
     "kontakt": "maklersupport@barmenia.de, Tel: 0202/4383345",
-    "login": ""
+    "login": "",
+    "complete": false
   },
   {
     "name": "Bayerische Beamten Lebensversicherung a. G.",
@@ -117,7 +139,8 @@
     "dokumentenart": "CSV, PDF",
     "bezugsweg": "Maklerportal, BiPRO ??? --> Alex fragen",
     "kontakt": "",
-    "login": ""
+    "login": "",
+    "complete": false
   },
   {
     "name": "Concordia",
@@ -361,11 +384,12 @@
   },
   {
     "name": "NÜRNBERGER Krankenversicherung Aktiengesellschaft",
-    "turnus": "",
-    "dokumentenart": "",
-    "bezugsweg": "",
+    "turnus": "31-tägig",
+    "dokumentenart": "CSV, PDF",
+    "bezugsweg": "BiPro",
     "kontakt": "",
-    "login": ""
+    "login": "",
+    "complete": true
   },
   {
     "name": "NV-Versicherungen VVaG",

@@ -307,9 +307,14 @@ window.formatLastInvoiceDate = formatLastInvoiceDate
             @click="handleInsurerSelect(insurer)"
           >
             <div class="insurer-info">
-               <div class="flex items-center justify-between">
-                 <h3>{{ insurer.name }}</h3>
-                 <div class="flex gap-2">
+               <div class="flex flex-col justify-between">
+                 <div>
+                   <h3>{{ insurer.name }}</h3>
+                   <p class="status" :class="getStatusColor(insurer, getCurrentDate())">
+                     {{ getStatusText(insurer, getCurrentDate()) }}
+                   </p>
+                 </div>
+                 <div class="flex gap-2 justify-end">
                    <span v-if="insurer.bezugsweg?.split(',').some(v => v.trim().toLowerCase() === 'bi-pro' || v.trim().toLowerCase() === 'bipro')" class="bg-blue-100 text-blue-800 text-xs font-medium px-2.5 py-0.5 rounded-full">
                      BiPRO
                    </span>
@@ -335,9 +340,7 @@ window.formatLastInvoiceDate = formatLastInvoiceDate
                    </span>
                  </div>
                </div>
-              <p class="status" :class="getStatusColor(insurer, getCurrentDate())">
-                {{ getStatusText(insurer, getCurrentDate()) }}
-              </p>
+
             </div>
             <div class="insurer-details">
               <p v-if="insurer.last_invoice">Letzte Abrechnung: {{ formatLastInvoiceDate(insurer.last_invoice) }}</p>
