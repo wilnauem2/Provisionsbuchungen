@@ -338,6 +338,10 @@ window.formatLastInvoiceDate = formatLastInvoiceDate
                    <span v-if="insurer.complete" class="bg-green-100 text-green-800 text-xs font-medium px-2.5 py-0.5 rounded-full">
                      ✓
                    </span>
+                   <!-- Kommentar tag -->
+                   <span v-if="insurer.kommentar" class="bg-gray-100 text-gray-800 text-xs font-medium px-2.5 py-0.5 rounded-full">
+                     K
+                   </span>
                  </div>
                </div>
 
