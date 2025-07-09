@@ -9,14 +9,14 @@
   {
     "name": "Test-Versicherer 2",
     "turnus": "21-tägig",
-    "dokumentenart": "PDF",
+    "dokumentenart": "CSV",
     "bezugsweg": "BiPRO",
     "instructions": "Test-Versicherer 2 Instructions"
   },
   {
     "name": "Test-Versicherer 3",
     "turnus": "7-tägig",
-    "dokumentenart": "PDF",
+    "dokumentenart": "CSV",
     "bezugsweg": "Email",
     "instructions": "Test-Versicherer 3 Instructions"
   },
@@ -30,7 +30,7 @@
   {
     "name": "Test-Versicherer 5",
     "turnus": "30-tägig",
-    "dokumentenart": "PDF",
+    "dokumentenart": "CSV",
     "bezugsweg": "Email",
     "instructions": "Test-Versicherer 5 Instructions"
   },
@@ -128,7 +128,7 @@
   {
     "name": "Test-Versicherer 19",
     "turnus": "30-tägig",
-    "dokumentenart": "PDF",
+    "dokumentenart": "CSV, PDF",
     "bezugsweg": "Email",
     "instructions": "Test-Versicherer 19 Instructions"
   },

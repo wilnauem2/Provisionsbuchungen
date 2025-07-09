@@ -267,9 +267,17 @@ window.formatLastInvoiceDate = formatLastInvoiceDate
             <div class="insurer-info">
               <div class="flex items-center justify-between">
                 <h3>{{ insurer.name }}</h3>
-                <span v-if="insurer.bezugsweg?.includes('BiPRO')" class="bg-blue-100 text-blue-800 text-xs font-medium px-2.5 py-0.5 rounded-full">
-                  BiPRO
-                </span>
+                <div class="flex gap-2">
+                  <span v-if="insurer.bezugsweg?.split(',').some(v => v.trim().toLowerCase() === 'bi-pro' || v.trim().toLowerCase() === 'bipro')" class="bg-blue-100 text-blue-800 text-xs font-medium px-2.5 py-0.5 rounded-full">
+                    BiPRO
+                  </span>
+                  <span v-if="insurer.dokumentenart?.split(',').some(v => v.trim().toLowerCase() === 'pdf')" class="bg-green-100 text-green-800 text-xs font-medium px-2.5 py-0.5 rounded-full">
+                    PDF
+                  </span>
+                  <span v-if="insurer.dokumentenart?.split(',').some(v => v.trim().toLowerCase() === 'csv')" class="bg-purple-100 text-purple-800 text-xs font-medium px-2.5 py-0.5 rounded-full">
+                    CSV
+                  </span>
+                </div>
               </div>
               <p class="status" :class="getStatusColor(insurer)">
                 {{ getStatusText(insurer) }}
