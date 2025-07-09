@@ -76,6 +76,8 @@ export const isWithinTurnus = (insurer) => {
 }
 
 export const getStatusColor = (insurer) => {
+  if (!insurer?.turnus || !insurer?.last_invoice) return ''
+  
   const daysOverdue = calculateDaysOverdue(insurer)
   
   // If within turnus period or no overdue days
@@ -87,7 +89,7 @@ export const getStatusColor = (insurer) => {
   // For more than 5 days overdue
   if (daysOverdue > 5) return 'red'
   
-  return 'gray'
+  return ''
 }
 
 export const formatLastInvoiceDate = (dateStr) => {
@@ -97,11 +99,7 @@ export const formatLastInvoiceDate = (dateStr) => {
 }
 
 export const getStatusText = (insurer) => {
-  if (!insurer?.last_invoice) return 'Keine Abrechnung'
-  
-  if (!insurer?.turnus) {
-    return 'Aktuell'
-  }
+  if (!insurer?.turnus || !insurer?.last_invoice) return ''
   
   const daysOverdue = calculateDaysOverdue(insurer)
   
@@ -120,5 +118,5 @@ export const getStatusText = (insurer) => {
     return `Überfällig (>5 Tage)`
   }
   
-  return 'Aktuell'
+  return ''
 }
