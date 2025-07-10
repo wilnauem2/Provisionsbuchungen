@@ -1,47 +1,51 @@
 <template>
   <div class="app-container">
-    <TestDateSimulator v-model="testDate" v-if="currentEnvironment === 'test'" @update:modelValue="handleDateUpdate" />
-    <div class="header-container bg-white shadow-sm">
-      <div class="container mx-auto px-4 py-4">
-        <div class="flex flex-col gap-4">
-          <div class="flex justify-between items-center">
-            <div class="flex items-center gap-4">
-              <h1 class="text-2xl font-bold text-gray-900">Provisionenbuchungen</h1>
-              <div class="environment-switch">
-                <select v-model="currentEnvironment" 
-                        class="px-3 py-2 border border-gray-300 rounded-md text-sm bg-white text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
-                  <option value="production" class="text-gray-700">Produktion</option>
-                  <option value="test" class="text-gray-700">Test</option>
-                </select>
-              </div>
+    <div class="header-container sticky-header">
+      <div class="w-full bg-white shadow-sm">
+        <!-- Title Section - Always at the very top -->
+        <div class="w-full text-center py-3 border-b border-gray-200">
+          <h1 class="text-2xl font-bold text-gray-900">Provisionenbuchungen</h1>
+        </div>
+        
+        <!-- Content below title -->
+        <div class="flex flex-col gap-2 px-4 py-3">
+          
+          <!-- Environment and User Info Section -->
+          <div class="flex flex-col items-center gap-3 mt-1">
+            <div class="environment-switch">
+              <select v-model="currentEnvironment" 
+                      class="px-3 py-2 border border-gray-300 rounded-md text-sm bg-white text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+                <option value="production" class="text-gray-700">Produktion</option>
+                <option value="test" class="text-gray-700">Test</option>
+              </select>
             </div>
-            <div class="flex items-center gap-4">
-              <span class="text-sm text-gray-600">Angemeldet als: {{ username }}</span>
+            
+            <div class="flex items-center gap-3 flex-wrap justify-center">
+              <span class="text-sm text-gray-600 whitespace-nowrap">Angemeldet als: {{ username }}</span>
               <button 
                 @click="logout"
-                class="px-4 py-2 bg-red-600 text-white rounded-md hover:bg-red-700 transition-colors duration-200"
+                class="px-3 py-1.5 bg-red-600 text-white rounded-md hover:bg-red-700 transition-colors duration-200 text-sm flex items-center"
                 aria-label="Abmelden"
               >
-                <svg class="h-5 w-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <svg class="h-4 w-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"/>
                 </svg>
                 Abmelden
               </button>
             </div>
           </div>
-
-          <div class="status-summary flex gap-4">
-            <div class="status-item yellow">
+          <div class="status-summary flex flex-col gap-4 md:flex-row md:gap-4">
+            <div class="status-item yellow flex-1 min-w-[200px]">
               <span class="status-dot"></span>
               <span class="count">{{ statusCounts.yellow }}</span>
               <span class="label">1-5 Tage überfällig</span>
             </div>
-            <div class="status-item red">
+            <div class="status-item red flex-1 min-w-[200px]">
               <span class="status-dot"></span>
               <span class="count">{{ statusCounts.red }}</span>
               <span class="label">> 5 Tage überfällig</span>
             </div>
-            <div class="status-total">
+            <div class="status-total flex-1 min-w-[200px]">
               <span class="label">Gesamt überfällig:</span>
               <span class="count">{{ statusCounts.total }}</span>
             </div>
@@ -49,7 +53,7 @@
         </div>
       </div>
     </div>
-
+    <TestDateSimulator v-model="testDate" v-if="currentEnvironment === 'test'" @update:modelValue="handleDateUpdate" class="mt-4" />
     <div class="content">
       <div class="insurer-list">
         <div class="search-bar">
@@ -523,6 +527,49 @@ body {
   gap: 1.5rem;
   padding: 1.25rem 0;
   margin-top: 1.5rem;
+  flex-wrap: wrap;
+}
+
+/* Mobile stacking */
+@media (max-width: 768px) {
+  .header-container {
+    padding: 1.5rem 0;
+  }
+
+  .header-container .flex {
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .header-container .flex:first-child {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .header-container .flex:last-child {
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+  }
+
+  .status-summary {
+    flex-direction: column;
+    gap: 1.25rem;
+    padding: 1rem 0;
+  }
+
+  .status-item,
+  .status-total {
+    flex: 1 0 100%;
+    min-width: 100%;
+    max-width: 100%;
+    padding: 1rem;
+  }
+
+  .status-item .count,
+  .status-total .count {
+    font-size: 1.1rem;
+  }
 }
 
 .status-item {
@@ -534,12 +581,45 @@ body {
   background: #f8fafc;
   transition: all 0.2s ease;
   cursor: pointer;
-  flex: 1;
+  flex: 1 1 200px;
+  min-width: 200px;
+  max-width: 350px;
 }
 
-.status-item:hover {
-  transform: translateY(-2px);
-  background: #f1f5f9;
+.status-total {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1.25rem;
+  border-radius: 0.875rem;
+  background: #f8fafc;
+  font-weight: 600;
+  flex: 1 1 200px;
+  min-width: 200px;
+  max-width: 350px;
+}
+
+.status {
+  font-weight: 500;
+  padding: 0.5rem 1rem;
+  border-radius: 0.75rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  min-width: 120px;
+  justify-content: center;
+  text-align: center;
+  font-size: 0.875rem;
+}
+
+.status::before {
+  content: '';
+  display: inline-block;
+  width: 0.75rem;
+  height: 0.75rem;
+  border-radius: 50%;
+  margin-right: 0.5rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .status-dot {
@@ -578,7 +658,9 @@ body {
   border-radius: 0.875rem;
   background: #f8fafc;
   font-weight: 600;
-  flex: 1;
+  flex: 1 1 200px;
+  min-width: 200px;
+  max-width: 350px;
 }
 
 .status-total .count {
@@ -901,6 +983,33 @@ body {
     background: Highlight;
     color: HighlightText;
   }
+}
+
+.header-container {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  left: 0;
+  right: 0;
+  width: 100%;
+  background-color: white;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+}
+
+.sticky-header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  left: 0;
+  right: 0;
+  width: 100%;
+  background-color: white;
+}
+
+.content {
+  padding-top: 1rem;
 }
 
 .insurer-detail {
