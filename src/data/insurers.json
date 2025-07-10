@@ -119,11 +119,12 @@
   },
   {
     "name": "BGV-Versicherung Aktiengesellschaft",
-    "turnus": "",
-    "dokumentenart": "",
-    "bezugsweg": "",
+    "turnus": "31-tägig",
+    "dokumentenart": "CSV, PDF",
+    "bezugsweg": "BiPro",
     "kontakt": "",
-    "login": ""
+    "login": "",
+    "complete": true
   },
   {
     "name": "BKK Salus",
@@ -239,12 +240,13 @@
     "login": ""
   },
   {
-    "name": "DOCURA VVaG",
-    "turnus": "",
-    "dokumentenart": "",
-    "bezugsweg": "",
+    "name": "DOMCURA VVaG",
+    "turnus": "31-tägig",
+    "dokumentenart": "CSV, PDF",
+    "bezugsweg": "BiPro",
     "kontakt": "",
-    "login": ""
+    "login": "",
+    "complete": true
   },
   {
     "name": "FRI:DAY",
@@ -368,11 +370,12 @@
   },
   {
     "name": "KS Auxilia Versicherungs-AG",
-    "turnus": "",
-    "dokumentenart": "",
-    "bezugsweg": "",
+    "turnus": "31-tägig",
+    "dokumentenart": "CSV, PDF",
+    "bezugsweg": "BiPro",
     "kontakt": "",
-    "login": ""
+    "login": "",
+    "complete": true
   },
   {
     "name": "LBN-Versicherungsverein a.G. (VVaG)",
@@ -521,11 +524,12 @@
   },
   {
     "name": "Versicherungskammer Bayern Versicherungsanstalt des öffentlichen Rechts",
-    "turnus": "",
-    "dokumentenart": "",
-    "bezugsweg": "",
+    "turnus": "31-tägig",
+    "dokumentenart": "CSV, PDF",
+    "bezugsweg": "BiPro",
     "kontakt": "",
-    "login": ""
+    "login": "",
+    "complete": true
   },
   {
     "name": "VGK",
@@ -537,11 +541,13 @@
   },
   {
     "name": "VHV Allgemeine Versicherung AG",
-    "turnus": "",
-    "dokumentenart": "",
-    "bezugsweg": "",
+    "turnus": "31-tägig",
+    "dokumentenart": "CSV, PDF",
+    "bezugsweg": "BiPro",
     "kontakt": "",
-    "login": ""
+    "login": "",
+    "kommentar":"2 Vermittlernummern: 502343-000 und 162553-000",
+    "complete": true
   },
   {
     "name": "Versicherungscheck24",

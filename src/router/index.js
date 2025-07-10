@@ -1,24 +1,24 @@
-import { createApp, h } from 'vue'
 import { createRouter, createWebHistory } from 'vue-router'
-import Login from './components/Login.vue'
-import App from './App.vue'
-import './assets/main.css'
+import Login from '../components/Login.vue'
+import App from '../App.vue'
+
+const routes = [
+  {
+    path: '/login',
+    name: 'login',
+    component: Login
+  },
+  {
+    path: '/',
+    name: 'app',
+    component: App,
+    meta: { requiresAuth: true }
+  }
+]
 
 const router = createRouter({
   history: createWebHistory(),
-  routes: [
-    {
-      path: '/login',
-      name: 'login',
-      component: Login
-    },
-    {
-      path: '/',
-      name: 'app',
-      component: App,
-      meta: { requiresAuth: true }
-    }
-  ]
+  routes
 })
 
 router.beforeEach((to, from, next) => {
@@ -34,11 +34,4 @@ router.beforeEach((to, from, next) => {
   }
 })
 
-const app = createApp({
-  render() {
-    return h(App)
-  }
-})
-
-app.use(router)
-app.mount('#app')
+export default router

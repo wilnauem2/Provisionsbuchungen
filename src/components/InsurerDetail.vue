@@ -166,6 +166,20 @@ const formattedTurnus = computed(() => {
         </div>
       </div>
 
+      <!-- Kommentar -->
+      <div v-if="insurer.kommentar" class="mb-6">
+        <h3 class="text-lg font-semibold text-gray-900 mb-4">Kommentar</h3>
+        <div class="p-4 bg-gray-50 rounded-lg border border-gray-200">
+          <div class="flex items-center mb-2">
+            <svg class="w-5 h-5 text-gray-600 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+            <span class="font-medium text-gray-800">Kommentar</span>
+          </div>
+          <p class="text-gray-600 whitespace-pre-line">{{ insurer.kommentar }}</p>
+        </div>
+      </div>
+
       <!-- Abrechnung Button -->
       <div class="mt-6">
         <button

@@ -1,5 +1,6 @@
 <script setup>
 import { ref, computed, onMounted, watch } from 'vue'
+import { useRouter } from 'vue-router'
 import { currentEnvironment, getInsurersData, updateLastInvoice } from './config/environment'
 import InsurerDetail from './components/InsurerDetail.vue'
 import { calculateDaysOverdue, isOverdue, getStatusColor, getStatusText, formatLastInvoiceDate } from './utils/insurerUtils'
@@ -7,11 +8,14 @@ import { format } from 'date-fns'
 import { de } from 'date-fns/locale'
 import TestDateSimulator from './components/TestDateSimulator.vue'
 
+const router = useRouter()
 const searchFilter = ref('')
 const selectedInsurer = ref(null)
 const insurersData = ref([])
 const isLoading = ref(true)
 const sortOption = ref('name')
+const isLoggedIn = computed(() => !!localStorage.getItem('authToken'))
+
 // Status counts
 const statusCounts = computed(() => {
   const now = getCurrentDate()
@@ -35,6 +39,12 @@ const statusCounts = computed(() => {
   
   return counts
 })
+
+const handleLogout = () => {
+  localStorage.removeItem('authToken')
+  localStorage.removeItem('username')
+  router.push('/login')
+}
 
 // Test date simulation
 const testDate = ref(new Date())
@@ -255,57 +265,29 @@ window.formatLastInvoiceDate = formatLastInvoiceDate
 
 <template>
   <div class="app-container">
-  <TestDateSimulator v-model="testDate" v-if="currentEnvironment === 'test'" @update:modelValue="handleDateUpdate" />
-    <div class="header">
-      <h1>Provisionenbuchungen</h1>
-      <div class="environment-switch">
-        <select v-model="currentEnvironment">
-          <option value="production">Produktion</option>
-          <option value="test">Test</option>
+    <router-view></router-view>
+    <div class="insurer-list">
+      <div class="search-bar">
+        <input v-model="searchFilter" type="text" placeholder="Suche nach Versicherung..." />
+        <button @click="clearSearch">🔍</button>
+      </div>
+
+      <div class="sort-options">
+        <select v-model="sortOption">
+          <option value="name">Name</option>
+          <option value="last_invoice">Letzte Abrechnung</option>
+          <option value="status">Status</option>
         </select>
       </div>
-    </div>
 
-    <div class="status-summary">
-      <div class="status-item yellow">
-        <span class="status-dot"></span>
-        <span class="count">{{ statusCounts.yellow }}</span>
-        <span class="label">1-5 Tage überfällig</span>
-      </div>
-      <div class="status-item red">
-        <span class="status-dot"></span>
-        <span class="count">{{ statusCounts.red }}</span>
-        <span class="label">> 5 Tage überfällig</span>
-      </div>
-      <div class="status-total">
-        <span class="label">Gesamt überfällig:</span>
-        <span class="count">{{ statusCounts.total }}</span>
-      </div>
-    </div>
-
-    <div class="content">
-      <div class="insurer-list">
-        <div class="search-bar">
-          <input v-model="searchFilter" type="text" placeholder="Suche nach Versicherung..." />
-          <button @click="clearSearch">🔍</button>
-        </div>
-
-        <div class="sort-options">
-          <select v-model="sortOption">
-            <option value="name">Name</option>
-            <option value="last_invoice">Letzte Abrechnung</option>
-            <option value="status">Status</option>
-          </select>
-        </div>
-
-        <div class="insurer-grid">
-          <div
-            v-for="insurer in filteredInsurers"
-            :key="insurer.name"
-            class="insurer-card"
-            :class="{ selected: selectedInsurer === insurer }"
-            @click="handleInsurerSelect(insurer)"
-          >
+      <div class="insurer-grid">
+        <div
+          v-for="insurer in filteredInsurers"
+          :key="insurer.name"
+          class="insurer-card"
+          :class="{ selected: selectedInsurer === insurer }"
+          @click="handleInsurerSelect(insurer)"
+        >
             <div class="insurer-info">
                <div class="flex flex-col justify-between">
                  <div>
@@ -315,27 +297,27 @@ window.formatLastInvoiceDate = formatLastInvoiceDate
                    </p>
                  </div>
                  <div class="flex gap-2 justify-end">
-                   <span v-if="insurer.bezugsweg?.split(',').some(v => v.trim().toLowerCase() === 'bi-pro' || v.trim().toLowerCase() === 'bipro')" class="bg-blue-100 text-blue-800 text-xs font-medium px-2.5 py-0.5 rounded-full">
+                   <span v-if="insurer.bezugsweg?.split(',').some(v => v.trim().toLowerCase() === 'bi-pro' || v.trim().toLowerCase() === 'bipro')" class="doc-tag bg-blue-100 text-blue-800">
                      BiPRO
                    </span>
-                   <span v-if="insurer.dokumentenart?.split(',').some(v => v.trim().toLowerCase() === 'pdf')" class="bg-green-100 text-green-800 text-xs font-medium px-2.5 py-0.5 rounded-full">
+                   <span v-if="insurer.dokumentenart?.split(',').some(v => v.trim().toLowerCase() === 'pdf')" class="doc-tag bg-green-100 text-green-800">
                      PDF
                    </span>
-                   <span v-if="insurer.dokumentenart?.split(',').some(v => v.trim().toLowerCase() === 'csv')" class="bg-purple-100 text-purple-800 text-xs font-medium px-2.5 py-0.5 rounded-full">
+                   <span v-if="insurer.dokumentenart?.split(',').some(v => v.trim().toLowerCase() === 'csv')" class="doc-tag bg-purple-100 text-purple-800">
                      CSV
                    </span>
                    <!-- Turnus tags -->
-                   <span v-if="insurer.turnus?.match(/7-tägig/)" class="bg-yellow-100 text-yellow-800 text-xs font-medium px-2.5 py-0.5 rounded-full">
+                   <span v-if="insurer.turnus?.match(/7-tägig/)" class="turnus-tag bg-yellow-100 text-yellow-800">
                      7
                    </span>
-                   <span v-else-if="insurer.turnus?.match(/14-tägig/)" class="bg-orange-100 text-orange-800 text-xs font-medium px-2.5 py-0.5 rounded-full">
+                   <span v-else-if="insurer.turnus?.match(/14-tägig/)" class="turnus-tag bg-orange-100 text-orange-800">
                      14
                    </span>
-                   <span v-else-if="insurer.turnus?.match(/31-tägig/)" class="bg-red-100 text-red-800 text-xs font-medium px-2.5 py-0.5 rounded-full">
+                   <span v-else-if="insurer.turnus?.match(/31-tägig/)" class="turnus-tag bg-red-100 text-red-800">
                      31
                    </span>
                    <!-- Checkmark for complete insurers -->
-                   <span v-if="insurer.complete" class="bg-green-100 text-green-800 text-xs font-medium px-2.5 py-0.5 rounded-full">
+                   <span v-if="insurer.complete" class="check-tag bg-green-100 text-green-800">
                      ✓
                    </span>
                    <!-- Kommentar tag -->
@@ -349,17 +331,16 @@ window.formatLastInvoiceDate = formatLastInvoiceDate
             <div class="insurer-details">
               <p v-if="insurer.last_invoice">Letzte Abrechnung: {{ formatLastInvoiceDate(insurer.last_invoice) }}</p>
             </div>
-          </div>
         </div>
       </div>
+    </div>
 
-      <div class="insurer-detail" v-if="selectedInsurer">
-        <InsurerDetail 
-          :insurer="selectedInsurer" 
-          @close="selectedInsurer = null"
-          @settlement-completed="handleSettlementCompleted"
-        />
-      </div>
+    <div class="insurer-detail" v-if="selectedInsurer">
+      <InsurerDetail 
+        :insurer="selectedInsurer" 
+        @close="selectedInsurer = null"
+        @settlement-completed="handleSettlementCompleted"
+      />
     </div>
   </div>
 </template>
@@ -764,6 +745,8 @@ body {
 
 .insurer-card {
   animation: fadeIn 0.3s ease-out;
+  padding: 20px;
+  min-height: 150px;
 }
 
 .insurer-card:nth-child(odd) {
@@ -772,6 +755,98 @@ body {
 
 .insurer-card:nth-child(even) {
   animation-delay: 0.2s;
+}
+
+.insurer-info {
+  margin-bottom: 12px;
+}
+
+.insurer-info h3 {
+  margin: 0 0 8px 0;
+  font-size: 1.25em;
+  color: var(--primary-color);
+  font-weight: 600;
+  line-height: 1.3;
+}
+
+.status {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  border-radius: 8px;
+  font-size: 0.875em;
+  font-weight: 500;
+  min-height: 20px;
+}
+
+.status::before {
+  content: '';
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+}
+
+.insurer-details {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  font-size: 0.9em;
+  color: var(--gray-color);
+}
+
+.insurer-details p {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin: 0;
+  padding: 6px 0;
+}
+
+.insurer-details p:last-child {
+  border-bottom: none;
+}
+
+.insurer-details p::before {
+  content: '';
+  width: 3px;
+  height: 3px;
+  border-radius: 50%;
+  background-color: var(--gray-color);
+}
+
+/* Tag styling */
+.doc-tag, .turnus-tag, .check-tag {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 20px;
+  height: 20px;
+  border-radius: 8px;
+  font-size: 0.7em;
+  padding: 2px 6px;
+  margin: 2px 2px 2px 0;
+  line-height: 1;
+  font-weight: 500;
+}
+
+/* Specific tag colors */
+.bg-blue-100 { color: var(--primary-color); }
+.bg-green-100 { color: var(--success-color); }
+.bg-purple-100 { color: #6b2696; }
+.bg-yellow-100 { color: var(--warning-color); }
+.bg-orange-100 { color: #d9531f; }
+.bg-red-100 { color: var(--danger-color); }
+.bg-gray-100 { color: var(--gray-color); }
+
+.insurer-card .flex {
+  gap: 8px;
+}
+
+/* Wrap long titles */
+.insurer-info h3 {
+  word-break: break-word;
+  max-width: 100%;
 }
 
 /* Responsive Design */
