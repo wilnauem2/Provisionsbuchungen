@@ -1,26 +1,31 @@
 <template>
   <div class="app-container">
     <TestDateSimulator v-model="testDate" v-if="currentEnvironment === 'test'" @update:modelValue="handleDateUpdate" />
-    <div class="header">
-      <div class="flex justify-between items-center">
-        <h1 class="text-2xl font-bold text-gray-900">Provisionenbuchungen</h1>
-        <div class="flex items-center space-x-4">
-          <span class="text-gray-600">Angemeldet als: {{ username }}</span>
-          <button 
-            @click="logout"
-            class="text-red-600 hover:text-red-800"
-          >
-            Abmelden
-          </button>
+    <header class="bg-white shadow-sm">
+      <div class="container mx-auto px-4 py-4">
+        <div class="flex justify-between items-center">
+          <div class="flex items-center gap-4">
+            <h1 class="text-2xl font-bold text-gray-900">Provisionenbuchungen</h1>
+            <div class="environment-switch">
+              <select v-model="currentEnvironment" 
+                      class="px-3 py-2 border border-gray-300 rounded-md text-sm bg-white text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+                <option value="production" class="text-gray-700">Produktion</option>
+                <option value="test" class="text-gray-700">Test</option>
+              </select>
+            </div>
+          </div>
+          <div class="flex items-center gap-4">
+            <span class="text-sm text-gray-600">Angemeldet als: {{ username }}</span>
+            <button 
+              @click="logout"
+              class="px-4 py-2 bg-red-600 text-white rounded-md hover:bg-red-700 transition-colors duration-200"
+            >
+              Abmelden
+            </button>
+          </div>
         </div>
       </div>
-      <div class="environment-switch">
-        <select v-model="currentEnvironment">
-          <option value="production">Produktion</option>
-          <option value="test">Test</option>
-        </select>
-      </div>
-    </div>
+    </header>
 
     <div class="status-summary">
       <div class="status-item yellow">
