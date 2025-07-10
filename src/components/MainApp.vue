@@ -1,6 +1,23 @@
 <template>
   <div class="app-container">
-    <div class="header-container sticky-header">
+    <div class="tabs mb-4">
+      <button 
+        @click="activeTab = 'main'" 
+        :class="{ 'border-b-2 border-blue-500 text-blue-600': activeTab === 'main' }"
+        class="px-4 py-2 font-medium text-gray-700 hover:text-blue-600 focus:outline-none"
+      >
+        Übersicht
+      </button>
+      <button 
+        @click="activeTab = 'history'" 
+        :class="{ 'border-b-2 border-blue-500 text-blue-600': activeTab === 'history' }"
+        class="px-4 py-2 font-medium text-gray-700 hover:text-blue-600 focus:outline-none"
+      >
+        Abrechnungsverlauf
+      </button>
+    </div>
+    <div v-if="activeTab === 'main'" class="content">
+      <div class="header-container sticky-header">
       <div class="w-full bg-white shadow-sm">
         <!-- Title Section - Always at the very top -->
         <div class="w-full text-center py-3 border-b border-gray-200">
@@ -53,7 +70,7 @@
         </div>
       </div>
     </div>
-    <TestDateSimulator v-model="testDate" v-if="currentEnvironment === 'test'" @update:modelValue="handleDateUpdate" class="mt-4" />
+    <TestDateSimulator v-model="testDate" v-if="currentEnvironment === 'test' && activeTab === 'main'" @update:modelValue="handleDateUpdate" class="mt-4" />
     <div class="content">
       <div class="insurer-list">
         <div class="search-bar">
@@ -187,12 +204,19 @@
           @settlement-completed="handleSettlementCompleted"
         />
       </div>
+      </div>
+    </div>
+    
+    <!-- Abrechnungen History View -->
+    <div v-if="activeTab === 'history'" class="content">
+      <AbrechnungenHistory :abrechnungen="formattedAbrechnungen" />
     </div>
   </div>
 </template>
 
 <script setup>
 import { ref, computed, onMounted, watch } from 'vue'
+import AbrechnungenHistory from './AbrechnungenHistory.vue'
 import { useRouter, useRoute } from 'vue-router'
 import { currentEnvironment, getInsurersData, updateLastInvoice } from '../config/environment'
 import InsurerDetail from './InsurerDetail.vue'
@@ -219,9 +243,11 @@ const logout = () => {
 }
 
 const searchFilter = ref('')
-const selectedInsurer = ref(null)
-const insurersData = ref([])
-const isLoading = ref(true)
+const activeTab = ref('main');
+const selectedInsurer = ref(null);
+const insurersData = ref([]);
+const isLoading = ref(true);
+const lastInvoices = ref({});
 const sortOption = ref('name')
 
 // Status counts
@@ -293,6 +319,29 @@ const loadInsurersData = async () => {
     insurersData.value = JSON.parse(JSON.stringify(data))
   } catch (error) {
     console.error('Error loading insurers data:', error)
+  }
+}
+
+// Load last invoices based on current environment
+const loadLastInvoices = async () => {
+  try {
+    const invoicesResponse = await fetch(
+      `/src/data/${currentEnvironment.value === 'test' ? 'environments/last_invoices.test.json' : 'last_invoices.json'}`
+    )
+    lastInvoices.value = await invoicesResponse.json()
+  } catch (e) {
+    console.warn('Could not load last invoices, using empty object', e)
+    lastInvoices.value = {}
+  }
+}
+
+// Load all data based on current environment
+const loadData = async () => {
+  isLoading.value = true
+  try {
+    await Promise.all([loadInsurersData(), loadLastInvoices()])
+  } catch (error) {
+    console.error('Error loading data:', error)
   } finally {
     isLoading.value = false
   }
@@ -300,12 +349,7 @@ const loadInsurersData = async () => {
 
 // Initial load
 onMounted(() => {
-  loadInsurersData()
-})
-
-// Watch for environment changes
-watch(currentEnvironment, () => {
-  loadInsurersData()
+  loadData()
 })
 
 const filteredInsurers = computed(() => {
@@ -348,9 +392,23 @@ const filteredInsurers = computed(() => {
   return filtered
 })
 
+// Format last invoices for the history view
+const formattedAbrechnungen = computed(() => {
+  return Object.entries(lastInvoices.value).map(([insurer, dateString]) => ({
+    insurer,
+    date: dateString,
+    timestamp: new Date(dateString.split(', ').reverse().join('T'))
+  }));
+});
+
+// Watch for environment changes
+watch(currentEnvironment, async () => {
+  await loadData()
+})
 // Watch for changes in insurersData and searchFilter
 watch([insurersData, searchFilter], () => {
   // Force re-render of insurer cards
+  filteredInsurers.value = [...filteredInsurers.value]
   const insurerCards = document.querySelectorAll('.insurer-card')
   insurerCards.forEach(card => {
     card.style.display = 'none'
