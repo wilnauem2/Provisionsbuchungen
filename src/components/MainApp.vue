@@ -64,7 +64,7 @@
             v-for="insurer in filteredInsurers"
             :key="insurer.name"
             class="insurer-card"
-            :class="{ selected: selectedInsurer === insurer }"
+            :class="{ selected: selectedInsurer === insurer, complete: insurer.complete }"
             @click="handleInsurerClick(insurer)"
           >
             <div class="insurer-info">
@@ -604,7 +604,15 @@ body {
   padding: 20px;
   box-shadow: var(--card-shadow);
   cursor: pointer;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, opacity 0.2s ease;
+}
+
+.insurer-card:not(.selected) {
+  opacity: 0.3;
+}
+
+.insurer-card.complete {
+  opacity: 1;
 }
 
 .insurer-card:hover {
