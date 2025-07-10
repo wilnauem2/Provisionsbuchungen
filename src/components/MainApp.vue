@@ -1,62 +1,92 @@
 <template>
   <div class="app-container">
     <TestDateSimulator v-model="testDate" v-if="currentEnvironment === 'test'" @update:modelValue="handleDateUpdate" />
-    <header class="bg-white shadow-sm">
+    <div class="header-container bg-white shadow-sm">
       <div class="container mx-auto px-4 py-4">
-        <div class="flex justify-between items-center">
-          <div class="flex items-center gap-4">
-            <h1 class="text-2xl font-bold text-gray-900">Provisionenbuchungen</h1>
-            <div class="environment-switch">
-              <select v-model="currentEnvironment" 
-                      class="px-3 py-2 border border-gray-300 rounded-md text-sm bg-white text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
-                <option value="production" class="text-gray-700">Produktion</option>
-                <option value="test" class="text-gray-700">Test</option>
-              </select>
+        <div class="flex flex-col gap-4">
+          <div class="flex justify-between items-center">
+            <div class="flex items-center gap-4">
+              <h1 class="text-2xl font-bold text-gray-900">Provisionenbuchungen</h1>
+              <div class="environment-switch">
+                <select v-model="currentEnvironment" 
+                        class="px-3 py-2 border border-gray-300 rounded-md text-sm bg-white text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+                  <option value="production" class="text-gray-700">Produktion</option>
+                  <option value="test" class="text-gray-700">Test</option>
+                </select>
+              </div>
+            </div>
+            <div class="flex items-center gap-4">
+              <span class="text-sm text-gray-600">Angemeldet als: {{ username }}</span>
+              <button 
+                @click="logout"
+                class="px-4 py-2 bg-red-600 text-white rounded-md hover:bg-red-700 transition-colors duration-200"
+                aria-label="Abmelden"
+              >
+                <svg class="h-5 w-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"/>
+                </svg>
+                Abmelden
+              </button>
             </div>
           </div>
-          <div class="flex items-center gap-4">
-            <span class="text-sm text-gray-600">Angemeldet als: {{ username }}</span>
-            <button 
-              @click="logout"
-              class="px-4 py-2 bg-red-600 text-white rounded-md hover:bg-red-700 transition-colors duration-200"
-            >
-              Abmelden
-            </button>
+
+          <div class="status-summary flex gap-4">
+            <div class="status-item yellow">
+              <span class="status-dot"></span>
+              <span class="count">{{ statusCounts.yellow }}</span>
+              <span class="label">1-5 Tage überfällig</span>
+            </div>
+            <div class="status-item red">
+              <span class="status-dot"></span>
+              <span class="count">{{ statusCounts.red }}</span>
+              <span class="label">> 5 Tage überfällig</span>
+            </div>
+            <div class="status-total">
+              <span class="label">Gesamt überfällig:</span>
+              <span class="count">{{ statusCounts.total }}</span>
+            </div>
           </div>
         </div>
-      </div>
-    </header>
-
-    <div class="status-summary">
-      <div class="status-item yellow">
-        <span class="status-dot"></span>
-        <span class="count">{{ statusCounts.yellow }}</span>
-        <span class="label">1-5 Tage überfällig</span>
-      </div>
-      <div class="status-item red">
-        <span class="status-dot"></span>
-        <span class="count">{{ statusCounts.red }}</span>
-        <span class="label">> 5 Tage überfällig</span>
-      </div>
-      <div class="status-total">
-        <span class="label">Gesamt überfällig:</span>
-        <span class="count">{{ statusCounts.total }}</span>
       </div>
     </div>
 
     <div class="content">
       <div class="insurer-list">
         <div class="search-bar">
-          <input v-model="searchFilter" type="text" placeholder="Suche nach Versicherung..." />
-          <button @click="clearSearch">🔍</button>
+          <div class="relative">
+            <input 
+              v-model="searchFilter" 
+              type="text" 
+              placeholder="Suche nach Versicherung..." 
+              class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+              aria-label="Suche nach Versicherung"
+              :aria-invalid="searchError"
+              @input="validateSearch"
+            />
+            <button 
+              @click="clearSearch" 
+              :disabled="!searchFilter"
+              class="absolute right-2 top-1/2 -translate-y-1/2 p-1 rounded-full bg-white hover:bg-gray-100 disabled:opacity-50"
+              aria-label="Suche löschen"
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-500" viewBox="0 0 20 20" fill="currentColor">
+                <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd" />
+              </svg>
+            </button>
+          </div>
         </div>
 
         <div class="sort-options">
-          <select v-model="sortOption">
-            <option value="name">Name</option>
-            <option value="last_invoice">Letzte Abrechnung</option>
-            <option value="status">Status</option>
-          </select>
+          <div class="relative">
+            <select v-model="sortOption" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
+              <option value="name">Name</option>
+              <option value="last_invoice">Letzte Abrechnung</option>
+              <option value="status">Status</option>
+            </select>
+            <svg class="absolute right-3 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+            </svg>
+          </div>
         </div>
 
         <div class="insurer-grid">
@@ -64,13 +94,15 @@
             v-for="insurer in filteredInsurers"
             :key="insurer.name"
             class="insurer-card"
-            :class="{ selected: selectedInsurer === insurer, complete: insurer.complete }"
+            :class="{ selected: selectedInsurer === insurer, complete: insurer.complete, incomplete: !insurer.complete }"
             @click="handleInsurerClick(insurer)"
+            :aria-selected="selectedInsurer === insurer"
+            :aria-label="`Versicherung ${insurer.name} anzeigen`"
           >
             <div class="insurer-info">
                <div class="flex flex-col justify-between">
                  <div>
-                   <h3>{{ insurer.name }}</h3>
+                   <h3 class="text-xl font-semibold mb-1">{{ insurer.name }}</h3>
                    <p class="status" :class="getStatusColor(insurer, getCurrentDate())">
                      {{ getStatusText(insurer, getCurrentDate()) }}
                    </p>
@@ -98,7 +130,7 @@
                      14
                    </span>
                    <span v-else-if="insurer.turnus?.match(/31-tägig/i)"
-                         class="bg-red-100 text-red-800 text-xs font-medium px-2.5 py-0.5 rounded-full">
+                         class="bg-pink-100 text-pink-800 text-xs font-medium px-2.5 py-0.5 rounded-full">
                      31
                    </span>
                    <!-- Checkmark for complete insurers -->
@@ -116,7 +148,29 @@
 
             </div>
             <div class="insurer-details">
-              <p v-if="insurer.last_invoice">Letzte Abrechnung: {{ formatLastInvoiceDate(insurer.last_invoice) }}</p>
+              <p v-if="insurer.last_invoice" class="text-sm">
+                <span class="font-medium text-gray-600">Letzte Abrechnung:</span> {{ formatLastInvoiceDate(insurer.last_invoice) }}
+              </p>
+              <p class="text-sm">
+                <span class="font-medium text-gray-600">Bezugsweg:</span> {{ insurer.bezugsweg || 'Keine Angabe' }}
+              </p>
+              <p class="text-sm">
+                <span class="font-medium text-gray-600">Dokumentenart:</span> {{ insurer.dokumentenart || 'Keine Angabe' }}
+              </p>
+              <p class="text-sm">
+                <span class="font-medium text-gray-600">Turnus:</span> {{ insurer.turnus || 'Keine Angabe' }}
+              </p>
+              <p class="text-sm">
+                <span class="font-medium text-gray-600">Kommentar:</span> {{ insurer.kommentar || 'Keine Angabe' }}
+              </p>
+            </div>
+            
+            <!-- Loading state -->
+            <div v-if="isLoading" class="absolute inset-0 bg-white/80 flex items-center justify-center">
+              <svg class="animate-spin h-8 w-8 text-blue-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+              </svg>
             </div>
           </div>
         </div>
@@ -464,224 +518,391 @@ body {
   font-weight: 500;
 }
 
-/* Status Summary */
 .status-summary {
   display: flex;
-  gap: 20px;
-  padding: 20px;
-  background: white;
-  border-radius: 12px;
-  box-shadow: var(--card-shadow);
-  margin-bottom: 20px;
+  gap: 1.5rem;
+  padding: 1.25rem 0;
+  margin-top: 1.5rem;
 }
 
 .status-item {
   display: flex;
   align-items: center;
-  gap: 10px;
-  padding: 12px;
-  border-radius: 10px;
+  gap: 1rem;
+  padding: 1.25rem;
+  border-radius: 0.875rem;
+  background: #f8fafc;
+  transition: all 0.2s ease;
+  cursor: pointer;
   flex: 1;
 }
 
-.status-item.yellow {
-  background: #fff9c0;
-  color: var(--warning-color);
-}
-
-.status-item.red {
-  background: #ffebee;
-  color: var(--danger-color);
+.status-item:hover {
+  transform: translateY(-2px);
+  background: #f1f5f9;
 }
 
 .status-dot {
-  width: 10px;
-  height: 10px;
+  width: 1rem;
+  height: 1rem;
   border-radius: 50%;
-  background-color: currentColor;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-.status-item .count {
-  font-size: 1.2em;
-  font-weight: 600;
+.status-dot:hover {
+  transform: scale(1.1);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
 }
 
-.status-item .label {
-  font-size: 0.9em;
+.status-item.yellow .status-dot {
+  background-color: #fbbf24;
+  box-shadow: 0 2px 4px rgba(251, 191, 36, 0.3);
+}
+
+.status-item.red .status-dot {
+  background-color: #ef4444;
+  box-shadow: 0 2px 4px rgba(239, 68, 68, 0.3);
+}
+
+.status-item.green .status-dot {
+  background-color: #10b981;
+  box-shadow: 0 2px 4px rgba(16, 185, 129, 0.3);
 }
 
 .status-total {
   display: flex;
   align-items: center;
-  gap: 10px;
-  padding: 12px;
-  border-radius: 10px;
-  background: #f8f9fa;
-  color: var(--primary-color);
-  font-weight: 500;
+  gap: 1rem;
+  padding: 1.25rem;
+  border-radius: 0.875rem;
+  background: #f8fafc;
+  font-weight: 600;
+  flex: 1;
 }
 
 .status-total .count {
-  font-size: 1.2em;
-  font-weight: 600;
-}
-
-.status-total .label {
-  font-size: 0.9em;
+  font-size: 1.25rem;
+  color: #1f2937;
 }
 
 .content {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 20px;
+  padding: 2.5rem;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
-/* Search Bar */
 .search-bar {
-  background: white;
-  padding: 20px;
-  border-radius: 12px;
-  box-shadow: var(--card-shadow);
-  display: flex;
-  gap: 15px;
-  margin-bottom: 20px;
+  margin-bottom: 2.5rem;
+  position: relative;
 }
 
 .search-bar input {
-  flex: 1;
-  padding: 12px 20px;
-  border: 1px solid #e0e0e0;
-  border-radius: 8px;
-  font-size: 1em;
-  transition: border-color 0.2s ease;
+  width: 100%;
+  padding: 1rem 1.25rem;
+  border: 1px solid #e5e5e5;
+  border-radius: 0.875rem;
+  background-color: white;
+  transition: all 0.2s ease;
+  font-size: 1rem;
 }
 
 .search-bar input:focus {
-  border-color: var(--info-color);
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
   outline: none;
-  box-shadow: 0 0 0 2px rgba(52, 152, 219, 0.2);
 }
 
-.search-bar button {
-  padding: 12px 20px;
-  border: none;
-  border-radius: 8px;
-  background-color: var(--info-color);
-  color: white;
-  cursor: pointer;
-  transition: background-color 0.2s ease;
-}
-
-.search-bar button:hover {
-  background-color: #2980b9;
+.search-bar input:invalid {
+  border-color: #ef4444;
+  box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.1);
 }
 
 .sort-options {
-  background: white;
-  padding: 20px;
-  border-radius: 12px;
-  box-shadow: var(--card-shadow);
-  margin-bottom: 20px;
+  margin-bottom: 2.5rem;
+  position: relative;
 }
 
 .sort-options select {
-  padding: 12px;
-  border: 1px solid #e0e0e0;
-  border-radius: 8px;
-  font-size: 1em;
+  width: 100%;
+  padding: 1rem 3rem 1rem 1.25rem;
+  border: 1px solid #e5e5e5;
+  border-radius: 0.875rem;
+  background-color: white;
   cursor: pointer;
+  transition: all 0.2s ease;
+  font-size: 1rem;
+  appearance: none;
+}
+
+.sort-options select:focus {
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+  outline: none;
+}
+
+.sort-options select::-ms-expand {
+  display: none;
+}
+
+.sort-options::after {
+  content: '';
+  position: absolute;
+  right: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 0;
+  height: 0;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-top: 5px solid #6b7280;
+  pointer-events: none;
 }
 
 .insurer-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  gap: 20px;
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  gap: 2rem;
+  padding: 1rem;
 }
 
 .insurer-card {
   background: white;
-  border-radius: 12px;
-  padding: 20px;
-  box-shadow: var(--card-shadow);
-  cursor: pointer;
-  transition: transform 0.2s ease, box-shadow 0.2s ease, opacity 0.2s ease;
+  border-radius: 1.25rem;
+  padding: 1.75rem;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  border: 1px solid #e5e5e5;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+  position: relative;
+  overflow: hidden;
 }
 
-.insurer-card:not(.selected) {
-  opacity: 0.3;
-}
-
-.insurer-card.complete {
-  opacity: 1;
+.insurer-card.incomplete {
+  opacity: 0.5;
+  filter: saturate(0.7);
 }
 
 .insurer-card:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+  transform: translateY(-6px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
 }
 
 .insurer-card.selected {
-  border: 2px solid var(--info-color);
+  background: #f3f4f6;
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.2);
+  opacity: 1 !important;
 }
 
-.insurer-info {
-  margin-bottom: 15px;
+.insurer-card.complete {
+  border-left: 4px solid #10b981;
+  opacity: 1 !important;
 }
 
 .insurer-info h3 {
-  font-size: 1.2em;
-  margin-bottom: 8px;
-  color: var(--primary-color);
+  font-size: 1.375rem;
+  font-weight: 600;
+  margin-bottom: 0.75rem;
+  color: #1f2937;
+  line-height: 1.2;
 }
 
-.insurer-info .status {
-  font-size: 0.9em;
-  padding: 8px 12px;
-  border-radius: 20px;
+.status {
+  font-weight: 500;
+  padding: 0.5rem 1rem;
+  border-radius: 0.75rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  min-width: 120px;
+  justify-content: center;
+  text-align: center;
+  font-size: 0.875rem;
+}
+
+.status::before {
+  content: '';
   display: inline-block;
+  width: 0.75rem;
+  height: 0.75rem;
+  border-radius: 50%;
+  margin-right: 0.5rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-.insurer-info .status.yellow {
-  background-color: #fff9c0;
-  color: var(--warning-color);
+.status.yellow {
+  background-color: #fef9c3;
+  color: #713f12;
 }
 
-.insurer-info .status.red {
-  background-color: #ffebee;
-  color: var(--danger-color);
+.status.yellow::before {
+  background-color: #fbbf24;
+  box-shadow: 0 2px 4px rgba(251, 191, 36, 0.3);
+}
+
+.status.red {
+  background-color: #fee2e2;
+  color: #991b1b;
+}
+
+.status.red::before {
+  background-color: #ef4444;
+  box-shadow: 0 2px 4px rgba(239, 68, 68, 0.3);
+}
+
+.status.green {
+  background-color: #dcfce7;
+  color: #059669;
+}
+
+.status.green::before {
+  background-color: #10b981;
+  box-shadow: 0 2px 4px rgba(16, 185, 129, 0.3);
 }
 
 .insurer-details {
-  font-size: 0.9em;
-  color: var(--gray-color);
+  font-size: 0.875rem;
+  color: #4b5563;
+  margin-top: 1.5rem;
+  line-height: 1.5;
 }
 
-/* Status badges */
-.status-badge {
-  display: inline-block;
-  padding: 4px 8px;
-  border-radius: 12px;
-  font-size: 0.8em;
-  font-weight: 500;
-  margin-right: 8px;
+.insurer-details p {
+  margin: 0.75rem 0;
+  display: flex;
+  gap: 0.75rem;
+  align-items: center;
 }
 
-.status-badge.green {
-  background-color: #d4edda;
-  color: #155724;
+.insurer-details .font-medium {
+  color: #6b7280;
+  min-width: 120px;
 }
 
-.status-badge.yellow {
-  background-color: #fff3cd;
-  color: #856404;
+/* Loading state */
+.insurer-card.loading {
+  opacity: 0.7;
+  pointer-events: none;
 }
 
-.status-badge.red {
-  background-color: #f8d7da;
-  color: #721c24;
+.insurer-card.loading::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 2rem;
+  height: 2rem;
+  border: 3px solid #e5e5e5;
+  border-top-color: #3b82f6;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
 }
 
-/* Insurer detail panel */
+@keyframes spin {
+  to {
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
+}
+
+/* Mobile responsiveness */
+@media (max-width: 768px) {
+  .status-summary {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+  
+  .content {
+    padding: 1.5rem;
+  }
+  
+  .insurer-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  
+  .insurer-card {
+    padding: 1.25rem;
+  }
+  
+  .insurer-info h3 {
+    font-size: 1.25rem;
+  }
+  
+  .status {
+    padding: 0.375rem 0.75rem;
+    font-size: 0.875rem;
+  }
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.insurer-card {
+  animation: fadeIn 0.3s ease-out;
+}
+
+/* Dark mode support */
+@media (prefers-color-scheme: dark) {
+  .app-container {
+    background-color: #1f2937;
+    color: #f3f4f6;
+  }
+
+  .insurer-card {
+    background: #111827;
+    border-color: #374151;
+  }
+
+  .status-item,
+  .status-total {
+    background: #1f2937;
+  }
+
+  .status-dot {
+    filter: brightness(0.9);
+  }
+
+  .status {
+    color: #f3f4f6;
+  }
+
+  .status::before {
+    box-shadow: none;
+  }
+
+  .insurer-card:hover {
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+  }
+}
+
+/* Focus states */
+:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.5);
+}
+
+/* High contrast mode */
+@media (forced-colors: active) {
+  .status-dot {
+    forced-color-adjust: none;
+  }
+
+  .status {
+    background: Highlight;
+    color: HighlightText;
+  }
+}
+
 .insurer-detail {
   position: fixed;
   top: 0;
