@@ -65,7 +65,7 @@
             :key="insurer.name"
             class="insurer-card"
             :class="{ selected: selectedInsurer === insurer }"
-            @click="handleInsurerSelect(insurer)"
+            @click="handleInsurerClick(insurer)"
           >
             <div class="insurer-info">
                <div class="flex flex-col justify-between">
@@ -302,8 +302,12 @@ watch([insurersData, searchFilter], () => {
   })
 }, { deep: true })
 
-const handleInsurerSelect = (insurer) => {
-  selectedInsurer.value = insurer
+const handleInsurerClick = (insurer) => {
+  if (selectedInsurer.value === insurer) {
+    selectedInsurer.value = null
+  } else {
+    selectedInsurer.value = insurer
+  }
 }
 
 const handleSearchInput = (event) => {

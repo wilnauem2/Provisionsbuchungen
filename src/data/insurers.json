@@ -1,12 +1,30 @@
 [
   {
-    "name": "AIG",
+    "name": "Advocard",
     "turnus": "",
     "dokumentenart": "",
     "bezugsweg": "",
     "kontakt": "",
     "login": "",
     "complete": false
+  },
+  {
+    "name": "Allcura",
+    "turnus": "",
+    "dokumentenart": "",
+    "bezugsweg": "",
+    "kontakt": "",
+    "login": "",
+    "complete": false
+  },
+  {
+    "name": "AIG",
+    "turnus": "31-tägig",
+    "dokumentenart": "CSV, PDF",
+    "bezugsweg": "BiPro",
+    "kontakt": "",
+    "login": "",
+    "complete": true
   },
   {
     "name": "Allianz Versicherungs-AG (Sach)",
@@ -27,20 +45,31 @@
     "complete": true
   },
   {
-    "name": "Alte Leipziger Versicherung Aktiengesellschaft",
-    "turnus": "",
-    "dokumentenart": "",
-    "bezugsweg": "",
+    "name": "Alte Leipziger Versicherung Aktiengesellschaft (Sach)",
+    "turnus": "7-tägig",
+    "dokumentenart": "CSV, PDF",
+    "bezugsweg": "BiPro",
     "kontakt": "",
-    "login": ""
+    "login": "",
+    "complete": true
+  },
+  {
+    "name": "Alte Leipziger Versicherung Aktiengesellschaft (LV)",
+    "turnus": "31-tägig",
+    "dokumentenart": "CSV, PDF",
+    "bezugsweg": "BiPro",
+    "kontakt": "",
+    "login": "",
+    "complete": true
   },
   {
     "name": "Ammerländer Versicherung VVaG",
-    "turnus": "",
-    "dokumentenart": "",
-    "bezugsweg": "",
+    "turnus": "31-tägig",
+    "dokumentenart": "CSV, PDF",
+    "bezugsweg": "BiPro",
     "kontakt": "",
-    "login": ""
+    "login": "",
+    "complete": true
   },
   {
     "name": "AOK Baden-Württemberg",
@@ -52,25 +81,27 @@
   },
   {
     "name": "ARAG",
-    "turnus": "",
+    "turnus": "31-tägig",
     "dokumentenart": "",
     "bezugsweg": "",
     "kontakt": "",
-    "login": ""
+    "login": "",
+    "complete": false
   },
   {
     "name": "Asspario Versicherungsdienst",
     "turnus": "",
-    "dokumentenart": "",
+    "dokumentenart": "BiPRO",
     "bezugsweg": "",
     "kontakt": "",
-    "login": ""
+    "login": "",
+    "complete": false
   },
   {
     "name": "AXA / DBV (Sach)",
     "turnus": "7-tägig",
     "dokumentenart": "CSV, PDF",
-    "bezugsweg": "BiPro",
+    "bezugsweg": "BiPRO",
     "kontakt": "",
     "login": "",
     "complete": true
@@ -79,7 +110,7 @@
     "name": "AXA / DBV (LV/KV)",
     "turnus": "7-tägig",
     "dokumentenart": "CSV, PDF",
-    "bezugsweg": "BiPro",
+    "bezugsweg": "BiPRO",
     "kontakt": "",
     "login": "",
     "complete": true
@@ -88,9 +119,10 @@
     "name": "Baloise",
     "turnus": "",
     "dokumentenart": "",
-    "bezugsweg": "",
+    "bezugsweg": "BiPRO",
     "kontakt": "",
-    "login": ""
+    "login": "",
+    "complete": false
   },
   {
     "name": "Barmenia Krankenversicherung",
@@ -98,6 +130,15 @@
     "dokumentenart": "CSV, PDF",
     "bezugsweg": "Maklerportal, BiPRO ??? --> Alex fragen",
     "kontakt": "maklersupport@barmenia.de, Tel: 0202/4383345",
+    "login": "",
+    "complete": false
+  },
+  {
+    "name": "BavariaDirekt",
+    "turnus": "",
+    "dokumentenart": "",
+    "bezugsweg": "BiPRO",
+    "kontakt": "",
     "login": "",
     "complete": false
   },
@@ -116,6 +157,15 @@
     "bezugsweg": "",
     "kontakt": "",
     "login": ""
+  },
+  {
+    "name": "Bayerische Hausbesitzer",
+    "turnus": "",
+    "dokumentenart": "",
+    "bezugsweg": "BiPRO",
+    "kontakt": "",
+    "login": "",
+    "complete": false
   },
   {
     "name": "BGV-Versicherung Aktiengesellschaft",
@@ -141,6 +191,24 @@
     "kontakt": "",
     "login": "",
     "complete": false
+  },
+  {
+    "name": "BSG",
+    "turnus": "",
+    "dokumentenart": "CSV, PDF",
+    "bezugsweg": "BiPRO",
+    "kontakt": "",
+    "login": "",
+    "complete": false
+  },
+  {
+    "name": "CARE Concept",
+    "turnus": "31-tägig",
+    "dokumentenart": "CSV, PDF",
+    "bezugsweg": "BiPRO",
+    "kontakt": "",
+    "login": "",
+    "complete": true
   },
   {
     "name": "Concordia",
@@ -285,6 +353,15 @@
     "bezugsweg": "",
     "kontakt": "",
     "login": ""
+  },
+  {
+    "name": "Hallesche",
+    "turnus": "31-tägig",
+    "dokumentenart": "PDF",
+    "bezugsweg": "BiPro",
+    "kontakt": "",
+    "login": "",
+    "complete": true
   },
   {
     "name": "Hannoversche Lebensversicherung AG",
