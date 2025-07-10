@@ -92,8 +92,8 @@
   {
     "name": "Asspario Versicherungsdienst",
     "turnus": "",
-    "dokumentenart": "BiPRO",
-    "bezugsweg": "",
+    "dokumentenart": "",
+    "bezugsweg": "BiPRO",
     "kontakt": "",
     "login": "",
     "complete": false
