@@ -1,5 +1,6 @@
-import { createApp } from 'vue'
-import './style.css'
+import { createApp, h } from 'vue'
+import { createRouter, createWebHistory } from 'vue-router'
+import Login from './components/Login.vue'
 import App from './App.vue'
 import router from './router'
 

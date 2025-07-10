@@ -77,7 +77,8 @@
     "dokumentenart": "",
     "bezugsweg": "",
     "kontakt": "",
-    "login": ""
+    "login": "",
+    "complete": false
   },
   {
     "name": "ARAG",
@@ -148,7 +149,8 @@
     "dokumentenart": "",
     "bezugsweg": "",
     "kontakt": "",
-    "login": ""
+    "login": "",
+    "complete": false
   },
   {
     "name": "Bayerische Beamtenkrankenkasse AG (VKB)",
@@ -156,7 +158,8 @@
     "dokumentenart": "",
     "bezugsweg": "",
     "kontakt": "",
-    "login": ""
+    "login": "",
+    "complete": false
   },
   {
     "name": "Bayerische Hausbesitzer",
@@ -169,11 +172,12 @@
   },
   {
     "name": "BGV-Versicherung Aktiengesellschaft",
-    "turnus": "",
-    "dokumentenart": "",
-    "bezugsweg": "",
+    "turnus": "31-tägig",
+    "dokumentenart": "CSV, PDF",
+    "bezugsweg": "BiPro",
     "kontakt": "",
-    "login": ""
+    "login": "",
+    "complete": true
   },
   {
     "name": "BKK Salus",
@@ -181,7 +185,8 @@
     "dokumentenart": "",
     "bezugsweg": "",
     "kontakt": "",
-    "login": ""
+    "login": "",
+    "complete": false
   },
   {
     "name": "BL die Bayerische Lebensversicherung AG",
@@ -216,7 +221,8 @@
     "dokumentenart": "",
     "bezugsweg": "",
     "kontakt": "",
-    "login": ""
+    "login": "",
+    "complete": false
   },
   {
     "name": "Continentale",
@@ -224,7 +230,8 @@
     "dokumentenart": "",
     "bezugsweg": "",
     "kontakt": "",
-    "login": ""
+    "login": "",
+    "complete": false
   },
   {
     "name": "DAK",
@@ -232,7 +239,8 @@
     "dokumentenart": "",
     "bezugsweg": "",
     "kontakt": "",
-    "login": ""
+    "login": "",
+    "complete": false
   },
   {
     "name": "Debeka",
@@ -240,7 +248,8 @@
     "dokumentenart": "",
     "bezugsweg": "",
     "kontakt": "",
-    "login": ""
+    "login": "",
+    "complete": false
   },
   {
     "name": "DELA Lebensversicherungen",
@@ -248,7 +257,8 @@
     "dokumentenart": "",
     "bezugsweg": "",
     "kontakt": "",
-    "login": ""
+    "login": "",
+    "complete": false
   },
   {
     "name": "DEURAG Deutsche Rechtsschutz-Versicherung Aktiengesellschaft",
@@ -256,7 +266,8 @@
     "dokumentenart": "",
     "bezugsweg": "",
     "kontakt": "",
-    "login": ""
+    "login": "",
+    "complete": false
   },
   {
     "name": "Deutsche Ärzteversicherung Aktiengesellschaft",
@@ -264,7 +275,8 @@
     "dokumentenart": "",
     "bezugsweg": "",
     "kontakt": "",
-    "login": ""
+    "login": "",
+    "complete": false
   },
   {
     "name": "DEVK Allgemeine Versicherungs-Aktiengesellschaft",
@@ -272,7 +284,8 @@
     "dokumentenart": "",
     "bezugsweg": "",
     "kontakt": "",
-    "login": ""
+    "login": "",
+    "complete": false
   },
   {
     "name": "Dialog Lebensversicherungs-Aktiengesellschaft",
@@ -280,7 +293,8 @@
     "dokumentenart": "",
     "bezugsweg": "",
     "kontakt": "",
-    "login": ""
+    "login": "",
+    "complete": false
   },
   {
     "name": "die Bayerische Allgemeine Versicherung AG",
@@ -288,7 +302,8 @@
     "dokumentenart": "CSV, PDF",
     "bezugsweg": "Maklerportal, BiPRO --> Alex fragen",
     "kontakt": "",
-    "login": "..."
+    "login": "...",
+    "complete": true
   },
   {
     "name": "DKV Deutsche Krankenversicherung Aktiengesellschaft",
@@ -296,7 +311,8 @@
     "dokumentenart": "",
     "bezugsweg": "",
     "kontakt": "",
-    "login": ""
+    "login": "",
+    "complete": false
   },
   {
     "name": "DMB Rechtsschutz-Versicherung Aktiengesellschaft",
@@ -304,15 +320,17 @@
     "dokumentenart": "",
     "bezugsweg": "",
     "kontakt": "",
-    "login": ""
+    "login": "",
+    "complete": false
   },
   {
-    "name": "DOCURA VVaG",
-    "turnus": "",
-    "dokumentenart": "",
-    "bezugsweg": "",
+    "name": "DOMCURA VVaG",
+    "turnus": "31-tägig",
+    "dokumentenart": "CSV, PDF",
+    "bezugsweg": "BiPro",
     "kontakt": "",
-    "login": ""
+    "login": "",
+    "complete": true
   },
   {
     "name": "FRI:DAY",
@@ -320,7 +338,8 @@
     "dokumentenart": "",
     "bezugsweg": "",
     "kontakt": "",
-    "login": ""
+    "login": "",
+    "complete": false
   },
   {
     "name": "Generali Versicherung Aktiengesellschaft",
@@ -328,7 +347,8 @@
     "dokumentenart": "",
     "bezugsweg": "",
     "kontakt": "",
-    "login": ""
+    "login": "",
+    "complete": false
   },
   {
     "name": "Gothaer Allgemeine Versicherung Aktiengesellschaft",
@@ -336,7 +356,8 @@
     "dokumentenart": "",
     "bezugsweg": "",
     "kontakt": "",
-    "login": ""
+    "login": "",
+    "complete": false
   },
   {
     "name": "GRUNDEIGENTÜMER-VERSICHERUNG Versicherungsverein auf Gegenseitigkeit",
@@ -344,7 +365,8 @@
     "dokumentenart": "",
     "bezugsweg": "",
     "kontakt": "",
-    "login": ""
+    "login": "",
+    "complete": false
   },
   {
     "name": "Haftpflichtkasse",
@@ -352,7 +374,8 @@
     "dokumentenart": "",
     "bezugsweg": "",
     "kontakt": "",
-    "login": ""
+    "login": "",
+    "complete": false
   },
   {
     "name": "Hallesche",
@@ -369,7 +392,8 @@
     "dokumentenart": "",
     "bezugsweg": "",
     "kontakt": "",
-    "login": ""
+    "login": "",
+    "complete": false
   },
   {
     "name": "HanseMerkur Reiseversicherung AG",
@@ -377,7 +401,8 @@
     "dokumentenart": "",
     "bezugsweg": "",
     "kontakt": "",
-    "login": ""
+    "login": "",
+    "complete": false
   },
   {
     "name": "HDI Versicherung AG",
@@ -385,7 +410,8 @@
     "dokumentenart": "",
     "bezugsweg": "",
     "kontakt": "",
-    "login": ""
+    "login": "",
+    "complete": false
   },
   {
     "name": "HELVETIA INTERNATIONAL Versicherungs-Aktiengesellschaft",
@@ -393,7 +419,8 @@
     "dokumentenart": "",
     "bezugsweg": "",
     "kontakt": "",
-    "login": ""
+    "login": "",
+    "complete": false
   },
   {
     "name": "HUK-COBURG-Allgemeine Versicherung AG",
@@ -401,7 +428,8 @@
     "dokumentenart": "",
     "bezugsweg": "",
     "kontakt": "",
-    "login": ""
+    "login": "",
+    "complete": false
   },
   {
     "name": "IDUNA Vereinigte Lebensversicherung aG für Handwerk, Handel und Gewerbe",
@@ -409,7 +437,8 @@
     "dokumentenart": "",
     "bezugsweg": "",
     "kontakt": "",
-    "login": ""
+    "login": "",
+    "complete": false
   },
   {
     "name": "INTER Krankenversicherung aG",
@@ -417,7 +446,8 @@
     "dokumentenart": "",
     "bezugsweg": "",
     "kontakt": "",
-    "login": ""
+    "login": "",
+    "complete": false
   },
   {
     "name": "InterRisk Versicherungs-Aktiengesellschaft",
@@ -425,7 +455,8 @@
     "dokumentenart": "",
     "bezugsweg": "",
     "kontakt": "",
-    "login": ""
+    "login": "",
+    "complete": false
   },
   {
     "name": "Itzehoer Versicherung/Brandgilde von 1691 Versicherungsverein auf Gegenseitigkeit",
@@ -433,7 +464,8 @@
     "dokumentenart": "",
     "bezugsweg": "",
     "kontakt": "",
-    "login": ""
+    "login": "",
+    "complete": false
   },
   {
     "name": "Janitos Versicherung Aktiengesellschaft",
@@ -441,15 +473,17 @@
     "dokumentenart": "",
     "bezugsweg": "",
     "kontakt": "",
-    "login": ""
+    "login": "",
+    "complete": false
   },
   {
     "name": "KS Auxilia Versicherungs-AG",
-    "turnus": "",
-    "dokumentenart": "",
-    "bezugsweg": "",
+    "turnus": "31-tägig",
+    "dokumentenart": "CSV, PDF",
+    "bezugsweg": "BiPro",
     "kontakt": "",
-    "login": ""
+    "login": "",
+    "complete": true
   },
   {
     "name": "LBN-Versicherungsverein a.G. (VVaG)",
@@ -457,7 +491,8 @@
     "dokumentenart": "",
     "bezugsweg": "",
     "kontakt": "",
-    "login": ""
+    "login": "",
+    "complete": false
   },
   {
     "name": "NÜRNBERGER Krankenversicherung Aktiengesellschaft",
@@ -474,7 +509,8 @@
     "dokumentenart": "",
     "bezugsweg": "",
     "kontakt": "",
-    "login": ""
+    "login": "",
+    "complete": false
   },
   {
     "name": "Öffentliche Braunschweig",
@@ -482,7 +518,8 @@
     "dokumentenart": "",
     "bezugsweg": "",
     "kontakt": "",
-    "login": ""
+    "login": "",
+    "complete": false
   },
   {
     "name": "ottonova Krankenversicherung AG",
@@ -490,7 +527,8 @@
     "dokumentenart": "",
     "bezugsweg": "",
     "kontakt": "",
-    "login": ""
+    "login": "",
+    "complete": false
   },
   {
     "name": "Provita BKK",
@@ -498,7 +536,8 @@
     "dokumentenart": "",
     "bezugsweg": "",
     "kontakt": "",
-    "login": ""
+    "login": "",
+    "complete": false
   },
   {
     "name": "Proxalto",
@@ -506,7 +545,8 @@
     "dokumentenart": "",
     "bezugsweg": "",
     "kontakt": "",
-    "login": ""
+    "login": "",
+    "complete": false
   },
   {
     "name": "R+V Krankenversicherung Aktiengesellschaft",
@@ -514,7 +554,8 @@
     "dokumentenart": "",
     "bezugsweg": "",
     "kontakt": "",
-    "login": ""
+    "login": "",
+    "complete": false
   },
   {
     "name": "R+V Versicherung AG",
@@ -522,7 +563,8 @@
     "dokumentenart": "",
     "bezugsweg": "",
     "kontakt": "",
-    "login": ""
+    "login": "",
+    "complete": false
   },
   {
     "name": "SDK Süddeutsche Krankenversicherung a. G.",
@@ -530,7 +572,8 @@
     "dokumentenart": "",
     "bezugsweg": "",
     "kontakt": "",
-    "login": ""
+    "login": "",
+    "complete": false
   },
   {
     "name": "Signal Iduna Allgemeine Versicherung Aktiengesellschaft",
@@ -538,7 +581,8 @@
     "dokumentenart": "",
     "bezugsweg": "",
     "kontakt": "",
-    "login": ""
+    "login": "",
+    "complete": false
   },
   {
     "name": "SIGNAL Krankenversicherung a.G.",
@@ -546,7 +590,8 @@
     "dokumentenart": "",
     "bezugsweg": "",
     "kontakt": "",
-    "login": ""
+    "login": "",
+    "complete": false
   },
   {
     "name": "Stuttgarter Lebensversicherung a.G.",
@@ -554,7 +599,8 @@
     "dokumentenart": "",
     "bezugsweg": "",
     "kontakt": "",
-    "login": ""
+    "login": "",
+    "complete": false
   },
   {
     "name": "SV SparkassenVersicherung Gebäudeversicherung Aktiengesellschaft",
@@ -562,7 +608,8 @@
     "dokumentenart": "",
     "bezugsweg": "",
     "kontakt": "",
-    "login": ""
+    "login": "",
+    "complete": false
   },
   {
     "name": "Swiss Life AG, Niederlassung Deutschland",
@@ -570,7 +617,8 @@
     "dokumentenart": "",
     "bezugsweg": "",
     "kontakt": "",
-    "login": ""
+    "login": "",
+    "complete": false
   },
   {
     "name": "Techniker Krankenkasse",
@@ -578,7 +626,8 @@
     "dokumentenart": "",
     "bezugsweg": "",
     "kontakt": "",
-    "login": ""
+    "login": "",
+    "complete": false
   },
   {
     "name": "Union Krankenversicherung AG",
@@ -586,7 +635,8 @@
     "dokumentenart": "",
     "bezugsweg": "",
     "kontakt": "",
-    "login": ""
+    "login": "",
+    "complete": false
   },
   {
     "name": "uniVersa Krankenversicherung a.G.",
@@ -594,15 +644,17 @@
     "dokumentenart": "",
     "bezugsweg": "",
     "kontakt": "",
-    "login": ""
+    "login": "",
+    "complete": false
   },
   {
     "name": "Versicherungskammer Bayern Versicherungsanstalt des öffentlichen Rechts",
-    "turnus": "",
-    "dokumentenart": "",
-    "bezugsweg": "",
+    "turnus": "31-tägig",
+    "dokumentenart": "CSV, PDF",
+    "bezugsweg": "BiPro",
     "kontakt": "",
-    "login": ""
+    "login": "",
+    "complete": true
   },
   {
     "name": "VGK",
@@ -610,15 +662,18 @@
     "dokumentenart": "",
     "bezugsweg": "",
     "kontakt": "",
-    "login": ""
+    "login": "",
+    "complete": false
   },
   {
     "name": "VHV Allgemeine Versicherung AG",
-    "turnus": "",
-    "dokumentenart": "",
-    "bezugsweg": "",
+    "turnus": "31-tägig",
+    "dokumentenart": "CSV, PDF",
+    "bezugsweg": "BiPro",
     "kontakt": "",
-    "login": ""
+    "login": "",
+    "kommentar":"2 Vermittlernummern: 502343-000 und 162553-000",
+    "complete": true
   },
   {
     "name": "Versicherungscheck24",
@@ -626,7 +681,8 @@
     "dokumentenart": "PDF (standard) - CSV auf Wunsch möglich (per Mail anfordern)",
     "bezugsweg": "Maklerportal, Mail",
     "kontakt": "Florian.Reinecke@vc24.de, Tel: 071959610962",
-    "login": ""
+    "login": "",
+    "complete": true
   },
   {
     "name": "Volkswohl-Bund Lebensversicherung a.G.",
@@ -635,7 +691,8 @@
     "bezugsweg": "",
     "last_invoice": "",
     "kontakt": "",
-    "login": ""
+    "login": "",
+    "complete": false
   },
   {
     "name": "WGV-Versicherung AG",
@@ -644,7 +701,8 @@
     "bezugsweg": "",
     "last_invoice": "",
     "kontakt": "",
-    "login": ""
+    "login": "",
+    "complete": false
   },
   {
     "name": "Wüstenrot & Württembergische AG",
@@ -653,7 +711,8 @@
     "bezugsweg": "",
     "last_invoice": "",
     "kontakt": "",
-    "login": ""
+    "login": "",
+    "complete": false
   },
   {
     "name": "Zurich",
@@ -662,6 +721,7 @@
     "bezugsweg": "",
     "last_invoice": "",
     "kontakt": "",
-    "login": ""
+    "login": "",
+    "complete": false
   }
 ]

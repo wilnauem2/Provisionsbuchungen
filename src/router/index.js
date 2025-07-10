@@ -28,8 +28,8 @@ const router = createRouter({
 
 // Authentication guard
 router.beforeEach((to, from, next) => {
-  const token = localStorage.getItem('authToken')
   const requiresAuth = to.matched.some(record => record.meta.requiresAuth)
+  const token = localStorage.getItem('authToken')
   
   if (requiresAuth && !token) {
     next('/login')

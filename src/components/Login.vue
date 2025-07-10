@@ -1,8 +1,8 @@
 <template>
-  <div class="min-h-screen flex items-center justify-center bg-gray-50">
-    <div class="max-w-md w-full space-y-8 p-8 bg-white rounded-lg shadow-md">
-      <div class="text-center">
-        <h2 class="mt-6 text-3xl font-extrabold text-gray-900">
+  <div class="min-h-screen flex items-center justify-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
+    <div class="max-w-md w-full space-y-8">
+      <div>
+        <h2 class="mt-6 text-center text-3xl font-extrabold text-gray-900">
           Anmelden
         </h2>
       </div>
@@ -60,37 +60,41 @@ import { useRouter } from 'vue-router'
 const router = useRouter()
 const username = ref('')
 const password = ref('')
-const error = ref('')
 const isLoading = ref(false)
+const error = ref('')
 
 const handleLogin = async () => {
-  if (isLoading.value) return
-
   isLoading.value = true
   error.value = ''
 
   try {
-    // Simulate API call with dummy credentials
-    const validCredentials = {
-      username: 'admin',
-      password: 'password123'
-    }
-
-    if (username.value === validCredentials.username && password.value === validCredentials.password) {
-      // Store dummy token
+    // Dummy authentication - replace with real auth in production
+    if (username.value === 'admin' && password.value === 'admin') {
       localStorage.setItem('authToken', 'dummy-token')
       localStorage.setItem('username', username.value)
-      
-      // Redirect to main app
       router.push('/')
     } else {
       error.value = 'Ungültige Anmeldeinformationen'
     }
   } catch (err) {
-    error.value = 'Fehler beim Anmelden'
-    console.error('Login error:', err)
+    error.value = 'Anmeldung fehlgeschlagen'
   } finally {
     isLoading.value = false
   }
 }
 </script>
+
+<style scoped>
+.animate-spin {
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+</style>
