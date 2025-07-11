@@ -1,6 +1,19 @@
 <script setup>
-import { ref, computed } from 'vue'
+import { ref, computed, onMounted } from 'vue'
 import { calculateDaysOverdue, getStatusColor, getStatusText } from '../utils/insurerUtils'
+
+const showDatePicker = ref(false)
+const selectedDate = ref('')
+const dateInputRef = ref(null)
+
+// Set initial date to today when component mounts
+onMounted(() => {
+  const today = new Date()
+  const day = String(today.getDate()).padStart(2, '0')
+  const month = String(today.getMonth() + 1).padStart(2, '0')
+  const year = today.getFullYear()
+  selectedDate.value = `${year}-${month}-${day}`
+})
 
 const props = defineProps({
   insurer: {
@@ -13,19 +26,45 @@ const emit = defineEmits(['close', 'settlement-completed'])
 
 const isUpdatingInvoice = ref(false)
 
-const handleSettlementCompleted = () => {
+const openDatePicker = () => {
+  showDatePicker.value = true
+  // Focus the date input when the dialog opens
+  setTimeout(() => {
+    if (dateInputRef.value) {
+      dateInputRef.value.focus()
+    }
+  }, 100)
+}
+
+const handleDateSubmit = () => {
+  if (!selectedDate.value) return
+  
+  // Parse the selected date
+  const [year, month, day] = selectedDate.value.split('-')
   const now = new Date()
-  const day = String(now.getDate()).padStart(2, '0')
-  const month = String(now.getMonth() + 1).padStart(2, '0')
-  const year = now.getFullYear()
   const hours = String(now.getHours()).padStart(2, '0')
   const minutes = String(now.getMinutes()).padStart(2, '0')
   
+  // Format as DD.MM.YYYY, HH:MM
   const formattedDate = `${day}.${month}.${year}, ${hours}:${minutes}`
+  
   emit('settlement-completed', { 
     insurer: props.insurer,
     newDate: formattedDate
   })
+  
+  // Reset and close
+  showDatePicker.value = false
+}
+
+const handleCancel = () => {
+  showDatePicker.value = false
+  // Reset to today's date
+  const today = new Date()
+  const day = String(today.getDate()).padStart(2, '0')
+  const month = String(today.getMonth() + 1).padStart(2, '0')
+  const year = today.getFullYear()
+  selectedDate.value = `${year}-${month}-${day}`
 }
 
 const handleUpdateLastInvoice = (newDate) => {
@@ -181,13 +220,49 @@ const formattedTurnus = computed(() => {
       </div>
 
       <!-- Abrechnung Button -->
-      <div class="mt-6">
+      <div class="mt-6 space-y-4">
         <button
-          @click="handleSettlementCompleted"
+          @click="openDatePicker"
           class="w-full px-4 py-3 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors"
         >
           Abrechnung soeben erfolgt
         </button>
+      </div>
+
+      <!-- Date Picker Dialog -->
+      <div v-if="showDatePicker" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+        <div class="bg-white rounded-lg shadow-xl p-6 w-full max-w-md">
+          <h3 class="text-lg font-semibold text-gray-900 mb-4">Abrechnungsdatum auswählen</h3>
+          
+          <div class="mb-4">
+            <label for="settlementDate" class="block text-sm font-medium text-gray-700 mb-2">
+              Datum der Abrechnung:
+            </label>
+            <input
+              ref="dateInputRef"
+              type="date"
+              id="settlementDate"
+              v-model="selectedDate"
+              class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-green-500"
+              @keyup.enter="handleDateSubmit"
+            >
+          </div>
+          
+          <div class="flex justify-end space-x-3">
+            <button
+              @click="handleCancel"
+              class="px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500"
+            >
+              Abbrechen
+            </button>
+            <button
+              @click="handleDateSubmit"
+              class="px-4 py-2 text-sm font-medium text-white bg-green-600 border border-transparent rounded-md hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500"
+            >
+              Bestätigen
+            </button>
+          </div>
+        </div>
       </div>
     </div>
   </div>

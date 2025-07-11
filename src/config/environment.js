@@ -27,29 +27,38 @@ export const getInsurersData = async () => {
 
 export const updateLastInvoice = async (insurerName, newDate) => {
   try {
-    // Get the correct file paths based on environment
-    const lastInvoicesFile = currentEnvironment.value === 'test'
-      ? '../data/environments/last_invoices.test.json'
-      : '../data/last_invoices.json'
-
-    // Load existing last_invoices
-    const lastInvoices = currentEnvironment.value === 'test'
-      ? await import('../data/environments/last_invoices.test.json')
-      : await import('../data/last_invoices.json')
-    const lastInvoicesData = lastInvoices.default || {}
-
+    // Determine the correct file path based on environment
+    const fileName = currentEnvironment.value === 'test' 
+      ? '/data/environments/last_invoices.test.json'
+      : '/data/last_invoices.json'
+    
+    // First, load the current data
+    const response = await fetch(fileName)
+    if (!response.ok) {
+      console.error('Failed to load last invoices file:', response.statusText)
+      return false
+    }
+    
+    const lastInvoicesData = await response.json()
+    
     // Update the specific insurer's last_invoice
     lastInvoicesData[insurerName] = newDate
-
-    // Save the updated data
-    await fetch(lastInvoicesFile, {
-      method: 'PUT',
+    
+    // Save the updated data back to the file
+    const saveResponse = await fetch(fileName, {
+      method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify(lastInvoicesData)
+      body: JSON.stringify(lastInvoicesData, null, 2) // Pretty print JSON
     })
-
+    
+    if (!saveResponse.ok) {
+      console.error('Failed to save last invoices file:', saveResponse.statusText)
+      return false
+    }
+    
+    console.log('Successfully updated last invoice for:', insurerName, 'to', newDate)
     return true
   } catch (error) {
     console.error('Error updating last invoice:', error)

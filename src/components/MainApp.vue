@@ -322,15 +322,15 @@ const loadInsurersData = async () => {
   }
 }
 
-// Load last invoices based on current environment
+// Load last invoices from Firestore via Firebase
+import { fetchInvoices, saveInvoices } from '../firebaseInvoices'
+
 const loadLastInvoices = async () => {
   try {
-    const invoicesResponse = await fetch(
-      `/src/data/${currentEnvironment.value === 'test' ? 'environments/last_invoices.test.json' : 'last_invoices.json'}`
-    )
-    lastInvoices.value = await invoicesResponse.json()
+    const data = await fetchInvoices()
+    lastInvoices.value = data || {}
   } catch (e) {
-    console.warn('Could not load last invoices, using empty object', e)
+    console.warn('Could not load last invoices from Firebase, using empty object', e)
     lastInvoices.value = {}
   }
 }
@@ -446,41 +446,14 @@ const saveToJson = async () => {
       insurersData.value[insurerIndex] = { ...selectedInsurer.value }
     }
 
-    // Save to both files
-    const insurersFile = currentEnvironment.value === 'test' 
-      ? '../data/environments/insurers.test.json'
-      : '../data/insurers.json'
-    const lastInvoicesFile = currentEnvironment.value === 'test'
-      ? '../data/environments/last_invoices.test.json'
-      : '../data/last_invoices.json'
-
-    // Save insurers data (without last_invoice)
-    const insurersDataWithoutLastInvoice = insurersData.value.map(insurer => {
-      const { last_invoice, ...rest } = insurer
-      return rest
-    })
-    await fetch(insurersFile, {
-      method: 'PUT',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(insurersDataWithoutLastInvoice)
-    })
-
-    // Save last_invoices data
-    const lastInvoices = insurersData.value.reduce((acc, insurer) => {
+    // Save last_invoices data to Firebase
+    const lastInvoicesObj = insurersData.value.reduce((acc, insurer) => {
       if (insurer.last_invoice) {
         acc[insurer.name] = insurer.last_invoice
       }
       return acc
     }, {})
-    await fetch(lastInvoicesFile, {
-      method: 'PUT',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(lastInvoices)
-    })
+    await saveInvoices(lastInvoicesObj)
 
     alert('Daten erfolgreich gespeichert!')
     
