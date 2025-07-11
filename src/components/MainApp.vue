@@ -323,17 +323,16 @@ const loadInsurersData = async () => {
 }
 
 // Load last invoices from Firestore via Firebase
-import { fetchInvoices, saveInvoices } from '../firebaseInvoices'
+import { fetchInvoices, saveInvoices, subscribeInvoices } from '../firebaseInvoices'
 
-const loadLastInvoices = async () => {
-  try {
-    const data = await fetchInvoices()
-    lastInvoices.value = data || {}
-  } catch (e) {
-    console.warn('Could not load last invoices from Firebase, using empty object', e)
-    lastInvoices.value = {}
-  }
-}
+// Set up real-time listener for last_invoices
+let unsubscribeInvoices = null;
+const loadLastInvoices = () => {
+  if (unsubscribeInvoices) unsubscribeInvoices();
+  unsubscribeInvoices = subscribeInvoices((data) => {
+    lastInvoices.value = data || {};
+  });
+};
 
 // Load all data based on current environment
 const loadData = async () => {
@@ -347,9 +346,14 @@ const loadData = async () => {
   }
 }
 
-// Initial load
+// Initial load and subscribe to real-time updates
+import { onUnmounted } from 'vue'
 onMounted(() => {
   loadData()
+  loadLastInvoices()
+})
+onUnmounted(() => {
+  if (unsubscribeInvoices) unsubscribeInvoices();
 })
 
 const filteredInsurers = computed(() => {

@@ -1,6 +1,6 @@
 // Utility functions for reading/writing invoices from Firestore
 import { db } from './firebase';
-import { collection, doc, getDoc, setDoc } from 'firebase/firestore';
+import { collection, doc, getDoc, setDoc, onSnapshot } from 'firebase/firestore';
 
 const COLLECTION_NAME = 'invoices';
 const DOC_NAME = 'last_invoices'; // You can change this if you want multiple sets
@@ -19,4 +19,16 @@ const DOC_NAME = 'last_invoices'; // You can change this if you want multiple se
 export async function saveInvoices(data) {
   const docRef = doc(collection(db, COLLECTION_NAME), DOC_NAME);
   await setDoc(docRef, data);
+}
+
+// Subscribe to real-time updates for invoices
+export function subscribeInvoices(callback) {
+  const docRef = doc(collection(db, COLLECTION_NAME), DOC_NAME);
+  return onSnapshot(docRef, (docSnap) => {
+    if (docSnap.exists()) {
+      callback(docSnap.data());
+    } else {
+      callback({});
+    }
+  });
 }
