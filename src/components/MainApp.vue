@@ -359,11 +359,13 @@ onUnmounted(() => {
 // Watch for real-time updates to lastInvoices and update insurersData accordingly
 watch(lastInvoices, (newVal) => {
   if (!insurersData.value || !newVal) return;
+  // Always replace the array for Vue reactivity
   insurersData.value = insurersData.value.map(insurer => ({
     ...insurer,
     last_invoice: newVal[insurer.name] || ''
   }));
-}, { deep: true });
+  console.log('Updated insurersData:', insurersData.value);
+});
 
 const filteredInsurers = computed(() => {
   // Clone the data to avoid mutations
@@ -418,18 +420,7 @@ const formattedAbrechnungen = computed(() => {
 watch(currentEnvironment, async () => {
   await loadData()
 })
-// Watch for changes in insurersData and searchFilter
-watch([insurersData, searchFilter], () => {
-  // Force re-render of insurer cards
-  filteredInsurers.value = [...filteredInsurers.value]
-  const insurerCards = document.querySelectorAll('.insurer-card')
-  insurerCards.forEach(card => {
-    card.style.display = 'none'
-    setTimeout(() => {
-      card.style.display = 'block'
-    }, 10)
-  })
-}, { deep: true })
+// (Removed forced re-render watcher. Vue will now handle updates reactively.)
 
 const handleInsurerClick = (insurer) => {
   if (selectedInsurer.value === insurer) {
