@@ -356,6 +356,15 @@ onUnmounted(() => {
   if (unsubscribeInvoices) unsubscribeInvoices();
 })
 
+// Watch for real-time updates to lastInvoices and update insurersData accordingly
+watch(lastInvoices, (newVal) => {
+  if (!insurersData.value || !newVal) return;
+  insurersData.value = insurersData.value.map(insurer => ({
+    ...insurer,
+    last_invoice: newVal[insurer.name] || ''
+  }));
+}, { deep: true });
+
 const filteredInsurers = computed(() => {
   // Clone the data to avoid mutations
   let filtered = [...insurersData.value]
