@@ -1,49 +1,129 @@
 [
   {
-    "name": "AIG",
+    "name": "Advocard",
     "turnus": "",
     "dokumentenart": "",
     "bezugsweg": "",
-    "last_invoice": "08.07.2025, 10:00",
-    "instructions": "Für die Bearbeitung von Allianz-Verträgen benötigen Sie folgende Unterlagen: \n \n \n Versicherungsschein, Personalausweis und aktuelle Gehaltsabrechnung. Bitte beachten Sie die Kündigungsfristen von 3 Monaten zum Jahresende.",
-    "instructions2": "Bitte beachten Sie die Kündigungsfristen von 3 Monaten zum Jahresende.",
-    "settlementCompleted": true
+    "kontakt": "",
+    "login": "",
+    "complete": false
+  },
+  {
+    "name": "Allcura",
+    "turnus": "",
+    "dokumentenart": "",
+    "bezugsweg": "",
+    "kontakt": "",
+    "login": "",
+    "complete": false
+  },
+  {
+    "name": "AIG",
+    "turnus": "31-tägig",
+    "dokumentenart": "CSV, PDF",
+    "bezugsweg": "BiPro",
+    "kontakt": "",
+    "login": "",
+    "complete": true
   },
   {
     "name": "Allianz Versicherungs-AG (Sach)",
-    "instructions": "Noch keine Anweisungen hinterlegt"
+    "turnus": "7-tägig",
+    "dokumentenart": "CSV, PDF",
+    "bezugsweg": "BiPro",
+    "kontakt": "",
+    "login": "",
+    "complete": true
   },
   {
-    "name": "Alte Leipziger Versicherung Aktiengesellschaft",
-    "instructions": "Noch keine Anweisungen hinterlegt"
+    "name": "Allianz Versicherungs-AG (LV)",
+    "turnus": "7-tägig",
+    "dokumentenart": "CSV, PDF",
+    "bezugsweg": "BiPro",
+    "kontakt": "",
+    "login": "",
+    "complete": true
+  },
+  {
+    "name": "Alte Leipziger Versicherung Aktiengesellschaft (Sach)",
+    "turnus": "7-tägig",
+    "dokumentenart": "CSV, PDF",
+    "bezugsweg": "BiPro",
+    "kontakt": "",
+    "login": "",
+    "complete": true
+  },
+  {
+    "name": "Alte Leipziger Versicherung Aktiengesellschaft (LV)",
+    "turnus": "31-tägig",
+    "dokumentenart": "CSV, PDF",
+    "bezugsweg": "BiPro",
+    "kontakt": "",
+    "login": "",
+    "complete": true
   },
   {
     "name": "Ammerländer Versicherung VVaG",
-    "instructions": "Noch keine Anweisungen hinterlegt"
+    "turnus": "31-tägig",
+    "dokumentenart": "CSV, PDF",
+    "bezugsweg": "BiPro",
+    "kontakt": "",
+    "login": "",
+    "complete": true
   },
   {
     "name": "AOK Baden-Württemberg",
-    "instructions": "Noch keine Anweisungen hinterlegt"
+    "turnus": "",
+    "dokumentenart": "",
+    "bezugsweg": "",
+    "kontakt": "",
+    "login": "",
+    "complete": false
   },
   {
     "name": "ARAG",
-    "instructions": "Noch keine Anweisungen hinterlegt"
+    "turnus": "31-tägig",
+    "dokumentenart": "",
+    "bezugsweg": "",
+    "kontakt": "",
+    "login": "",
+    "complete": false
   },
   {
     "name": "Asspario Versicherungsdienst",
-    "instructions": "Noch keine Anweisungen hinterlegt"
+    "turnus": "",
+    "dokumentenart": "",
+    "bezugsweg": "BiPRO",
+    "kontakt": "",
+    "login": "",
+    "complete": false
   },
   {
-    "name": "AXA / DBV",
-    "turnus": "wöchentlich",
+    "name": "AXA DBV (Sach)",
+    "turnus": "7-tägig",
     "dokumentenart": "CSV, PDF",
-    "bezugsweg": "Maklerportal, BiPro",
-    "kontakt": "mario.kroll@axa.de, tel: 0152/09372824",
-    "login": "..."
+    "bezugsweg": "BiPRO",
+    "kontakt": "",
+    "login": "",
+    "complete": true
+  },
+  {
+    "name": "AXA / DBV (LV KV)",
+    "turnus": "7-tägig",
+    "dokumentenart": "CSV, PDF",
+    "bezugsweg": "BiPRO",
+    "kontakt": "",
+    "login": "",
+    "complete": true
   },
   {
     "name": "Baloise",
-    "instructions": "Noch keine Anweisungen hinterlegt"
+    "turnus": "",
+    "dokumentenart": "",
+    "bezugsweg": "BiPRO",
+    "kontakt": "",
+    "login": "",
+    "complete": false
   },
   {
     "name": "Barmenia Krankenversicherung",
@@ -51,63 +131,170 @@
     "dokumentenart": "CSV, PDF",
     "bezugsweg": "Maklerportal, BiPRO ??? --> Alex fragen",
     "kontakt": "maklersupport@barmenia.de, Tel: 0202/4383345",
-    "login": "..."
+    "login": "",
+    "complete": false
+  },
+  {
+    "name": "BavariaDirekt",
+    "turnus": "",
+    "dokumentenart": "",
+    "bezugsweg": "BiPRO",
+    "kontakt": "",
+    "login": "",
+    "complete": false
   },
   {
     "name": "Bayerische Beamten Lebensversicherung a. G.",
-    "instructions": "Noch keine Anweisungen hinterlegt"
+    "turnus": "",
+    "dokumentenart": "",
+    "bezugsweg": "",
+    "kontakt": "",
+    "login": "",
+    "complete": false
   },
   {
     "name": "Bayerische Beamtenkrankenkasse AG (VKB)",
-    "instructions": "Noch keine Anweisungen hinterlegt"
+    "turnus": "",
+    "dokumentenart": "",
+    "bezugsweg": "",
+    "kontakt": "",
+    "login": "",
+    "complete": false
+  },
+  {
+    "name": "Bayerische Hausbesitzer",
+    "turnus": "",
+    "dokumentenart": "",
+    "bezugsweg": "BiPRO",
+    "kontakt": "",
+    "login": "",
+    "complete": false
   },
   {
     "name": "BGV-Versicherung Aktiengesellschaft",
-    "instructions": "Noch keine Anweisungen hinterlegt"
+    "turnus": "31-tägig",
+    "dokumentenart": "CSV, PDF",
+    "bezugsweg": "BiPro",
+    "kontakt": "",
+    "login": "",
+    "complete": true
   },
   {
     "name": "BKK Salus",
-    "instructions": "Noch keine Anweisungen hinterlegt"
+    "turnus": "",
+    "dokumentenart": "",
+    "bezugsweg": "",
+    "kontakt": "",
+    "login": "",
+    "complete": false
   },
   {
     "name": "BL die Bayerische Lebensversicherung AG",
-    "instructions": "Noch keine Anweisungen hinterlegt"
+    "turnus": "7-tägig",
+    "dokumentenart": "CSV, PDF",
+    "bezugsweg": "Maklerportal, BiPRO ??? --> Alex fragen",
+    "kontakt": "",
+    "login": "",
+    "complete": false
+  },
+  {
+    "name": "BSG",
+    "turnus": "",
+    "dokumentenart": "CSV, PDF",
+    "bezugsweg": "BiPRO",
+    "kontakt": "",
+    "login": "",
+    "complete": false
+  },
+  {
+    "name": "CARE Concept",
+    "turnus": "31-tägig",
+    "dokumentenart": "CSV, PDF",
+    "bezugsweg": "BiPRO",
+    "kontakt": "",
+    "login": "",
+    "complete": true
   },
   {
     "name": "Concordia",
-    "instructions": "Noch keine Anweisungen hinterlegt"
+    "turnus": "",
+    "dokumentenart": "",
+    "bezugsweg": "",
+    "kontakt": "",
+    "login": "",
+    "complete": false
   },
   {
     "name": "Continentale",
-    "instructions": "Noch keine Anweisungen hinterlegt"
+    "turnus": "",
+    "dokumentenart": "",
+    "bezugsweg": "",
+    "kontakt": "",
+    "login": "",
+    "complete": false
   },
   {
     "name": "DAK",
-    "instructions": "Noch keine Anweisungen hinterlegt"
+    "turnus": "",
+    "dokumentenart": "",
+    "bezugsweg": "",
+    "kontakt": "",
+    "login": "",
+    "complete": false
   },
   {
     "name": "Debeka",
-    "instructions": "Noch keine Anweisungen hinterlegt"
+    "turnus": "",
+    "dokumentenart": "",
+    "bezugsweg": "",
+    "kontakt": "",
+    "login": "",
+    "complete": false
   },
   {
     "name": "DELA Lebensversicherungen",
-    "instructions": "Noch keine Anweisungen hinterlegt"
+    "turnus": "",
+    "dokumentenart": "",
+    "bezugsweg": "",
+    "kontakt": "",
+    "login": "",
+    "complete": false
   },
   {
     "name": "DEURAG Deutsche Rechtsschutz-Versicherung Aktiengesellschaft",
-    "instructions": "Noch keine Anweisungen hinterlegt"
+    "turnus": "",
+    "dokumentenart": "",
+    "bezugsweg": "",
+    "kontakt": "",
+    "login": "",
+    "complete": false
   },
   {
     "name": "Deutsche Ärzteversicherung Aktiengesellschaft",
-    "instructions": "Noch keine Anweisungen hinterlegt"
+    "turnus": "",
+    "dokumentenart": "",
+    "bezugsweg": "",
+    "kontakt": "",
+    "login": "",
+    "complete": false
   },
   {
     "name": "DEVK Allgemeine Versicherungs-Aktiengesellschaft",
-    "instructions": "Noch keine Anweisungen hinterlegt"
+    "turnus": "",
+    "dokumentenart": "",
+    "bezugsweg": "",
+    "kontakt": "",
+    "login": "",
+    "complete": false
   },
   {
     "name": "Dialog Lebensversicherungs-Aktiengesellschaft",
-    "instructions": "Noch keine Anweisungen hinterlegt"
+    "turnus": "",
+    "dokumentenart": "",
+    "bezugsweg": "",
+    "kontakt": "",
+    "login": "",
+    "complete": false
   },
   {
     "name": "die Bayerische Allgemeine Versicherung AG",
@@ -115,167 +302,378 @@
     "dokumentenart": "CSV, PDF",
     "bezugsweg": "Maklerportal, BiPRO --> Alex fragen",
     "kontakt": "",
-    "login": "..."
+    "login": "...",
+    "complete": true
   },
   {
     "name": "DKV Deutsche Krankenversicherung Aktiengesellschaft",
-    "instructions": "Noch keine Anweisungen hinterlegt"
+    "turnus": "",
+    "dokumentenart": "",
+    "bezugsweg": "",
+    "kontakt": "",
+    "login": "",
+    "complete": false
   },
   {
     "name": "DMB Rechtsschutz-Versicherung Aktiengesellschaft",
-    "instructions": "Noch keine Anweisungen hinterlegt"
+    "turnus": "",
+    "dokumentenart": "",
+    "bezugsweg": "",
+    "kontakt": "",
+    "login": "",
+    "complete": false
   },
   {
-    "name": "DOCURA VVaG",
-    "instructions": "Noch keine Anweisungen hinterlegt"
+    "name": "DOMCURA VVaG",
+    "turnus": "31-tägig",
+    "dokumentenart": "CSV, PDF",
+    "bezugsweg": "BiPro",
+    "kontakt": "",
+    "login": "",
+    "complete": true
   },
   {
     "name": "FRI:DAY",
-    "instructions": "Noch keine Anweisungen hinterlegt"
+    "turnus": "",
+    "dokumentenart": "",
+    "bezugsweg": "",
+    "kontakt": "",
+    "login": "",
+    "complete": false
   },
   {
     "name": "Generali Versicherung Aktiengesellschaft",
-    "instructions": "Noch keine Anweisungen hinterlegt"
+    "turnus": "",
+    "dokumentenart": "",
+    "bezugsweg": "",
+    "kontakt": "",
+    "login": "",
+    "complete": false
   },
   {
     "name": "Gothaer Allgemeine Versicherung Aktiengesellschaft",
-    "instructions": "Noch keine Anweisungen hinterlegt"
+    "turnus": "",
+    "dokumentenart": "",
+    "bezugsweg": "",
+    "kontakt": "",
+    "login": "",
+    "complete": false
   },
   {
     "name": "GRUNDEIGENTÜMER-VERSICHERUNG Versicherungsverein auf Gegenseitigkeit",
-    "instructions": "Noch keine Anweisungen hinterlegt"
+    "turnus": "",
+    "dokumentenart": "",
+    "bezugsweg": "",
+    "kontakt": "",
+    "login": "",
+    "complete": false
   },
   {
     "name": "Haftpflichtkasse",
-    "instructions": "Noch keine Anweisungen hinterlegt"
+    "turnus": "",
+    "dokumentenart": "",
+    "bezugsweg": "",
+    "kontakt": "",
+    "login": "",
+    "complete": false
+  },
+  {
+    "name": "Hallesche",
+    "turnus": "31-tägig",
+    "dokumentenart": "PDF",
+    "bezugsweg": "BiPro",
+    "kontakt": "",
+    "login": "",
+    "complete": true
   },
   {
     "name": "Hannoversche Lebensversicherung AG",
-    "instructions": "Noch keine Anweisungen hinterlegt"
+    "turnus": "",
+    "dokumentenart": "",
+    "bezugsweg": "",
+    "kontakt": "",
+    "login": "",
+    "complete": false
   },
   {
     "name": "HanseMerkur Reiseversicherung AG",
-    "instructions": "Noch keine Anweisungen hinterlegt"
+    "turnus": "",
+    "dokumentenart": "",
+    "bezugsweg": "",
+    "kontakt": "",
+    "login": "",
+    "complete": false
   },
   {
     "name": "HDI Versicherung AG",
-    "instructions": "Noch keine Anweisungen hinterlegt"
+    "turnus": "",
+    "dokumentenart": "",
+    "bezugsweg": "",
+    "kontakt": "",
+    "login": "",
+    "complete": false
   },
   {
     "name": "HELVETIA INTERNATIONAL Versicherungs-Aktiengesellschaft",
-    "instructions": "Noch keine Anweisungen hinterlegt"
+    "turnus": "",
+    "dokumentenart": "",
+    "bezugsweg": "",
+    "kontakt": "",
+    "login": "",
+    "complete": false
   },
   {
     "name": "HUK-COBURG-Allgemeine Versicherung AG",
-    "instructions": "Noch keine Anweisungen hinterlegt"
+    "turnus": "",
+    "dokumentenart": "",
+    "bezugsweg": "",
+    "kontakt": "",
+    "login": "",
+    "complete": false
   },
   {
     "name": "IDUNA Vereinigte Lebensversicherung aG für Handwerk, Handel und Gewerbe",
-    "instructions": "Noch keine Anweisungen hinterlegt"
+    "turnus": "",
+    "dokumentenart": "",
+    "bezugsweg": "",
+    "kontakt": "",
+    "login": "",
+    "complete": false
   },
   {
     "name": "INTER Krankenversicherung aG",
-    "instructions": "Noch keine Anweisungen hinterlegt"
+    "turnus": "",
+    "dokumentenart": "",
+    "bezugsweg": "",
+    "kontakt": "",
+    "login": "",
+    "complete": false
   },
   {
     "name": "InterRisk Versicherungs-Aktiengesellschaft",
-    "instructions": "Noch keine Anweisungen hinterlegt"
+    "turnus": "",
+    "dokumentenart": "",
+    "bezugsweg": "",
+    "kontakt": "",
+    "login": "",
+    "complete": false
   },
   {
-    "name": "Itzehoer Versicherung/Brandgilde von 1691 Versicherungsverein auf Gegenseitigkeit",
-    "instructions": "Noch keine Anweisungen hinterlegt"
+    "name": "Itzehoer Versicherung Brandgilde von 1691 Versicherungsverein auf Gegenseitigkeit",
+    "turnus": "",
+    "dokumentenart": "",
+    "bezugsweg": "",
+    "kontakt": "",
+    "login": "",
+    "complete": false
   },
   {
     "name": "Janitos Versicherung Aktiengesellschaft",
-    "instructions": "Noch keine Anweisungen hinterlegt"
+    "turnus": "",
+    "dokumentenart": "",
+    "bezugsweg": "",
+    "kontakt": "",
+    "login": "",
+    "complete": false
   },
   {
     "name": "KS Auxilia Versicherungs-AG",
-    "instructions": "Noch keine Anweisungen hinterlegt"
+    "turnus": "31-tägig",
+    "dokumentenart": "CSV, PDF",
+    "bezugsweg": "BiPro",
+    "kontakt": "",
+    "login": "",
+    "complete": true
   },
   {
     "name": "LBN-Versicherungsverein a.G. (VVaG)",
-    "instructions": "Noch keine Anweisungen hinterlegt"
+    "turnus": "",
+    "dokumentenart": "",
+    "bezugsweg": "",
+    "kontakt": "",
+    "login": "",
+    "complete": false
   },
   {
     "name": "NÜRNBERGER Krankenversicherung Aktiengesellschaft",
-    "instructions": "Noch keine Anweisungen hinterlegt"
+    "turnus": "31-tägig",
+    "dokumentenart": "CSV, PDF",
+    "bezugsweg": "BiPro",
+    "kontakt": "",
+    "login": "",
+    "complete": true
   },
   {
     "name": "NV-Versicherungen VVaG",
-    "instructions": "Noch keine Anweisungen hinterlegt"
+    "turnus": "",
+    "dokumentenart": "",
+    "bezugsweg": "",
+    "kontakt": "",
+    "login": "",
+    "complete": false
   },
   {
     "name": "Öffentliche Braunschweig",
-    "instructions": "Noch keine Anweisungen hinterlegt"
+    "turnus": "",
+    "dokumentenart": "",
+    "bezugsweg": "",
+    "kontakt": "",
+    "login": "",
+    "complete": false
   },
   {
     "name": "ottonova Krankenversicherung AG",
-    "instructions": "Noch keine Anweisungen hinterlegt"
+    "turnus": "",
+    "dokumentenart": "",
+    "bezugsweg": "",
+    "kontakt": "",
+    "login": "",
+    "complete": false
   },
   {
     "name": "Provita BKK",
-    "instructions": "Noch keine Anweisungen hinterlegt"
+    "turnus": "",
+    "dokumentenart": "",
+    "bezugsweg": "",
+    "kontakt": "",
+    "login": "",
+    "complete": false
   },
   {
     "name": "Proxalto",
-    "instructions": "Noch keine Anweisungen hinterlegt"
+    "turnus": "",
+    "dokumentenart": "",
+    "bezugsweg": "",
+    "kontakt": "",
+    "login": "",
+    "complete": false
   },
   {
     "name": "R+V Krankenversicherung Aktiengesellschaft",
-    "instructions": "Noch keine Anweisungen hinterlegt"
+    "turnus": "",
+    "dokumentenart": "",
+    "bezugsweg": "",
+    "kontakt": "",
+    "login": "",
+    "complete": false
   },
   {
     "name": "R+V Versicherung AG",
-    "instructions": "Noch keine Anweisungen hinterlegt"
+    "turnus": "",
+    "dokumentenart": "",
+    "bezugsweg": "",
+    "kontakt": "",
+    "login": "",
+    "complete": false
   },
   {
     "name": "SDK Süddeutsche Krankenversicherung a. G.",
-    "instructions": "Noch keine Anweisungen hinterlegt"
+    "turnus": "",
+    "dokumentenart": "",
+    "bezugsweg": "",
+    "kontakt": "",
+    "login": "",
+    "complete": false
   },
   {
     "name": "Signal Iduna Allgemeine Versicherung Aktiengesellschaft",
-    "instructions": "Noch keine Anweisungen hinterlegt"
+    "turnus": "",
+    "dokumentenart": "",
+    "bezugsweg": "",
+    "kontakt": "",
+    "login": "",
+    "complete": false
   },
   {
     "name": "SIGNAL Krankenversicherung a.G.",
-    "instructions": "Noch keine Anweisungen hinterlegt"
+    "turnus": "",
+    "dokumentenart": "",
+    "bezugsweg": "",
+    "kontakt": "",
+    "login": "",
+    "complete": false
   },
   {
     "name": "Stuttgarter Lebensversicherung a.G.",
-    "instructions": "Noch keine Anweisungen hinterlegt"
+    "turnus": "",
+    "dokumentenart": "",
+    "bezugsweg": "",
+    "kontakt": "",
+    "login": "",
+    "complete": false
   },
   {
     "name": "SV SparkassenVersicherung Gebäudeversicherung Aktiengesellschaft",
-    "instructions": "Noch keine Anweisungen hinterlegt"
+    "turnus": "",
+    "dokumentenart": "",
+    "bezugsweg": "",
+    "kontakt": "",
+    "login": "",
+    "complete": false
   },
   {
     "name": "Swiss Life AG, Niederlassung Deutschland",
-    "instructions": "Noch keine Anweisungen hinterlegt"
+    "turnus": "",
+    "dokumentenart": "",
+    "bezugsweg": "",
+    "kontakt": "",
+    "login": "",
+    "complete": false
   },
   {
     "name": "Techniker Krankenkasse",
-    "instructions": "Noch keine Anweisungen hinterlegt"
+    "turnus": "",
+    "dokumentenart": "",
+    "bezugsweg": "",
+    "kontakt": "",
+    "login": "",
+    "complete": false
   },
   {
     "name": "Union Krankenversicherung AG",
-    "instructions": "Noch keine Anweisungen hinterlegt"
+    "turnus": "",
+    "dokumentenart": "",
+    "bezugsweg": "",
+    "kontakt": "",
+    "login": "",
+    "complete": false
   },
   {
     "name": "uniVersa Krankenversicherung a.G.",
-    "instructions": "Noch keine Anweisungen hinterlegt"
+    "turnus": "",
+    "dokumentenart": "",
+    "bezugsweg": "",
+    "kontakt": "",
+    "login": "",
+    "complete": false
   },
   {
     "name": "Versicherungskammer Bayern Versicherungsanstalt des öffentlichen Rechts",
-    "instructions": "Noch keine Anweisungen hinterlegt"
+    "turnus": "31-tägig",
+    "dokumentenart": "CSV, PDF",
+    "bezugsweg": "BiPro",
+    "kontakt": "",
+    "login": "",
+    "complete": true
   },
   {
     "name": "VGK",
-    "instructions": "Noch keine Anweisungen hinterlegt"
+    "turnus": "",
+    "dokumentenart": "",
+    "bezugsweg": "",
+    "kontakt": "",
+    "login": "",
+    "complete": false
   },
   {
     "name": "VHV Allgemeine Versicherung AG",
-    "instructions": "Noch keine Anweisungen hinterlegt"
+    "turnus": "31-tägig",
+    "dokumentenart": "CSV, PDF",
+    "bezugsweg": "BiPro",
+    "kontakt": "",
+    "login": "",
+    "kommentar":"2 Vermittlernummern: 502343-000 und 162553-000",
+    "complete": true
   },
   {
     "name": "Versicherungscheck24",
@@ -283,24 +681,47 @@
     "dokumentenart": "PDF (standard) - CSV auf Wunsch möglich (per Mail anfordern)",
     "bezugsweg": "Maklerportal, Mail",
     "kontakt": "Florian.Reinecke@vc24.de, Tel: 071959610962",
-    "login": "...",
-    "last_invoice": "08.07.2025, 09:53",
-    "settlementCompleted": true
+    "login": "",
+    "complete": true
   },
   {
     "name": "Volkswohl-Bund Lebensversicherung a.G.",
-    "instructions": "Noch keine Anweisungen hinterlegt"
+    "turnus": "",
+    "dokumentenart": "",
+    "bezugsweg": "",
+    "last_invoice": "",
+    "kontakt": "",
+    "login": "",
+    "complete": false
   },
   {
     "name": "WGV-Versicherung AG",
-    "instructions": "Noch keine Anweisungen hinterlegt"
+    "turnus": "",
+    "dokumentenart": "",
+    "bezugsweg": "",
+    "last_invoice": "",
+    "kontakt": "",
+    "login": "",
+    "complete": false
   },
   {
     "name": "Wüstenrot & Württembergische AG",
-    "instructions": "Noch keine Anweisungen hinterlegt"
+    "turnus": "",
+    "dokumentenart": "",
+    "bezugsweg": "",
+    "last_invoice": "",
+    "kontakt": "",
+    "login": "",
+    "complete": false
   },
   {
     "name": "Zurich",
-    "instructions": "Noch keine Anweisungen hinterlegt"
+    "turnus": "",
+    "dokumentenart": "",
+    "bezugsweg": "",
+    "last_invoice": "",
+    "kontakt": "",
+    "login": "",
+    "complete": false
   }
 ]

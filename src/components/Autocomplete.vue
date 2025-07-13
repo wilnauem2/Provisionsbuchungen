@@ -60,8 +60,7 @@
               />
               
               <!-- Status-Indikator -->
-              <div v-if="insurer.settlementCompleted" class="w-3 h-3 bg-green-500 rounded-full"></div>
-              <div v-else class="w-3 h-3 bg-gray-300 rounded-full"></div>
+              <div class="w-3 h-3 bg-green-500 rounded-full"></div>
             </div>
           </div>
         </div>

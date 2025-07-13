@@ -1,0 +1,727 @@
+[
+    {
+      "name": "Advocard",
+      "turnus": "",
+      "dokumentenart": "",
+      "bezugsweg": "",
+      "kontakt": "",
+      "login": "",
+      "complete": false
+    },
+    {
+      "name": "Allcura",
+      "turnus": "",
+      "dokumentenart": "",
+      "bezugsweg": "",
+      "kontakt": "",
+      "login": "",
+      "complete": false
+    },
+    {
+      "name": "AIG",
+      "turnus": "31-tägig",
+      "dokumentenart": "CSV, PDF",
+      "bezugsweg": "BiPro",
+      "kontakt": "",
+      "login": "",
+      "complete": true
+    },
+    {
+      "name": "Allianz Versicherungs-AG (Sach)",
+      "turnus": "7-tägig",
+      "dokumentenart": "CSV, PDF",
+      "bezugsweg": "BiPro",
+      "kontakt": "",
+      "login": "",
+      "complete": true
+    },
+    {
+      "name": "Allianz Versicherungs-AG (LV)",
+      "turnus": "7-tägig",
+      "dokumentenart": "CSV, PDF",
+      "bezugsweg": "BiPro",
+      "kontakt": "",
+      "login": "",
+      "complete": true
+    },
+    {
+      "name": "Alte Leipziger Versicherung Aktiengesellschaft (Sach)",
+      "turnus": "7-tägig",
+      "dokumentenart": "CSV, PDF",
+      "bezugsweg": "BiPro",
+      "kontakt": "",
+      "login": "",
+      "complete": true
+    },
+    {
+      "name": "Alte Leipziger Versicherung Aktiengesellschaft (LV)",
+      "turnus": "31-tägig",
+      "dokumentenart": "CSV, PDF",
+      "bezugsweg": "BiPro",
+      "kontakt": "",
+      "login": "",
+      "complete": true
+    },
+    {
+      "name": "Ammerländer Versicherung VVaG",
+      "turnus": "31-tägig",
+      "dokumentenart": "CSV, PDF",
+      "bezugsweg": "BiPro",
+      "kontakt": "",
+      "login": "",
+      "complete": true
+    },
+    {
+      "name": "AOK Baden-Württemberg",
+      "turnus": "",
+      "dokumentenart": "",
+      "bezugsweg": "",
+      "kontakt": "",
+      "login": "",
+      "complete": false
+    },
+    {
+      "name": "ARAG",
+      "turnus": "31-tägig",
+      "dokumentenart": "",
+      "bezugsweg": "",
+      "kontakt": "",
+      "login": "",
+      "complete": false
+    },
+    {
+      "name": "Asspario Versicherungsdienst",
+      "turnus": "",
+      "dokumentenart": "",
+      "bezugsweg": "BiPRO",
+      "kontakt": "",
+      "login": "",
+      "complete": false
+    },
+    {
+      "name": "AXA DBV (Sach)",
+      "turnus": "7-tägig",
+      "dokumentenart": "CSV, PDF",
+      "bezugsweg": "BiPRO",
+      "kontakt": "",
+      "login": "",
+      "complete": true
+    },
+    {
+      "name": "AXA / DBV (LV KV)",
+      "turnus": "7-tägig",
+      "dokumentenart": "CSV, PDF",
+      "bezugsweg": "BiPRO",
+      "kontakt": "",
+      "login": "",
+      "complete": true
+    },
+    {
+      "name": "Baloise",
+      "turnus": "",
+      "dokumentenart": "",
+      "bezugsweg": "BiPRO",
+      "kontakt": "",
+      "login": "",
+      "complete": false
+    },
+    {
+      "name": "Barmenia Krankenversicherung",
+      "turnus": "14-tägig (am 10. und 24. jedes Monats)",
+      "dokumentenart": "CSV, PDF",
+      "bezugsweg": "Maklerportal, BiPRO ??? --> Alex fragen",
+      "kontakt": "maklersupport@barmenia.de, Tel: 0202/4383345",
+      "login": "",
+      "complete": false
+    },
+    {
+      "name": "BavariaDirekt",
+      "turnus": "",
+      "dokumentenart": "",
+      "bezugsweg": "BiPRO",
+      "kontakt": "",
+      "login": "",
+      "complete": false
+    },
+    {
+      "name": "Bayerische Beamten Lebensversicherung a. G.",
+      "turnus": "",
+      "dokumentenart": "",
+      "bezugsweg": "",
+      "kontakt": "",
+      "login": "",
+      "complete": false
+    },
+    {
+      "name": "Bayerische Beamtenkrankenkasse AG (VKB)",
+      "turnus": "",
+      "dokumentenart": "",
+      "bezugsweg": "",
+      "kontakt": "",
+      "login": "",
+      "complete": false
+    },
+    {
+      "name": "Bayerische Hausbesitzer",
+      "turnus": "",
+      "dokumentenart": "",
+      "bezugsweg": "BiPRO",
+      "kontakt": "",
+      "login": "",
+      "complete": false
+    },
+    {
+      "name": "BGV-Versicherung Aktiengesellschaft",
+      "turnus": "31-tägig",
+      "dokumentenart": "CSV, PDF",
+      "bezugsweg": "BiPro",
+      "kontakt": "",
+      "login": "",
+      "complete": true
+    },
+    {
+      "name": "BKK Salus",
+      "turnus": "",
+      "dokumentenart": "",
+      "bezugsweg": "",
+      "kontakt": "",
+      "login": "",
+      "complete": false
+    },
+    {
+      "name": "BL die Bayerische Lebensversicherung AG",
+      "turnus": "7-tägig",
+      "dokumentenart": "CSV, PDF",
+      "bezugsweg": "Maklerportal, BiPRO ??? --> Alex fragen",
+      "kontakt": "",
+      "login": "",
+      "complete": false
+    },
+    {
+      "name": "BSG",
+      "turnus": "",
+      "dokumentenart": "CSV, PDF",
+      "bezugsweg": "BiPRO",
+      "kontakt": "",
+      "login": "",
+      "complete": false
+    },
+    {
+      "name": "CARE Concept",
+      "turnus": "31-tägig",
+      "dokumentenart": "CSV, PDF",
+      "bezugsweg": "BiPRO",
+      "kontakt": "",
+      "login": "",
+      "complete": true
+    },
+    {
+      "name": "Concordia",
+      "turnus": "",
+      "dokumentenart": "",
+      "bezugsweg": "",
+      "kontakt": "",
+      "login": "",
+      "complete": false
+    },
+    {
+      "name": "Continentale",
+      "turnus": "",
+      "dokumentenart": "",
+      "bezugsweg": "",
+      "kontakt": "",
+      "login": "",
+      "complete": false
+    },
+    {
+      "name": "DAK",
+      "turnus": "",
+      "dokumentenart": "",
+      "bezugsweg": "",
+      "kontakt": "",
+      "login": "",
+      "complete": false
+    },
+    {
+      "name": "Debeka",
+      "turnus": "",
+      "dokumentenart": "",
+      "bezugsweg": "",
+      "kontakt": "",
+      "login": "",
+      "complete": false
+    },
+    {
+      "name": "DELA Lebensversicherungen",
+      "turnus": "",
+      "dokumentenart": "",
+      "bezugsweg": "",
+      "kontakt": "",
+      "login": "",
+      "complete": false
+    },
+    {
+      "name": "DEURAG Deutsche Rechtsschutz-Versicherung Aktiengesellschaft",
+      "turnus": "",
+      "dokumentenart": "",
+      "bezugsweg": "",
+      "kontakt": "",
+      "login": "",
+      "complete": false
+    },
+    {
+      "name": "Deutsche Ärzteversicherung Aktiengesellschaft",
+      "turnus": "",
+      "dokumentenart": "",
+      "bezugsweg": "",
+      "kontakt": "",
+      "login": "",
+      "complete": false
+    },
+    {
+      "name": "DEVK Allgemeine Versicherungs-Aktiengesellschaft",
+      "turnus": "",
+      "dokumentenart": "",
+      "bezugsweg": "",
+      "kontakt": "",
+      "login": "",
+      "complete": false
+    },
+    {
+      "name": "Dialog Lebensversicherungs-Aktiengesellschaft",
+      "turnus": "",
+      "dokumentenart": "",
+      "bezugsweg": "",
+      "kontakt": "",
+      "login": "",
+      "complete": false
+    },
+    {
+      "name": "die Bayerische Allgemeine Versicherung AG",
+      "turnus": "wöchentlich",
+      "dokumentenart": "CSV, PDF",
+      "bezugsweg": "Maklerportal, BiPRO --> Alex fragen",
+      "kontakt": "",
+      "login": "...",
+      "complete": true
+    },
+    {
+      "name": "DKV Deutsche Krankenversicherung Aktiengesellschaft",
+      "turnus": "",
+      "dokumentenart": "",
+      "bezugsweg": "",
+      "kontakt": "",
+      "login": "",
+      "complete": false
+    },
+    {
+      "name": "DMB Rechtsschutz-Versicherung Aktiengesellschaft",
+      "turnus": "",
+      "dokumentenart": "",
+      "bezugsweg": "",
+      "kontakt": "",
+      "login": "",
+      "complete": false
+    },
+    {
+      "name": "DOMCURA VVaG",
+      "turnus": "31-tägig",
+      "dokumentenart": "CSV, PDF",
+      "bezugsweg": "BiPro",
+      "kontakt": "",
+      "login": "",
+      "complete": true
+    },
+    {
+      "name": "FRI:DAY",
+      "turnus": "",
+      "dokumentenart": "",
+      "bezugsweg": "",
+      "kontakt": "",
+      "login": "",
+      "complete": false
+    },
+    {
+      "name": "Generali Versicherung Aktiengesellschaft",
+      "turnus": "",
+      "dokumentenart": "",
+      "bezugsweg": "",
+      "kontakt": "",
+      "login": "",
+      "complete": false
+    },
+    {
+      "name": "Gothaer Allgemeine Versicherung Aktiengesellschaft",
+      "turnus": "",
+      "dokumentenart": "",
+      "bezugsweg": "",
+      "kontakt": "",
+      "login": "",
+      "complete": false
+    },
+    {
+      "name": "GRUNDEIGENTÜMER-VERSICHERUNG Versicherungsverein auf Gegenseitigkeit",
+      "turnus": "",
+      "dokumentenart": "",
+      "bezugsweg": "",
+      "kontakt": "",
+      "login": "",
+      "complete": false
+    },
+    {
+      "name": "Haftpflichtkasse",
+      "turnus": "",
+      "dokumentenart": "",
+      "bezugsweg": "",
+      "kontakt": "",
+      "login": "",
+      "complete": false
+    },
+    {
+      "name": "Hallesche",
+      "turnus": "31-tägig",
+      "dokumentenart": "PDF",
+      "bezugsweg": "BiPro",
+      "kontakt": "",
+      "login": "",
+      "complete": true
+    },
+    {
+      "name": "Hannoversche Lebensversicherung AG",
+      "turnus": "",
+      "dokumentenart": "",
+      "bezugsweg": "",
+      "kontakt": "",
+      "login": "",
+      "complete": false
+    },
+    {
+      "name": "HanseMerkur Reiseversicherung AG",
+      "turnus": "",
+      "dokumentenart": "",
+      "bezugsweg": "",
+      "kontakt": "",
+      "login": "",
+      "complete": false
+    },
+    {
+      "name": "HDI Versicherung AG",
+      "turnus": "",
+      "dokumentenart": "",
+      "bezugsweg": "",
+      "kontakt": "",
+      "login": "",
+      "complete": false
+    },
+    {
+      "name": "HELVETIA INTERNATIONAL Versicherungs-Aktiengesellschaft",
+      "turnus": "",
+      "dokumentenart": "",
+      "bezugsweg": "",
+      "kontakt": "",
+      "login": "",
+      "complete": false
+    },
+    {
+      "name": "HUK-COBURG-Allgemeine Versicherung AG",
+      "turnus": "",
+      "dokumentenart": "",
+      "bezugsweg": "",
+      "kontakt": "",
+      "login": "",
+      "complete": false
+    },
+    {
+      "name": "IDUNA Vereinigte Lebensversicherung aG für Handwerk, Handel und Gewerbe",
+      "turnus": "",
+      "dokumentenart": "",
+      "bezugsweg": "",
+      "kontakt": "",
+      "login": "",
+      "complete": false
+    },
+    {
+      "name": "INTER Krankenversicherung aG",
+      "turnus": "",
+      "dokumentenart": "",
+      "bezugsweg": "",
+      "kontakt": "",
+      "login": "",
+      "complete": false
+    },
+    {
+      "name": "InterRisk Versicherungs-Aktiengesellschaft",
+      "turnus": "",
+      "dokumentenart": "",
+      "bezugsweg": "",
+      "kontakt": "",
+      "login": "",
+      "complete": false
+    },
+    {
+      "name": "Itzehoer Versicherung Brandgilde von 1691 Versicherungsverein auf Gegenseitigkeit",
+      "turnus": "",
+      "dokumentenart": "",
+      "bezugsweg": "",
+      "kontakt": "",
+      "login": "",
+      "complete": false
+    },
+    {
+      "name": "Janitos Versicherung Aktiengesellschaft",
+      "turnus": "",
+      "dokumentenart": "",
+      "bezugsweg": "",
+      "kontakt": "",
+      "login": "",
+      "complete": false
+    },
+    {
+      "name": "KS Auxilia Versicherungs-AG",
+      "turnus": "31-tägig",
+      "dokumentenart": "CSV, PDF",
+      "bezugsweg": "BiPro",
+      "kontakt": "",
+      "login": "",
+      "complete": true
+    },
+    {
+      "name": "LBN-Versicherungsverein a.G. (VVaG)",
+      "turnus": "",
+      "dokumentenart": "",
+      "bezugsweg": "",
+      "kontakt": "",
+      "login": "",
+      "complete": false
+    },
+    {
+      "name": "NÜRNBERGER Krankenversicherung Aktiengesellschaft",
+      "turnus": "31-tägig",
+      "dokumentenart": "CSV, PDF",
+      "bezugsweg": "BiPro",
+      "kontakt": "",
+      "login": "",
+      "complete": true
+    },
+    {
+      "name": "NV-Versicherungen VVaG",
+      "turnus": "",
+      "dokumentenart": "",
+      "bezugsweg": "",
+      "kontakt": "",
+      "login": "",
+      "complete": false
+    },
+    {
+      "name": "Öffentliche Braunschweig",
+      "turnus": "",
+      "dokumentenart": "",
+      "bezugsweg": "",
+      "kontakt": "",
+      "login": "",
+      "complete": false
+    },
+    {
+      "name": "ottonova Krankenversicherung AG",
+      "turnus": "",
+      "dokumentenart": "",
+      "bezugsweg": "",
+      "kontakt": "",
+      "login": "",
+      "complete": false
+    },
+    {
+      "name": "Provita BKK",
+      "turnus": "",
+      "dokumentenart": "",
+      "bezugsweg": "",
+      "kontakt": "",
+      "login": "",
+      "complete": false
+    },
+    {
+      "name": "Proxalto",
+      "turnus": "",
+      "dokumentenart": "",
+      "bezugsweg": "",
+      "kontakt": "",
+      "login": "",
+      "complete": false
+    },
+    {
+      "name": "R+V Krankenversicherung Aktiengesellschaft",
+      "turnus": "",
+      "dokumentenart": "",
+      "bezugsweg": "",
+      "kontakt": "",
+      "login": "",
+      "complete": false
+    },
+    {
+      "name": "R+V Versicherung AG",
+      "turnus": "",
+      "dokumentenart": "",
+      "bezugsweg": "",
+      "kontakt": "",
+      "login": "",
+      "complete": false
+    },
+    {
+      "name": "SDK Süddeutsche Krankenversicherung a. G.",
+      "turnus": "",
+      "dokumentenart": "",
+      "bezugsweg": "",
+      "kontakt": "",
+      "login": "",
+      "complete": false
+    },
+    {
+      "name": "Signal Iduna Allgemeine Versicherung Aktiengesellschaft",
+      "turnus": "",
+      "dokumentenart": "",
+      "bezugsweg": "",
+      "kontakt": "",
+      "login": "",
+      "complete": false
+    },
+    {
+      "name": "SIGNAL Krankenversicherung a.G.",
+      "turnus": "",
+      "dokumentenart": "",
+      "bezugsweg": "",
+      "kontakt": "",
+      "login": "",
+      "complete": false
+    },
+    {
+      "name": "Stuttgarter Lebensversicherung a.G.",
+      "turnus": "",
+      "dokumentenart": "",
+      "bezugsweg": "",
+      "kontakt": "",
+      "login": "",
+      "complete": false
+    },
+    {
+      "name": "SV SparkassenVersicherung Gebäudeversicherung Aktiengesellschaft",
+      "turnus": "",
+      "dokumentenart": "",
+      "bezugsweg": "",
+      "kontakt": "",
+      "login": "",
+      "complete": false
+    },
+    {
+      "name": "Swiss Life AG, Niederlassung Deutschland",
+      "turnus": "",
+      "dokumentenart": "",
+      "bezugsweg": "",
+      "kontakt": "",
+      "login": "",
+      "complete": false
+    },
+    {
+      "name": "Techniker Krankenkasse",
+      "turnus": "",
+      "dokumentenart": "",
+      "bezugsweg": "",
+      "kontakt": "",
+      "login": "",
+      "complete": false
+    },
+    {
+      "name": "Union Krankenversicherung AG",
+      "turnus": "",
+      "dokumentenart": "",
+      "bezugsweg": "",
+      "kontakt": "",
+      "login": "",
+      "complete": false
+    },
+    {
+      "name": "uniVersa Krankenversicherung a.G.",
+      "turnus": "",
+      "dokumentenart": "",
+      "bezugsweg": "",
+      "kontakt": "",
+      "login": "",
+      "complete": false
+    },
+    {
+      "name": "Versicherungskammer Bayern Versicherungsanstalt des öffentlichen Rechts",
+      "turnus": "31-tägig",
+      "dokumentenart": "CSV, PDF",
+      "bezugsweg": "BiPro",
+      "kontakt": "",
+      "login": "",
+      "complete": true
+    },
+    {
+      "name": "VGK",
+      "turnus": "",
+      "dokumentenart": "",
+      "bezugsweg": "",
+      "kontakt": "",
+      "login": "",
+      "complete": false
+    },
+    {
+      "name": "VHV Allgemeine Versicherung AG",
+      "turnus": "31-tägig",
+      "dokumentenart": "CSV, PDF",
+      "bezugsweg": "BiPro",
+      "kontakt": "",
+      "login": "",
+      "kommentar":"2 Vermittlernummern: 502343-000 und 162553-000",
+      "complete": true
+    },
+    {
+      "name": "Versicherungscheck24",
+      "turnus": "14-tägig (am 01. und 15. jedes Monats)",
+      "dokumentenart": "PDF (standard) - CSV auf Wunsch möglich (per Mail anfordern)",
+      "bezugsweg": "Maklerportal, Mail",
+      "kontakt": "Florian.Reinecke@vc24.de, Tel: 071959610962",
+      "login": "",
+      "complete": true
+    },
+    {
+      "name": "Volkswohl-Bund Lebensversicherung a.G.",
+      "turnus": "",
+      "dokumentenart": "",
+      "bezugsweg": "",
+      "last_invoice": "",
+      "kontakt": "",
+      "login": "",
+      "complete": false
+    },
+    {
+      "name": "WGV-Versicherung AG",
+      "turnus": "",
+      "dokumentenart": "",
+      "bezugsweg": "",
+      "last_invoice": "",
+      "kontakt": "",
+      "login": "",
+      "complete": false
+    },
+    {
+      "name": "Wüstenrot & Württembergische AG",
+      "turnus": "",
+      "dokumentenart": "",
+      "bezugsweg": "",
+      "last_invoice": "",
+      "kontakt": "",
+      "login": "",
+      "complete": false
+    },
+    {
+      "name": "Zurich",
+      "turnus": "",
+      "dokumentenart": "",
+      "bezugsweg": "",
+      "last_invoice": "",
+      "kontakt": "",
+      "login": "",
+      "complete": false
+    }
+  ]

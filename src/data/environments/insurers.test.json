@@ -1,0 +1,156 @@
+[
+  {
+    "name": "Test-Versicherer 1",
+    "turnus": "14-tägig",
+    "dokumentenart": "PDF",
+    "bezugsweg": "BiPRO",
+    "instructions": "Test-Versicherer 1 Instructions"
+  },
+  {
+    "name": "Test-Versicherer 2",
+    "turnus": "21-tägig",
+    "dokumentenart": "CSV",
+    "bezugsweg": "BiPRO",
+    "instructions": "Test-Versicherer 2 Instructions"
+  },
+  {
+    "name": "Test-Versicherer 3",
+    "turnus": "7-tägig",
+    "dokumentenart": "CSV",
+    "bezugsweg": "Email",
+    "instructions": "Test-Versicherer 3 Instructions"
+  },
+  {
+    "name": "Test-Versicherer 4",
+    "turnus": "10-tägig",
+    "dokumentenart": "PDF",
+    "bezugsweg": "BiPRO",
+    "instructions": "Test-Versicherer 4 Instructions"
+  },
+  {
+    "name": "Test-Versicherer 5",
+    "turnus": "30-tägig",
+    "dokumentenart": "CSV",
+    "bezugsweg": "Email",
+    "instructions": "Test-Versicherer 5 Instructions"
+  },
+  {
+    "name": "Test-Versicherer 6",
+    "turnus": "14-tägig",
+    "dokumentenart": "PDF",
+    "bezugsweg": "Email",
+    "instructions": "Test-Versicherer 6 Instructions"
+  },
+  {
+    "name": "Test-Versicherer 7",
+    "turnus": "21-tägig",
+    "dokumentenart": "PDF",
+    "bezugsweg": "Email",
+    "instructions": "Test-Versicherer 7 Instructions"
+  },
+  {
+    "name": "Test-Versicherer 8",
+    "turnus": "7-tägig",
+    "dokumentenart": "PDF",
+    "bezugsweg": "Email",
+    "instructions": "Test-Versicherer 8 Instructions"
+  },
+  {
+    "name": "Test-Versicherer 9",
+    "turnus": "14-tägig",
+    "dokumentenart": "PDF",
+    "bezugsweg": "Email",
+    "instructions": "Test-Versicherer 9 Instructions"
+  },
+  {
+    "name": "Test-Versicherer 10",
+    "turnus": "21-tägig",
+    "dokumentenart": "PDF",
+    "bezugsweg": "Email",
+    "instructions": "Test-Versicherer 10 Instructions"
+  },
+  {
+    "name": "Test-Versicherer 11",
+    "turnus": "10-tägig",
+    "dokumentenart": "PDF",
+    "bezugsweg": "Email",
+    "instructions": "Test-Versicherer 11 Instructions"
+  },
+  {
+    "name": "Test-Versicherer 12",
+    "turnus": "30-tägig",
+    "dokumentenart": "PDF",
+    "bezugsweg": "Email",
+    "instructions": "Test-Versicherer 12 Instructions"
+  },
+  {
+    "name": "Test-Versicherer 13",
+    "turnus": "14-tägig",
+    "dokumentenart": "PDF",
+    "bezugsweg": "Email",
+    "instructions": "Test-Versicherer 13 Instructions"
+  },
+  {
+    "name": "Test-Versicherer 14",
+    "turnus": "21-tägig",
+    "dokumentenart": "PDF",
+    "bezugsweg": "Email",
+    "instructions": "Test-Versicherer 14 Instructions"
+  },
+  {
+    "name": "Test-Versicherer 15",
+    "turnus": "7-tägig",
+    "dokumentenart": "PDF",
+    "bezugsweg": "Email",
+    "instructions": "Test-Versicherer 15 Instructions"
+  },
+  {
+    "name": "Test-Versicherer 16",
+    "turnus": "14-tägig",
+    "dokumentenart": "PDF",
+    "bezugsweg": "Email",
+    "instructions": "Test-Versicherer 16 Instructions"
+  },
+  {
+    "name": "Test-Versicherer 17",
+    "turnus": "21-tägig",
+    "dokumentenart": "PDF",
+    "bezugsweg": "Email",
+    "instructions": "Test-Versicherer 17 Instructions"
+  },
+  {
+    "name": "Test-Versicherer 18",
+    "turnus": "10-tägig",
+    "dokumentenart": "PDF",
+    "bezugsweg": "Email",
+    "instructions": "Test-Versicherer 18 Instructions"
+  },
+  {
+    "name": "Test-Versicherer 19",
+    "turnus": "30-tägig",
+    "dokumentenart": "CSV, PDF",
+    "bezugsweg": "Email",
+    "instructions": "Test-Versicherer 19 Instructions"
+  },
+  {
+    "name": "Test-Versicherer 20",
+    "turnus": "14-tägig",
+    "dokumentenart": "PDF",
+    "bezugsweg": "Email",
+    "instructions": "Test-Versicherer 20 Instructions"
+  },
+  {
+    "name": "Test-Versicherer 21",
+    "turnus": "21-tägig",
+    "dokumentenart": "PDF",
+    "bezugsweg": "Email",
+    "instructions": "Test-Versicherer 21 Instructions"
+  },
+  {
+    "name": "Test-Versicherer 22",
+    "turnus": "7-tägig",
+    "dokumentenart": "PDF",
+    "bezugsweg": "Email",
+    "instructions": "Test-Versicherer 22 Instructions"
+  }
+]

@@ -44,8 +44,7 @@
             <!-- Status-Indikator -->
             <div class="ml-2 flex-shrink-0">
               <div v-if="isOverdue(insurer)" class="w-3 h-3 bg-red-500 rounded-full"></div>
-              <div v-else-if="insurer.settlementCompleted" class="w-3 h-3 bg-green-500 rounded-full"></div>
-              <div v-else class="w-3 h-3 bg-gray-300 rounded-full"></div>
+              <div v-else class="w-3 h-3 bg-green-500 rounded-full"></div>
             </div>
           </div>
         </div>
@@ -55,6 +54,8 @@
 </template>
 
 <script setup>
+import { calculateDaysOverdue, isOverdue, formatLastSettlement } from '../App'
+
 const props = defineProps({
   insurers: {
     type: Array,
@@ -71,50 +72,5 @@ const emit = defineEmits(['insurer-selected'])
 
 const selectInsurer = (insurer) => {
   emit('insurer-selected', insurer)
-}
-
-// Formatierung des Datums für bessere Lesbarkeit
-const formatLastSettlement = (dateString) => {
-  if (!dateString) return ''
- 
-  try {
-    const date = new Date(dateString.replace(/(\d{2})\.(\d{2})\.(\d{4}), (\d{2}):(\d{2})/, '$3-$2-$1T$4:$5'))
-    const now = new Date()
-    const diffTime = Math.abs(now - date)
-    const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24))
-   
-    if (diffDays === 0) {
-      return 'heute'
-    } else if (diffDays === 1) {
-      return 'vor 1 Tag'
-    } else if (diffDays < 7) {
-      return `vor ${diffDays} Tagen`
-    } else {
-      return `am ${dateString.split(',')[0]}`
-    }
-  } catch (error) {
-    return dateString
-  }
-}
-
-// Prüft ob der Versicherer überfällig ist
-const isOverdue = (insurer) => {
-  if (!insurer.last_invoice || !insurer.turnus) return false
-  
-  const turnusMap = {
-    'täglich': 1,
-    '14-täglich': 14,
-    'monatlich': 30
-  }
-  
-  const turnusDays = turnusMap[insurer.turnus?.toLowerCase()]
-  if (!turnusDays) return false
-  
-  const lastInvoiceDate = new Date(insurer.last_invoice.replace(/(\d{2})\.(\d{2})\.(\d{4}), (\d{2}):(\d{2})/, '$3-$2-$1T$4:$5'))
-  const now = new Date()
-  
-  const daysSinceLastInvoice = Math.floor((now - lastInvoiceDate) / (1000 * 60 * 60 * 24))
-  
-  return daysSinceLastInvoice > turnusDays
 }
 </script>
